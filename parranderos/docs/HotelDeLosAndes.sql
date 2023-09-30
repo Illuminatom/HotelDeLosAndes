@@ -11,7 +11,7 @@
 
 CREATE TABLE cliente (
     documento  NUMBER NOT NULL,
-    metodopago VARCHAR2(30) NOT NULL,
+    metodopago VARCHAR2(500) NOT NULL,
     cobrototal NUMBER NOT NULL
 );
 
@@ -80,8 +80,8 @@ ALTER TABLE habitacionplan ADD CONSTRAINT habitacionplan_pk PRIMARY KEY ( tipoha
 
 CREATE TABLE hotel (
     id           NUMBER NOT NULL,
-    nombre       VARCHAR2(50) NOT NULL,
-    numestrellas NUMBER NOT NULL
+    nombre       VARCHAR2(500) NOT NULL,
+    num_estrellas NUMBER NOT NULL
 );
 
 ALTER TABLE hotel ADD CONSTRAINT hotel_pk PRIMARY KEY ( id );
@@ -112,7 +112,7 @@ ALTER TABLE maquinasgimnasio ADD CONSTRAINT maquinasgimnasio_pk PRIMARY KEY ( gi
 
 CREATE TABLE piscina (
     id          NUMBER NOT NULL,
-    profundidad VARCHAR2(10) NOT NULL,
+    profundidad VARCHAR2(500) NOT NULL,
     costo       NUMBER NOT NULL
 );
 
@@ -120,7 +120,7 @@ ALTER TABLE piscina ADD CONSTRAINT piscina_pk PRIMARY KEY ( id );
 
 CREATE TABLE plan (
     id                  NUMBER NOT NULL,
-    nombre              VARCHAR2(50) NOT NULL,
+    nombre              VARCHAR2(500) NOT NULL,
     descuentohabitacion NUMBER NOT NULL
 );
 
@@ -128,7 +128,7 @@ ALTER TABLE plan ADD CONSTRAINT plan_pk PRIMARY KEY ( id );
 
 CREATE TABLE plato (
     id          NUMBER NOT NULL,
-    descripcion VARCHAR2(200) NOT NULL
+    descripcion VARCHAR2(500) NOT NULL
 );
 
 ALTER TABLE plato ADD CONSTRAINT plato_pk PRIMARY KEY ( id );
@@ -150,9 +150,9 @@ ALTER TABLE prestamo ADD CONSTRAINT prestamo_pk PRIMARY KEY ( id );
 
 CREATE TABLE producto (
     id                 NUMBER NOT NULL,
-    nombre             VARCHAR2(50) NOT NULL,
+    nombre             VARCHAR2(500) NOT NULL,
     precio             NUMBER NOT NULL,
-    tipoproducto       VARCHAR2(50) NOT NULL,
+    tipoproducto       VARCHAR2(500) NOT NULL,
     cantidaddisponible NUMBER
 );
 
@@ -190,14 +190,14 @@ ALTER TABLE reservahotel ADD CONSTRAINT reservahotel_pk PRIMARY KEY ( id );
 
 CREATE TABLE restaurantebar (
     id     NUMBER NOT NULL,
-    estilo VARCHAR2(30) NOT NULL
+    estilo VARCHAR2(500) NOT NULL
 );
 
 ALTER TABLE restaurantebar ADD CONSTRAINT restaurantebar_pk PRIMARY KEY ( id );
 
 CREATE TABLE sala (
     id    NUMBER NOT NULL,
-    tipo  VARCHAR2(20) NOT NULL,
+    tipo  VARCHAR2(500) NOT NULL,
     costo NUMBER NOT NULL
 );
 
@@ -205,7 +205,7 @@ ALTER TABLE sala ADD CONSTRAINT sala_pk PRIMARY KEY ( id );
 
 CREATE TABLE serviciobasico (
     id        NUMBER NOT NULL,
-    nombre    VARCHAR2(30) NOT NULL,
+    nombre    VARCHAR2(500) NOT NULL,
     capacidad NUMBER NOT NULL
 );
 
@@ -222,7 +222,7 @@ ALTER TABLE servicioplan ADD CONSTRAINT servicioplan_pk PRIMARY KEY ( plan_id,
 
 CREATE TABLE serviciospa (
     id       NUMBER NOT NULL,
-    duracion VARCHAR2(30) NOT NULL
+    duracion VARCHAR2(500) NOT NULL
 );
 
 ALTER TABLE serviciospa ADD CONSTRAINT serviciospa_pk PRIMARY KEY ( id );
@@ -243,35 +243,35 @@ ALTER TABLE spa ADD CONSTRAINT spa_pk PRIMARY KEY ( id );
 
 CREATE TABLE tienda (
     id   NUMBER NOT NULL,
-    tipo VARCHAR2(50) NOT NULL
+    tipo VARCHAR2(500) NOT NULL
 );
 
 ALTER TABLE tienda ADD CONSTRAINT tienda_pk PRIMARY KEY ( id );
 
 CREATE TABLE tipohabitacion (
     id          NUMBER NOT NULL,
-    nombre      VARCHAR2(50) NOT NULL,
+    nombre      VARCHAR2(500) NOT NULL,
     capacidad   NUMBER NOT NULL,
-    precionoche NUMBER NOT NULL
+    precio_noche NUMBER NOT NULL
 );
 
 ALTER TABLE tipohabitacion ADD CONSTRAINT tipohabitacion_pk PRIMARY KEY ( id );
 
-CREATE TABLE tipousuario (
+CREATE TABLE tipo_usuario (
     id          NUMBER NOT NULL,
-    nombre      VARCHAR2(30) NOT NULL,
+    nombre      VARCHAR2(500) NOT NULL,
     descripcion VARCHAR2(500) NOT NULL
 );
 
-ALTER TABLE tipousuario ADD CONSTRAINT tipousuario_pk PRIMARY KEY ( id );
+ALTER TABLE tipo_usuario ADD CONSTRAINT tipo_usuario_pk PRIMARY KEY ( id );
 
 CREATE TABLE usuario (
     documento         NUMBER NOT NULL,
-    tipodocumento     VARCHAR2(20) NOT NULL,
-    nombre            VARCHAR2(50) NOT NULL,
-    correoelectronico VARCHAR2(30) NOT NULL,
+    tipo_documento     VARCHAR2(500) NOT NULL,
+    nombre            VARCHAR2(500) NOT NULL,
+    correo_electronico VARCHAR2(500) NOT NULL,
     hotel_id          NUMBER NOT NULL,
-    tipousuario_id    NUMBER NOT NULL
+    tipo_usuario_id    NUMBER NOT NULL
 );
 
 ALTER TABLE usuario ADD CONSTRAINT usuario_pk PRIMARY KEY ( documento );
@@ -450,8 +450,8 @@ ALTER TABLE usuario
         REFERENCES hotel ( id );
 
 ALTER TABLE usuario
-    ADD CONSTRAINT usuario_tipousuario_fk FOREIGN KEY ( tipousuario_id )
-        REFERENCES tipousuario ( id );
+    ADD CONSTRAINT usuario_tipo_usuario_fk FOREIGN KEY ( tipo_usuario_id )
+        REFERENCES tipo_usuario ( id );
 
 --  ERROR: No Discriminator Column found in Arc FKArc_3 - constraint trigger for Arc cannot be generated 
 

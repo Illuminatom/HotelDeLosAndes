@@ -7,29 +7,28 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "Hotel")
-public class Hotel {
-
+@Table(name = "Tipo_Usuario")
+public class TipoUsuario {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer id;
-    
+    private int id;    
+
     private String nombre;
-    private Integer numEstrellas;
+    private String descripcion;
 
-    public Hotel(String nombre, Integer numEstrellas) {
-        this.nombre = nombre;
-        this.numEstrellas = numEstrellas;
-    }
-
-    public Hotel()
+    public TipoUsuario()
     {;}
 
-    public Integer getId() {
+    public TipoUsuario(String nombre, String descripcion) {
+        this.nombre = nombre;
+        this.descripcion = descripcion;
+    }
+
+    public int getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -41,11 +40,11 @@ public class Hotel {
         this.nombre = nombre;
     }
 
-    public Integer getNumEstrellas() {
-        return numEstrellas;
+    public String getDescripcion() {
+        return descripcion;
     }
 
-    public void setNumEstrellas(Integer numEstrellas) {
-        this.numEstrellas = numEstrellas;
-    }    
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    }
 }

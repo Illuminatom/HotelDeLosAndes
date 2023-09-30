@@ -8,26 +8,26 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.Collection;
 import uniandes.edu.co.parranderos.modelo.TipoHabitacion;
 
-public interface TipoHabitacionRepository extends JpaRepository<TipoHabitacion, Long> {
+public interface TipoHabitacionRepository extends JpaRepository<TipoHabitacion, Integer> {
 
     @Query(value = "SELECT * FROM tipohabitacion", nativeQuery = true)
     Collection<TipoHabitacion> darTiposHabitacion();
 
     @Query(value = "SELECT * FROM tipohabitacion WHERE id = :id", nativeQuery = true)
-    TipoHabitacion darTipoHabitacionPorId(@Param("id") Long id);
+    TipoHabitacion darTipoHabitacionPorId(@Param("id") int id);
 
     @Modifying
     @Transactional
-    @Query(value = "INSERT INTO tipohabitacion (nombre, capacidad, precio_noche) VALUES (:nombre, :capacidad, :precioNoche)", nativeQuery = true)
-    void insertarTipoHabitacion(@Param("nombre") String nombre, @Param("capacidad") int capacidad, @Param("precioNoche") int precioNoche);
+    @Query(value = "INSERT INTO tipohabitacion (id, nombre, capacidad, precio_noche) VALUES (:id, :nombre, :capacidad, :precionoche)", nativeQuery = true)
+    void insertarTipoHabitacion(@Param("id") int id, @Param("nombre") String nombre, @Param("capacidad") int capacidad, @Param("precionoche") int precionoche);
 
     @Modifying
     @Transactional
-    @Query(value = "UPDATE tipohabitacion SET nombre = :nombre, capacidad = :capacidad, precio_noche = :precioNoche WHERE id = :id", nativeQuery = true)
-    void actualizarTipoHabitacion(@Param("id") Long id, @Param("nombre") String nombre, @Param("capacidad") int capacidad, @Param("precioNoche") int precioNoche);
+    @Query(value = "UPDATE tipohabitacion SET nombre = :nombre, capacidad = :capacidad, precio_noche = :precionoche WHERE id = :id", nativeQuery = true)
+    void actualizarTipoHabitacion(@Param("id") int id, @Param("nombre") String nombre, @Param("capacidad") int capacidad, @Param("precionoche") int precionoche);
 
     @Modifying
     @Transactional
     @Query(value = "DELETE FROM tipohabitacion WHERE id = :id", nativeQuery = true)
-    void eliminarTipoHabitacion(@Param("id") Long id);
+    void eliminarTipoHabitacion(@Param("id") int id);
 }

@@ -1,7 +1,10 @@
 package uniandes.edu.co.parranderos.modelo;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -13,16 +16,28 @@ public class Usuario {
 
     private String tipoDocumento;
     private String nombre;
-    private String correoElectronico;
-    private String tipoUsuario;
 
-    public Usuario(int documento, String tipoDocumento, String nombre, String correoElectronico, String tipoUsuario) {
+    @Column(name = "correo_electronico")
+    private String correoElectronico;
+    
+    @ManyToOne
+    @JoinColumn(name = "TipoUsuario_id", referencedColumnName = "id")
+    private TipoUsuario TipoUsuario_id;
+    @ManyToOne
+    @JoinColumn(name = "Hotel_id", referencedColumnName = "id")
+    private Hotel Hotel_id;
+
+    public Usuario(int documento, String tipoDocumento, String nombre, String correoElectronico, TipoUsuario tipoUsuario_id, Hotel hotel_id) {
         this.documento = documento;
         this.tipoDocumento = tipoDocumento;
         this.nombre = nombre;
         this.correoElectronico = correoElectronico;
-        this.tipoUsuario = tipoUsuario;
+        this.TipoUsuario_id = tipoUsuario_id;
+        this.Hotel_id = hotel_id;
     }
+
+    public Usuario()
+    {;}
 
     public int getDocumento() {
         return documento;
@@ -56,11 +71,20 @@ public class Usuario {
         this.correoElectronico = correoElectronico;
     }
 
-    public String getTipoUsuario() {
-        return tipoUsuario;
+    public TipoUsuario getTipoUsuario_id() {
+        return TipoUsuario_id;
     }
 
-    public void setTipoUsuario(String tipoUsuario) {
-        this.tipoUsuario = tipoUsuario;
-    }    
+    public void setTipoUsuario_id(TipoUsuario tipoUsuario_id) {
+        TipoUsuario_id = tipoUsuario_id;
+    }
+
+    public Hotel getHotel_id() {
+        return Hotel_id;
+    }
+
+    public void setHotel_id(Hotel hotel_id) {
+        Hotel_id = hotel_id;
+    }
+
 }
