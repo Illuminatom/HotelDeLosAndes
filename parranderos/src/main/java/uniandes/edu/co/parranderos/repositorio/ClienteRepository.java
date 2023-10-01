@@ -19,13 +19,13 @@ public interface ClienteRepository extends JpaRepository<Cliente, Integer>{
 
     @Modifying
     @Transactional
-    @Query(value = "INSERT INTO cliente (documento, metodoPago, cobroTotal)", nativeQuery = true)
-    void insertarCliente(@Param("documento") int documento, @Param("metodoPago") String metodoPago ,@Param("cobroTotal") int cobroTotal);
+    @Query(value = "INSERT INTO cliente (documento, metodo_Pago, cobro_Total)", nativeQuery = true)
+    void insertarCliente(@Param("documento") int documento, @Param("metodo_Pago") String metodo_Pago ,@Param("cobro_Total") int cobro_Total);
 
     @Modifying
     @Transactional
-    @Query(value = "UPDATE cliente SET documento=:documento_actualizado, metodoPago=:metodoPago, cobroTotal=:cobroTotal WHERE documento=:documento", nativeQuery = true)
-    void actualizarCliente(@Param("documento") int documento, @Param("documento_actualizado") int documento_actualizado,@Param("metodoPago") String metodoPago ,@Param("cobroTotal") int cobroTotal);
+    @Query(value = "UPDATE cliente SET documento=:documento_actualizado, metodo_Pago=:metodo_Pago, cobro_Total=:cobro_Total WHERE documento=:documento", nativeQuery = true)
+    void actualizarCliente(@Param("documento") int documento, @Param("documento_actualizado") int documento_actualizado,@Param("metodo_Pago") String metodo_Pago ,@Param("cobro_Total") int cobro_Total);
 
     @Modifying
     @Transactional

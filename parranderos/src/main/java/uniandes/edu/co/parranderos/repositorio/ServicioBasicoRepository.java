@@ -11,16 +11,16 @@ import org.springframework.transaction.annotation.Transactional;
 import uniandes.edu.co.parranderos.modelo.ServicioBasico;
 
 public interface ServicioBasicoRepository extends JpaRepository<ServicioBasico, Integer>{
-    @Query(value = "SELECT * FROM serviciobasico", nativeQuery = true)
+    @Query(value = "SELECT * FROM servicio_basico", nativeQuery = true)
     Collection<ServicioBasico> darServiciosBasicos();
 
-    @Query(value = "SELECT * FROM serviciobasico WHERE id=:id", nativeQuery = true)
+    @Query(value = "SELECT * FROM servicio_basico WHERE id=:id", nativeQuery = true)
     ServicioBasico darServicioBasico(@Param("id") int id);
 
     @Modifying
     @Transactional
-    @Query(value = "INSERT INTO serviciobasico (id, nombre, capacidad) VALUES (:nombre, :capacidad)", nativeQuery = true)
-    void insertarServicioBasico(@Param("nombre") String nombre, @Param("capacidad") int capacidad);
+    @Query(value = "INSERT INTO servicio_basico (id, nombre, capacidad) VALUES (:id, :nombre, :capacidad)", nativeQuery = true)
+    void insertarServicioBasico(@Param("id") int id, @Param("nombre") String nombre, @Param("capacidad") int capacidad);
 
     @Modifying
     @Transactional

@@ -12,7 +12,7 @@ import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "ReservaHotel")
+@Table(name = "Reserva_Hotel")
 public class ReservaHotel {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

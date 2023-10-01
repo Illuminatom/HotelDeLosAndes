@@ -19,13 +19,13 @@ public interface ProductoRepository extends JpaRepository<Producto, Integer>{
 
     @Modifying
     @Transactional
-    @Query(value = "INSERT INTO producto (id, nombre, precio, cantidadDisponible, tipoProducto) VALUES (:nombre, :precio, :cantidadDisponible, :tipoProducto)", nativeQuery = true)
-    void insertarProducto(@Param("nombre") String nombre, @Param("precio") int precio, @Param("cantidadDisponible") int cantidadDisponible, @Param("tipoProducto") String tipoProducto);
+    @Query(value = "INSERT INTO producto (id, nombre, precio, cantidad_disponible, tipo_Producto) VALUES (:id, :nombre, :precio, :cantidad_disponible, :tipo_Producto)", nativeQuery = true)
+    void insertarProducto(@Param("id") int id, @Param("nombre") String nombre, @Param("precio") int precio, @Param("cantidad_disponible") int cantidad_disponible, @Param("tipo_Producto") String tipo_Producto);
 
     @Modifying
     @Transactional
-    @Query(value = "UPDATE producto SET nombre=:nombre, precio=:precio, cantidadDisponible=:cantidadDisponible, tipoProducto=:tipoProducto WHERE id=:id", nativeQuery = true)
-    void actualizarProducto(@Param("id") int id, @Param("nombre") String nombre, @Param("precio") int precio, @Param("cantidadDisponible") int cantidadDisponible, @Param("tipoProducto") String tipoProducto);
+    @Query(value = "UPDATE producto SET nombre=:nombre, precio=:precio, cantidad_disponible=:cantidad_disponible, tipo_Producto=:tipo_Producto WHERE id=:id", nativeQuery = true)
+    void actualizarProducto(@Param("id") int id, @Param("nombre") String nombre, @Param("precio") int precio, @Param("cantidad_disponible") int cantidad_disponible, @Param("tipo_Producto") String tipo_Producto);
 
     @Modifying
     @Transactional

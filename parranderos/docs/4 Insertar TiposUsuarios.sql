@@ -8,7 +8,7 @@ INSERT INTO tipo_usuario (id, nombre, descripcion)
 VALUES (3, 'Empleado', 'Quienes registran los consumos del cliente');
 
 INSERT INTO tipo_usuario (id, nombre, descripcion)
-VALUES (4, 'Administrador', 'Quien describe todas las características del hotel, sus habitaciones, servicios y planes, entre otros.');
+VALUES (4, 'Administrador', 'Quien describe todas las caracterï¿½sticas del hotel, sus habitaciones, servicios y planes, entre otros.');
 
 INSERT INTO tipo_usuario (id, nombre, descripcion)
-VALUES (5, 'Gerente', 'Quien está interesado en saber qué es todo lo que ocurre y cómo ocurre en el hotel');
+VALUES (5, 'Gerente', 'Quien esta interesado en saber que es todo lo que ocurre y como ocurre en el hotel');

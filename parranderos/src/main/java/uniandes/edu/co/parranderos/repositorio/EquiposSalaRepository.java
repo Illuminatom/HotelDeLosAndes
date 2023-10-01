@@ -11,24 +11,24 @@ import org.springframework.transaction.annotation.Transactional;
 import uniandes.edu.co.parranderos.modelo.EquiposSala;
 
 public interface EquiposSalaRepository extends JpaRepository<EquiposSala, Integer>{
-    @Query(value = "SELECT * FROM equipossala", nativeQuery = true)
+    @Query(value = "SELECT * FROM equipos_sala", nativeQuery = true)
     Collection<EquiposSala> darEquiposSalas();
 
-    @Query(value = "SELECT * FROM equipossala WHERE Sala_id=:Sala_id AND Producto_id=:Producto_id", nativeQuery = true)
+    @Query(value = "SELECT * FROM equipos_sala WHERE Sala_id=:Sala_id AND Producto_id=:Producto_id", nativeQuery = true)
     EquiposSala darEquiposSala(@Param("Sala_id") int Sala_id, @Param("Producto_id") int Producto_id);
 
     @Modifying
     @Transactional
-    @Query(value = "INSERT INTO equipossala (Sala_id, Producto_id) VALUES (:Sala_id, :Producto_id)", nativeQuery = true)
+    @Query(value = "INSERT INTO equipos_sala (Sala_id, Producto_id) VALUES (:Sala_id, :Producto_id)", nativeQuery = true)
     void insertarEquiposSala(@Param("Sala_id") int Sala_id, @Param("Producto_id") int Producto_id);
 
     @Modifying
     @Transactional
-    @Query(value = "UPDATE equipossala SET Sala_id=:Sala_id_actualizado, Producto_id=:Producto_id_actualizado) WHERE Sala_id=:Sala_id AND Producto_id=:Producto_id", nativeQuery = true)
+    @Query(value = "UPDATE equipo_ssala SET Sala_id=:Sala_id_actualizado, Producto_id=:Producto_id_actualizado) WHERE Sala_id=:Sala_id AND Producto_id=:Producto_id", nativeQuery = true)
     void actualizarEquiposSala(@Param("Sala_id") int Sala_id, @Param("Producto_id") int Producto_id, @Param("Sala_id_actualizado") int Sala_id_actualizado, @Param("Producto_id_actualizado") int Producto_id_actualizado);
     
     @Modifying
     @Transactional
-    @Query(value = "DELETE FROM equipossala WHERE Sala_id=:Sala_id AND Producto_id=:Producto_id", nativeQuery = true)
+    @Query(value = "DELETE FROM equipos_sala WHERE Sala_id=:Sala_id AND Producto_id=:Producto_id", nativeQuery = true)
     void eliminarEquiposSala(@Param("Sala_id") int Sala_id, @Param("Producto_id") int Producto_id);
 }

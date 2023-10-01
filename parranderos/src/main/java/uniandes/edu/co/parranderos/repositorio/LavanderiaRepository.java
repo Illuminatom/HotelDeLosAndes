@@ -19,13 +19,13 @@ public interface LavanderiaRepository extends JpaRepository<Lavanderia, Integer>
 
     @Modifying
     @Transactional
-    @Query(value = "INSERT INTO lavanderia(id, costoPorPrenda, costoPorParZapatos) VALUES (:id, :costoPorPrenda, :costoPorParZapatos)", nativeQuery = true)
-    void insertarLavanderia(@Param("id") int id, @Param("costoPorPrenda") int costoPorPrenda, @Param("costoPorParZapatos") int costoPorParZapatos);
+    @Query(value = "INSERT INTO lavanderia (id, costo_Por_Prenda, costo_Por_Par_Zapatos) VALUES (:id, :costo_Por_Prenda, :costo_Por_Par_Zapatos)", nativeQuery = true)
+    void insertarLavanderia(@Param("id") int id, @Param("costo_Por_Prenda") int costo_Por_Prenda, @Param("costo_Por_Par_Zapatos") int costo_Por_Par_Zapatos);
 
     @Modifying
     @Transactional
-    @Query(value = "UPDATE lavanderia SET id=:id_actualizada, costoPorPrenda=:costoPorPrenda, costoPorParZapatos=:costoPorParZapatos WHERE id=:id", nativeQuery = true)
-    void actualizarLavanderia(@Param("id") int id, @Param("id_actualizada") int id_actualizada, @Param("costoPorPrenda") int costoPorPrenda, @Param("costoPorParZapatos") int costoPorParZapatos);
+    @Query(value = "UPDATE lavanderia SET id=:id_actualizada, costo_Por_Prenda=:costo_Por_Prenda, costo_Por_Par_Zapatos=:costo_Por_Par_Zapatos WHERE id=:id", nativeQuery = true)
+    void actualizarLavanderia(@Param("id") int id, @Param("id_actualizada") int id_actualizada, @Param("costo_Por_Prenda") int costo_Por_Prenda, @Param("costo_Por_Par_Zapatos") int costo_Por_Par_Zapatos);
 
     @Modifying
     @Transactional
