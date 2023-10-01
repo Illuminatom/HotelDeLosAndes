@@ -1,8 +1,8 @@
 INSERT INTO Hotel (id, nombre, num_estrellas)
-VALUES (1, 'Hotel Estelar Bogotá', 5);
+VALUES (1, 'Hotel Estelar Bogota', 5);
 
 INSERT INTO Hotel (id, nombre, num_estrellas)
-VALUES (2, 'Hotel Andino Medellín', 4);
+VALUES (2, 'Hotel Andino Medellin', 4);
 
 INSERT INTO Hotel (id, nombre, num_estrellas)
 VALUES (3, 'Hotel Oasis Cartagena', 3);

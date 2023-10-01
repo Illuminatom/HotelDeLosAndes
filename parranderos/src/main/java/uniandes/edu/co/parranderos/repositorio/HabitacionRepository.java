@@ -19,13 +19,13 @@ public interface HabitacionRepository extends JpaRepository<Habitacion, Integer>
 
     @Modifying
     @Transactional
-    @Query(value = "INSERT INTO habitacion (id, disponible, Hotel_id, TipoHabitacion_id) VALUES(:disponible, :Hotel_id, :TipoHabitacion_id)", nativeQuery = true)
-    void insertarHabitacion(@Param("disponible") Boolean disponible, @Param("Hotel_id") int Hotel_id, @Param("TipoHabitacion_id") int TipoHabitacion_id);
+    @Query(value = "INSERT INTO habitacion (id, disponible, Hotel_id, tipo_habitacion_id) VALUES (:id, :disponible, :Hotel_id, :tipo_habitacion_id)", nativeQuery = true)
+    void insertarHabitacion(@Param("id") int id, @Param("disponible") String disponible, @Param("Hotel_id") int Hotel_id, @Param("tipo_habitacion_id") int tipo_habitacion_id);    
 
     @Modifying
     @Transactional
-    @Query(value = "UPDATE habitacion SET disponible=:disponible, Hotel_id=:Hotel_id, TipoHabitacion_id=:TipoHabitacion_id WHERE id=:id", nativeQuery = true)
-    void actualizarHabitacion(@Param("id") int id, @Param("disponible") Boolean disponible, @Param("Hotel_id") int Hotel_id, @Param("TipoHabitacion_id") int TipoHabitacion_id);
+    @Query(value = "UPDATE habitacion SET disponible=:disponible, Hotel_id=:Hotel_id, tipo_habitacion_id=:tipo_habitacion_id WHERE id=:id", nativeQuery = true)
+    void actualizarHabitacion(@Param("id") int id, @Param("disponible") String disponible, @Param("Hotel_id") int Hotel_id, @Param("tipo_habitacion_id") int tipo_habitacion_id);
 
     @Modifying
     @Transactional

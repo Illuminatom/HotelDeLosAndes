@@ -16,7 +16,7 @@ public class Habitacion {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
     
-    private Boolean disponible;
+    private String disponible;
 
     @ManyToOne
     @JoinColumn(name = "Hotel_id", referencedColumnName = "id")
@@ -26,7 +26,8 @@ public class Habitacion {
     @JoinColumn(name = "TipoHabitacion_id", referencedColumnName = "id")
     private TipoHabitacion TipoHabitacion_id;
 
-    public Habitacion(Boolean Disponible, Hotel hotel_id, TipoHabitacion tipoHabitacion_id) {
+    public Habitacion(int id, String Disponible, Hotel hotel_id, TipoHabitacion tipoHabitacion_id) {
+        this.id = id;
         this.disponible = Disponible;
         this.Hotel_id = hotel_id;
         this.TipoHabitacion_id = tipoHabitacion_id;
@@ -51,12 +52,20 @@ public class Habitacion {
         Hotel_id = hotel_id;
     }
 
-    public Boolean getDisponible() {
+    public String getDisponible() {
         return disponible;
     }
 
-    public void setDisponible(Boolean disponible) {
+    public void setDisponible(String disponible) {
         this.disponible = disponible;
+    }
+
+    public TipoHabitacion getTipoHabitacion_id() {
+        return TipoHabitacion_id;
+    }
+
+    public void setTipoHabitacion_id(TipoHabitacion tipoHabitacion_id) {
+        TipoHabitacion_id = tipoHabitacion_id;
     }  
 }
 

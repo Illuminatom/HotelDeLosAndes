@@ -39,11 +39,11 @@ ALTER TABLE consumoserviciocliente
                                                            fecha );
 
 CREATE TABLE dotacion (
-    tipohabitacion_id NUMBER NOT NULL,
+    tipo_habitacion_id NUMBER NOT NULL,
     producto_id       NUMBER NOT NULL
 );
 
-ALTER TABLE dotacion ADD CONSTRAINT dotacion_pk PRIMARY KEY ( tipohabitacion_id,
+ALTER TABLE dotacion ADD CONSTRAINT dotacion_pk PRIMARY KEY ( tipo_habitacion_id,
                                                               producto_id );
 
 CREATE TABLE equipossala (
@@ -63,19 +63,19 @@ ALTER TABLE gimnasio ADD CONSTRAINT gimnasio_pk PRIMARY KEY ( id );
 
 CREATE TABLE habitacion (
     id                NUMBER NOT NULL,
-    disponible        CHAR(1) NOT NULL,
+    disponible        VARCHAR2(10) CHECK(LOWER(disponible) IN ('si','no')),
     hotel_id          NUMBER NOT NULL,
-    tipohabitacion_id NUMBER NOT NULL
+    tipo_habitacion_id NUMBER NOT NULL
 );
 
 ALTER TABLE habitacion ADD CONSTRAINT habitacion_pk PRIMARY KEY ( id );
 
 CREATE TABLE habitacionplan (
-    tipohabitacion_id NUMBER NOT NULL,
+    tipo_habitacion_id NUMBER NOT NULL,
     plan_id           NUMBER NOT NULL
 );
 
-ALTER TABLE habitacionplan ADD CONSTRAINT habitacionplan_pk PRIMARY KEY ( tipohabitacion_id,
+ALTER TABLE habitacionplan ADD CONSTRAINT habitacionplan_pk PRIMARY KEY ( tipo_habitacion_id,
                                                                           plan_id );
 
 CREATE TABLE hotel (
@@ -248,14 +248,14 @@ CREATE TABLE tienda (
 
 ALTER TABLE tienda ADD CONSTRAINT tienda_pk PRIMARY KEY ( id );
 
-CREATE TABLE tipohabitacion (
+CREATE TABLE tipo_habitacion (
     id          NUMBER NOT NULL,
     nombre      VARCHAR2(500) NOT NULL,
     capacidad   NUMBER NOT NULL,
     precio_noche NUMBER NOT NULL
 );
 
-ALTER TABLE tipohabitacion ADD CONSTRAINT tipohabitacion_pk PRIMARY KEY ( id );
+ALTER TABLE tipo_habitacion ADD CONSTRAINT tipo_habitacion_pk PRIMARY KEY ( id );
 
 CREATE TABLE tipo_usuario (
     id          NUMBER NOT NULL,
@@ -303,8 +303,8 @@ ALTER TABLE dotacion
         REFERENCES producto ( id );
 
 ALTER TABLE dotacion
-    ADD CONSTRAINT dotacion_tipohabitacion_fk FOREIGN KEY ( tipohabitacion_id )
-        REFERENCES tipohabitacion ( id );
+    ADD CONSTRAINT dotacion_tipo_habitacion_fk FOREIGN KEY ( tipo_habitacion_id )
+        REFERENCES tipo_habitacion ( id );
 
 ALTER TABLE equipossala
     ADD CONSTRAINT equipossala_producto_fk FOREIGN KEY ( producto_id )
@@ -323,8 +323,8 @@ ALTER TABLE habitacion
         REFERENCES hotel ( id );
 
 ALTER TABLE habitacion
-    ADD CONSTRAINT habitacion_tipohabitacion_fk FOREIGN KEY ( tipohabitacion_id )
-        REFERENCES tipohabitacion ( id );
+    ADD CONSTRAINT habitacion_tipo_habitacion_fk FOREIGN KEY ( tipo_habitacion_id )
+        REFERENCES tipo_habitacion ( id );
 
 ALTER TABLE habitacionplan
     ADD CONSTRAINT habitacionplan_plan_fk FOREIGN KEY ( plan_id )
@@ -332,8 +332,8 @@ ALTER TABLE habitacionplan
 
 --  ERROR: FK name length exceeds maximum allowed length(30) 
 ALTER TABLE habitacionplan
-    ADD CONSTRAINT habitacionplan_tipohabitacion_fk FOREIGN KEY ( tipohabitacion_id )
-        REFERENCES tipohabitacion ( id );
+    ADD CONSTRAINT habitacionplan_tipo_habitacion_fk FOREIGN KEY ( tipo_habitacion_id )
+        REFERENCES tipo_habitacion ( id );
 
 ALTER TABLE hotelofrece
     ADD CONSTRAINT hotelofrece_hotel_fk FOREIGN KEY ( hotel_id )

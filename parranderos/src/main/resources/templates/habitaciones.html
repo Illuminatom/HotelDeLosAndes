@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Habitaciones</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}"/>
+</head>
+<body>
+    <div>
+        <h1>Lista de Habitaciones</h1>
+        <table class="table table-hover table-bordered">
+            <thead class="thead-dark">
+                <tr>
+                    <th>ID</th>
+                    <th>Disponible</th>
+                    <th>Hotel</th>
+                    <th>Tipo de Habitacion</th>
+                </tr>
+            </thead>
+            <th:block th:each="habitacion:${habitaciones}">
+                <tr>
+                    <td th:text="${habitacion.id}"></td>
+                    <td th:text="${habitacion.Disponible}"></td>
+                    <td th:text="${habitacion.Hotel_id.nombre}"></td>
+                    <td th:text="${habitacion.TipoHabitacion_id.nombre}"></td>
+                    <td>
+                        <a th:href="@{habitaciones/{id}/edit(id=${habitacion.id})}">Editar</a>
+                        <br>
+                        <a th:href="@{/habitaciones/} + ${habitacion.id} + '/delete'" 
+                        onclick="return confirm('¿Estás seguro de querer eliminar esta habitacion?')">
+                        Eliminar
+                        </a>
+                    </td>
+                </tr>
+            </th:block>
+        </table>
+        <div class="container mx-auto w-25">
+            <a th:href="@{/}" class="btn btn-primary">Volver atras</a>
+            <a th:href="@{habitaciones/new}" class="btn btn-primary">Añadir Habitacion</a>
+        </div>
+    </div>
+</body>
+</html>
