@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Lavanderías</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}"/>
+</head>
+<body>
+    <div>
+        <h1>Lista de Lavanderías</h1>
+        <table class="table table-hover table-bordered">
+            <thead class="thead-dark">
+                <tr>
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>Costo por Prenda</th>
+                    <th>Costo por Par de Zapatos</th>
+                    <th>Opciones</th>
+                </tr>
+            </thead>
+            <tr th:each="lavanderia : ${lavanderias}">
+                <td th:text="${lavanderia.pk.id.id}"></td>
+                <td th:text="${lavanderia.pk.id.nombre}"></td>
+                <td th:text="${lavanderia.costoPorPrenda}"></td>
+                <td th:text="${lavanderia.costoPorParZapatos}"></td>
+                <td>
+                    <a th:href="@{/servicios-basicos/lavanderias/} + ${lavanderia.pk.id.id} + '/delete'" 
+                       onclick="return confirm('¿Estás seguro de querer eliminar esta lavandería?')">Eliminar
+                    </a>
+                </td>
+            </tr>
+        </table>
+        <div class="container mx-auto w-25">
+            <a th:href="@{/servicios-basicos}" class="btn btn-primary">Volver a la lista de Servicios Básicos</a>
+        </div>
+    </div>
+</body>
+</html>

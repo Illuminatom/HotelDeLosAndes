@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menú del Restaurante o Bar</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}"/>
+</head>
+<body>
+    <div>
+        <h1>Menú del Restaurante o Bar</h1>
+        <table class="table table-hover table-bordered">
+            <thead class="thead-dark">
+                <tr>
+                    <th>ID Producto</th>
+                    <th>Nombre</th>
+                    <th>Descripción</th>
+                    <th>Precio</th>
+                </tr>
+            </thead>
+            <tr th:each="platoRestauranteBar : ${menu}">
+                <td th:text="${platoRestauranteBar.pk.Plato_id.pk.id.id}"></td>
+                <td th:text="${platoRestauranteBar.pk.Plato_id.pk.id.nombre}"></td>
+                <td th:text="${platoRestauranteBar.pk.Plato_id.descripcion}"></td>
+                <td th:text="${platoRestauranteBar.pk.Plato_id.pk.id.precio}"></td>                     
+            </tr>
+        </table>
+        <div class="container mx-auto w-25">
+            <a th:href="@{/servicios-basicos/restaurantes-bares}" class="btn btn-primary">Volver a la lista de Restaurantes y Bares</a>
+        </div>
+    </div>
+</body>
+</html>

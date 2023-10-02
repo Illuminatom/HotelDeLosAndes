@@ -14,7 +14,7 @@ public interface LavanderiaRepository extends JpaRepository<Lavanderia, Integer>
     @Query(value = "SELECT * FROM lavanderia", nativeQuery = true)
     Collection<Lavanderia> darLavanderias();
 
-    @Query(value = "SELECT * FROM WHERE id=:id", nativeQuery = true)
+    @Query(value = "SELECT * FROM lavanderia WHERE id=:id", nativeQuery = true)
     Lavanderia darLavanderia(@Param("id") int id);
 
     @Modifying

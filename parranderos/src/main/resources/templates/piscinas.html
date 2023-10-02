@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Piscinas</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}"/>
+</head>
+<body>
+    <div>
+        <h1>Lista de Piscinas</h1>
+        <table class="table table-hover table-bordered">
+            <thead class="thead-dark">
+                <tr>
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>Profundidad</th>
+                    <th>Costo</th>
+                    <th>Opciones</th>
+                </tr>
+            </thead>
+            <tr th:each="piscina : ${piscinas}">
+                <td th:text="${piscina.pk.id.id}"></td>
+                <td th:text="${piscina.pk.id.nombre}"></td>
+                <td th:text="${piscina.profundidad}"></td>
+                <td th:text="${piscina.costo}"></td>
+                <td>
+                    <a th:href="@{/servicios-basicos/piscinas/} + ${piscina.pk.id.id} + '/delete'" 
+                       onclick="return confirm('¿Estás seguro de querer eliminar esta piscina?')">Eliminar
+                    </a>
+                </td>
+            </tr>
+        </table>
+        <div class="container mx-auto w-25">
+            <a th:href="@{/servicios-basicos}" class="btn btn-primary">Volver a la lista de Servicios Basicos</a>
+        </div>
+    </div>
+</body>
+</html>

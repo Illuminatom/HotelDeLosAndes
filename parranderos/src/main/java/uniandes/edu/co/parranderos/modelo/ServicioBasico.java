@@ -22,6 +22,8 @@ public class ServicioBasico {
         this.capacidad = capacidad;
     }
 
+    public ServicioBasico(){;}
+
     public int getId() {
         return id;
     }

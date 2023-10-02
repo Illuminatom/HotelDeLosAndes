@@ -16,7 +16,7 @@ public class Producto {
 
     private String nombre;
     private int precio;
-    private int cantidadDisponible;
+    private Integer cantidadDisponible;
     private String tipoProducto;
     
     public Producto(String nombre, int precio, int CantidadDisponible, String tipoProducto) {
@@ -25,6 +25,8 @@ public class Producto {
         this.cantidadDisponible = CantidadDisponible;
         this.tipoProducto = tipoProducto;
     }
+
+    public Producto(){;}
 
     public int getId() {
         return id;

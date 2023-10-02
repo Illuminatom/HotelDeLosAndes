@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gimnasios</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}"/>
+</head>
+<body>
+    <div>
+        <h1>Lista de Gimnasios</h1>
+        <table class="table table-hover table-bordered">
+            <thead class="thead-dark">
+                <tr>
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>Costo</th>
+                    <th>Opciones</th>
+                </tr>
+            </thead>
+            <th:block th:each="gimnasio : ${gimnasios}">
+                <tr>
+                    <td th:text="${gimnasio.pk.id.id}"></td>
+                    <td th:text="${gimnasio.pk.id.nombre}"></td>
+                    <td th:text="${gimnasio.costo}"></td>
+                    <td>
+                        <a th:href="@{/servicios-basicos/gimnasios/} + ${gimnasio.pk.id.id} + '/delete'"
+                        onclick="return confirm('¿Estás seguro de querer eliminar este gimnasio?')">
+                        Eliminar
+                        </a>
+                    </td>
+                </tr>
+            </th:block>
+        </table>
+        <div class="container mx-auto w-25">
+            <a th:href="@{/servicios-basicos}" class="btn btn-primary">Volver a la lista de Servicios Basicos</a>
+        </div>
+    </div>
+</body>
+</html>

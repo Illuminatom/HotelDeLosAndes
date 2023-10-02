@@ -14,6 +14,9 @@ public interface PlatosRestauranteBarRepository extends JpaRepository<PlatosRest
     @Query(value = "SELECT * FROM platos_restaurante_bar", nativeQuery = true)
     Collection<PlatosRestauranteBar> darPlatosRestauranteBar();
 
+    @Query(value = "SELECT * FROM platos_restaurante_bar WHERE restaurante_bar_id = :restaurante_bar_id", nativeQuery = true)
+    Collection<PlatosRestauranteBar> darPlatosDeUnRestauranteBar(@Param("restaurante_bar_id") int restaurante_bar_id);
+
     @Query(value = "SELECT * FROM platos_restaurante_bar WHERE Restaurante_Bar_id=:Restaurante_Bar_id AND Plato_id=:Plato_id", nativeQuery = true)
     PlatosRestauranteBar darPlatoRestauranteBar(@Param("Restaurante_Bar_id") int Restaurante_Bar_id, @Param("Plato_id") int Plato_id);
 

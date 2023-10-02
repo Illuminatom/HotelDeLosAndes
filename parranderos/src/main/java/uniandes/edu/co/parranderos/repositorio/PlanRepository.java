@@ -19,13 +19,13 @@ public interface PlanRepository extends JpaRepository<Plan, Integer>{
     
     @Modifying
     @Transactional
-    @Query(value = "INSERT INTO plan (id, nombre, descuento_Habitacion) VALUES (:id, :nombre, :descuento_habitacion)", nativeQuery = true)
-    void insertarPlan(@Param("id") int id, @Param("nombre") String nombre, @Param("descuento_Habitacion") int descuento_Habitacion);
+    @Query(value = "INSERT INTO plan (id, nombre, descuento_habitacion) VALUES (:id, :nombre, :descuento_habitacion)", nativeQuery = true)
+    void insertarPlan(@Param("id") int id, @Param("nombre") String nombre, @Param("descuento_habitacion") int descuento_Habitacion);
 
     @Modifying
     @Transactional
-    @Query(value = "UPDATE plan SET nombre=:nombre, descuento_Habitacion=:descuento_Habitacion WHERE id=:id", nativeQuery = true)
-    void actualizarPlan(@Param("id") int id, @Param("nombre") String nombre, @Param("descuento_Habitacion") int descuento_Habitacion);
+    @Query(value = "UPDATE plan SET id=:id_actualizada, nombre=:nombre, descuento_habitacion=:descuento_habitacion WHERE id=:id", nativeQuery = true)
+    void actualizarPlan(@Param("id") int id, @Param("id_actualizada") int id_actualizada, @Param("nombre") String nombre, @Param("descuento_habitacion") int descuento_Habitacion);
     
     @Modifying
     @Transactional

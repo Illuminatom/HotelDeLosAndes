@@ -24,11 +24,11 @@ public interface ServicioBasicoRepository extends JpaRepository<ServicioBasico, 
 
     @Modifying
     @Transactional
-    @Query(value = "UPDATE serviciobasico SET nombre=:nombre, capacidad=:capacidad WHERE id=:id", nativeQuery = true)
+    @Query(value = "UPDATE servicio_basico SET nombre=:nombre, capacidad=:capacidad WHERE id=:id", nativeQuery = true)
     void actualizarServicioBasico(@Param("id") int id, @Param("nombre") String nombre, @Param("capacidad") int capacidad);
 
     @Modifying
     @Transactional
-    @Query(value = "DELETE FROM serviciobasico WHERE id=:id", nativeQuery = true)
+    @Query(value = "DELETE FROM servicio_basico WHERE id=:id", nativeQuery = true)
     void eliminarServicioBasico(@Param("id") int id);
 }

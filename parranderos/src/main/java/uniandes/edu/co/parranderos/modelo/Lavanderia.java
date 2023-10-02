@@ -11,24 +11,24 @@ public class Lavanderia {
     @EmbeddedId
     private LavanderiaPK pk;
 
-    private int costoPrenda;
+    private int costoPorPrenda;
     private int costoPorParZapatos;
 
     public Lavanderia(ServicioBasico id, int costoPrenda, int costoPorParZapatos) {
         this.pk = new LavanderiaPK(id);
-        this.costoPrenda = costoPrenda;
+        this.costoPorPrenda = costoPrenda;
         this.costoPorParZapatos = costoPorParZapatos;
     }
 
     public Lavanderia()
     {;}
 
-    public int getCostoPrenda() {
-        return costoPrenda;
+    public int getCostoPorPrenda() {
+        return costoPorPrenda;
     }
 
     public void setCostoPrenda(int costoPrenda) {
-        this.costoPrenda = costoPrenda;
+        this.costoPorPrenda = costoPrenda;
     }
 
     public int getCostoPorParZapatos() {
