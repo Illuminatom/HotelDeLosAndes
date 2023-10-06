@@ -5,6 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lista de Salas</title>
     <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}"/>
+    <style>
+        .boton-container {
+           display: flex;
+           justify-content: space-between;
+           width: 100%;
+        }
+    
+        button {
+           flex: 1; 
+           padding: 10px; 
+        }
+    </style>
 </head>
 <body>
     <div>
@@ -34,9 +46,9 @@
                 </td>
             </tr>
         </table>
-        <div class="container mx-auto w-25">
-            <a th:href="@{/servicios-basicos/salas/new}" class="btn btn-primary">Crear una nueva Sala</a>
+        <div class="boton-container">
             <a th:href="@{/servicios-basicos}" class="btn btn-primary">Volver a la lista de Servicios Basicos</a>
+            <a th:href="@{/servicios-basicos/salas/new}" class="btn btn-primary">Crear una nueva Sala</a>
         </div>
     </div>
 </body>

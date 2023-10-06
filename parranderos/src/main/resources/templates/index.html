@@ -5,17 +5,30 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hotel de los Andes</title>
     <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}"/>
+    <style>
+        .boton-ancho {
+            width: 100%;
+            padding: 0;
+            margin: 0;
+        }
+    </style>
 </head>
 <body>
     <div class ="container">
-        <h1>HotelDeLosAndes</h1>
-        <img class="mx-auto w-25" th:src="@{/images/logo.png}" alt="Logo" width="250"/>
+        <div class="container text-center">
+            <h1>Hotel De Los Andes</h1>
+            <img class="w-25" th:src="@{/images/logo.png}" alt="Logo" width="250"/>
+        </div>
         <div>
-            <a th:href="@{/tiposUsuarios}" class="btn btn-primary">Tipos de Usuarios</a>
-            <a th:href="@{/tiposHabitaciones}" class="btn btn-primary">Tipos de Habitaciones</a>
-            <a th:href="@{/usuarios}" class="btn btn-primary">Usuarios</a>
-            <a th:href="@{/habitaciones}" class="btn btn-primary">Habitaciones</a>
-            <a th:href="@{/servicios-basicos}" class="btn btn-primary">Servicios</a>
+            <a th:href="@{/tiposUsuarios}" class="boton-ancho btn btn-primary">Tipos de Usuarios</a>
+            <br>
+            <a th:href="@{/tiposHabitaciones}" class="boton-ancho btn btn-primary">Tipos de Habitaciones</a>
+            <br>
+            <a th:href="@{/usuarios}" class="boton-ancho btn btn-primary">Usuarios</a>
+            <br>
+            <a th:href="@{/habitaciones}" class="boton-ancho btn btn-primary">Habitaciones</a>
+            <br>
+            <a th:href="@{/servicios-basicos}" class="boton-ancho btn btn-primary">Servicios</a>
         </div>
     </div>
 </body>

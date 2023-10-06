@@ -5,6 +5,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Servicios Básicos</title>
     <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}"/>
+    <style>
+        .boton-ancho {
+            width: 100%;
+            padding: 0;
+            margin: 0;
+        }
+        .boton-container {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+        }            
+        btton {
+            flex: 6;
+            padding: 10px; 
+        }            
+   </style>
 </head>
 <body>
     <div>
@@ -33,19 +49,19 @@
                 </tr>
             </th:block>
         </table>
-        <div class="container mx-auto w-25">
+        <div class="boton-container">
             <a th:href="@{/}" class="btn btn-primary">Volver atras</a>
             <a th:href="@{/servicios-basicos/new}" class="btn btn-primary">Añadir Servicio</a>
         </div>
         <br>
         <div class="container mx-auto">
-            <a th:href="@{/servicios-basicos/restaurantes-bares}" class="btn btn-primary">Restaurantes y Bares</a>
-            <a th:href="@{/servicios-basicos/salas}" class="btn btn-primary">Salas</a>
-            <a th:href="@{/servicios-basicos/gimnasios}" class="btn btn-primary">Gimnasios</a>
-            <a th:href="@{/servicios-basicos/tiendas}" class="btn btn-primary">Tiendas</a>
-            <a th:href="@{/servicios-basicos/piscinas}" class="btn btn-primary">Piscinas</a>
-            <a th:href="@{/servicios-basicos/lavanderias}" class="btn btn-primary">Lavanderias</a>
-            <a th:href="@{/servicios-basicos/spas}" class="btn btn-primary">SPA'S</a>
+            <a th:href="@{/servicios-basicos/restaurantes-bares}" class="boton-ancho btn btn-primary">Restaurantes y Bares</a>
+            <a th:href="@{/servicios-basicos/salas}" class="boton-ancho btn btn-primary">Salas</a>
+            <a th:href="@{/servicios-basicos/gimnasios}" class="boton-ancho btn btn-primary">Gimnasios</a>
+            <a th:href="@{/servicios-basicos/tiendas}" class="boton-ancho btn btn-primary">Tiendas</a>
+            <a th:href="@{/servicios-basicos/piscinas}" class="boton-ancho btn btn-primary">Piscinas</a>
+            <a th:href="@{/servicios-basicos/lavanderias}" class="boton-ancho btn btn-primary">Lavanderias</a>
+            <a th:href="@{/servicios-basicos/spas}" class="boton-ancho btn btn-primary">SPA'S</a>
         </div>
     </div>
 </body>

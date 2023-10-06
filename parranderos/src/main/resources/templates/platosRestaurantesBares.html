@@ -5,6 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title th:text="'Menú de ' + ${restauranteBar.pk.id.nombre}"></title>
     <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}"/>
+    <style>
+        .boton-container {
+           display: flex;
+           justify-content: space-between;
+           width: 100%;
+        }
+    
+        button {
+           flex: 1; 
+           padding: 10px; 
+        }
+    </style>
+
 </head>
 <body>
     <div>
@@ -25,9 +38,8 @@
                 <td th:text="${platoRestauranteBar.pk.Plato_id.pk.id.precio}"></td>                     
             </tr>
         </table>
-        <div class="container mx-auto w-25">
+        <div class="boton-container">
             <a th:href="@{/servicios-basicos/restaurantes-bares}" class="btn btn-primary">Volver a la lista de Restaurantes y Bares</a>
-            <a th:href="@{/servicios-basicos/restaurantes-bares/new}" class="btn btn-primary">Crear Nuevo Restaurante o Bar</a>
         </div>
     </div>
 </body>
