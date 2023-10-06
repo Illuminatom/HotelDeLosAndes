@@ -24,7 +24,7 @@ public interface GimnasioRepository extends JpaRepository<Gimnasio, Integer>{
 
     @Modifying
     @Transactional
-    @Query(value = "UPDATE gimnasion SET costo=:costo WHERE id=:id", nativeQuery = true)
+    @Query(value = "UPDATE gimnasio SET costo=:costo WHERE id=:id", nativeQuery = true)
     void actualizarGimnasio(@Param("id") int id, @Param("costo") int costo);
 
     @Modifying

@@ -6,6 +6,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import uniandes.edu.co.parranderos.modelo.PlatosRestauranteBar;
 import uniandes.edu.co.parranderos.repositorio.PlatosRestauranteBarRepository;
+import uniandes.edu.co.parranderos.repositorio.RestauranteBarRepository;
 
 import java.util.Collection;
 
@@ -15,10 +16,14 @@ public class PlatoRestauranteBarController {
     @Autowired
     PlatosRestauranteBarRepository platosRestauranteBarRepository;
 
+    @Autowired
+    RestauranteBarRepository restauranteBarRepository;
+
     @GetMapping("/servicios-basicos/restaurantes-bares/{id}/menu")
     public String mostrarMenu(@PathVariable("id") int id, Model model) {
         Collection<PlatosRestauranteBar> menu = platosRestauranteBarRepository.darPlatosDeUnRestauranteBar(id);
 
+        model.addAttribute("restauranteBar", restauranteBarRepository.darRestauranteBar(id));
         model.addAttribute("menu", menu);
         return "platosRestaurantesBares";
     }

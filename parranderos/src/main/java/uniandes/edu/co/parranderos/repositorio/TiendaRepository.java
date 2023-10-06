@@ -23,7 +23,7 @@ public interface TiendaRepository extends JpaRepository<Tienda, Integer> {
 
     @Modifying
     @Transactional
-    @Query(value = "UPDATE tienda SET id=:id_actualizado tipo = :tipo WHERE id = :id", nativeQuery = true)
+    @Query(value = "UPDATE tienda SET id=:id_actualizado, tipo = :tipo WHERE id = :id", nativeQuery = true)
     void actualizarTienda(@Param("id") int id, @Param("id_actualizado") int id_actualizado, @Param("tipo") String tipo);
 
     @Modifying

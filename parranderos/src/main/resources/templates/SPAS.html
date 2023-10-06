@@ -14,13 +14,16 @@
                 <tr>
                     <th>ID</th>
                     <th>Nombre</th>
+                    <th>Capacidad</th>
                     <th>Opciones</th>
                 </tr>
             </thead>
             <tr th:each="spa : ${spas}">
                 <td th:text="${spa.pk.id.id}"></td>
                 <td th:text="${spa.pk.id.nombre}"></td>
+                <td th:text="${spa.pk.id.capacidad}"></td>
                 <td>
+                    <a th:href="@{/servicios-basicos/spas/{id}/edit(id=${spa.pk.id.id})}">Editar</a>
                     <a th:href="@{/servicios-basicos/spas/} + ${spa.pk.id.id} + '/delete'" 
                        onclick="return confirm('¿Estás seguro de querer eliminar este SPA?')">Eliminar
                     </a>
@@ -28,6 +31,7 @@
             </tr>
         </table>
         <div class="container mx-auto w-25">
+            <a th:href="@{/servicios-basicos/spas/new}" class="btn btn-primary">Crear nueva spa</a>
             <a th:href="@{/servicios-basicos}" class="btn btn-primary">Volver a la lista de Servicios Básicos</a>
         </div>
     </div>

@@ -14,6 +14,7 @@
                 <tr>
                     <th>ID</th>
                     <th>Nombre</th>
+                    <th>Capacidad</th>
                     <th>Estilo</th>
                     <th>Menu</th>
                     <th>Opciones</th>
@@ -23,11 +24,13 @@
                 <tr>
                     <td th:text="${restauranteBar.pk.id.id}"></td>
                     <td th:text="${restauranteBar.pk.id.nombre}"></td>
+                    <td th:text="${restauranteBar.pk.id.capacidad}"></td>
                     <td th:text="${restauranteBar.estilo}"></td>
                     <td>
                         <a th:href="@{/servicios-basicos/restaurantes-bares/{id}/menu(id=${restauranteBar.pk.id.id})}">Menu</a>
                     </td> 
                     <td>
+                        <a th:href="@{/servicios-basicos/restaurantes-bares/{id}/edit(id=${restauranteBar.pk.id.id})}">Editar</a>
                         <a th:href="@{/servicios-basicos/restaurantes-bares/} + ${restauranteBar.pk.id.id} + '/delete'"
                         onclick="return confirm('¿Estás seguro de querer eliminar este restaurante o bar?')">
                         Eliminar
@@ -37,6 +40,7 @@
             </th:block>
         </table>
         <div class="container mx-auto w-25">
+            <a th:href="@{/servicios-basicos/restaurantes-bares/new}" class="btn btn-primary">Crear Nuevo Restaurante o Bar</a>
             <a th:href="@{/servicios-basicos}" class="btn btn-primary">Volver a la lista de Servicios Basicos</a>
         </div>
     </div>

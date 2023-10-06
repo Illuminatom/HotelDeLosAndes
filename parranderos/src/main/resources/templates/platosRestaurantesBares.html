@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Menú del Restaurante o Bar</title>
+    <title th:text="'Menú de ' + ${restauranteBar.pk.id.nombre}"></title>
     <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}"/>
 </head>
 <body>
     <div>
-        <h1>Menú del Restaurante o Bar</h1>
+        <h1>Menú de <span th:text="${restauranteBar.pk.id.nombre}"></span></h1>
         <table class="table table-hover table-bordered">
             <thead class="thead-dark">
                 <tr>
@@ -27,6 +27,7 @@
         </table>
         <div class="container mx-auto w-25">
             <a th:href="@{/servicios-basicos/restaurantes-bares}" class="btn btn-primary">Volver a la lista de Restaurantes y Bares</a>
+            <a th:href="@{/servicios-basicos/restaurantes-bares/new}" class="btn btn-primary">Crear Nuevo Restaurante o Bar</a>
         </div>
     </div>
 </body>

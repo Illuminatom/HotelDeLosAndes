@@ -5,7 +5,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import uniandes.edu.co.parranderos.modelo.Gimnasio;
+import uniandes.edu.co.parranderos.modelo.ServicioBasico;
 import uniandes.edu.co.parranderos.repositorio.GimnasioRepository;
+import uniandes.edu.co.parranderos.repositorio.ServicioBasicoRepository;
 
 import java.util.Collection;
 
@@ -13,7 +15,10 @@ import java.util.Collection;
 public class GimnasioController {
 
     @Autowired
-    GimnasioRepository gimnasioRepository;
+    private GimnasioRepository gimnasioRepository;
+
+    @Autowired
+    private ServicioBasicoRepository servicioBasicoRepository;
 
     @GetMapping("/servicios-basicos/gimnasios")
     public String gimnasios(Model model) {
@@ -24,21 +29,25 @@ public class GimnasioController {
 
     @GetMapping("/servicios-basicos/gimnasios/new")
     public String gimnasioForm(Model model) {
+        model.addAttribute("servicioBasico", new ServicioBasico());
         model.addAttribute("gimnasio", new Gimnasio());
         return "gimnasioNuevo";
     }
 
     @PostMapping("/servicios-basicos/gimnasios/new/save")
-    public String gimnasioGuardar(@ModelAttribute Gimnasio gimnasio) {
-        gimnasioRepository.insertarGimnasio(gimnasio.getPk().getId().getId(), gimnasio.getCosto());
+    public String gimnasioGuardar(@ModelAttribute Gimnasio gimnasio, @ModelAttribute ServicioBasico servicioBasico) {
+        servicioBasicoRepository.insertarServicioBasico(servicioBasico.getId(), servicioBasico.getNombre(), servicioBasico.getCapacidad());
+        gimnasioRepository.insertarGimnasio(servicioBasico.getId(), gimnasio.getCosto());
         return "redirect:/servicios-basicos/gimnasios";
     }
 
     @GetMapping("/servicios-basicos/gimnasios/{id}/edit")
     public String gimnasioEditarForm(@PathVariable("id") int id, Model model) {
+        ServicioBasico servicioBasico = servicioBasicoRepository.darServicioBasico(id);
         Gimnasio gimnasio = gimnasioRepository.darGimnasio(id);
         if (gimnasio != null) {
             model.addAttribute("gimnasio", gimnasio);
+            model.addAttribute("servicioBasico", servicioBasico);
             return "gimnasioEditar";
         } else {
             return "redirect:/servicios-basicos/gimnasios";
@@ -46,7 +55,8 @@ public class GimnasioController {
     }
 
     @PostMapping("/servicios-basicos/gimnasios/{id}/edit/save")
-    public String gimnasioEditarGuardar(@PathVariable("id") int id, @ModelAttribute Gimnasio gimnasio) {
+    public String gimnasioEditarGuardar(@PathVariable("id") int id, @ModelAttribute Gimnasio gimnasio, @ModelAttribute ServicioBasico servicioBasico) {
+        servicioBasicoRepository.actualizarServicioBasico(servicioBasico.getId(), servicioBasico.getNombre(), servicioBasico.getCapacidad());
         gimnasioRepository.actualizarGimnasio(id, gimnasio.getCosto());
         return "redirect:/servicios-basicos/gimnasios";
     }

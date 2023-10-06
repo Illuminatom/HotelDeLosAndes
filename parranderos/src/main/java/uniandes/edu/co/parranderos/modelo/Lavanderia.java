@@ -27,7 +27,7 @@ public class Lavanderia {
         return costoPorPrenda;
     }
 
-    public void setCostoPrenda(int costoPrenda) {
+    public void setCostoPorPrenda(int costoPrenda) {
         this.costoPorPrenda = costoPrenda;
     }
 

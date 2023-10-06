@@ -14,6 +14,7 @@
                 <tr>
                     <th>ID</th>
                     <th>Nombre</th>
+                    <th>Capacidad</th>
                     <th>Costo</th>
                     <th>Opciones</th>
                 </tr>
@@ -22,8 +23,10 @@
                 <tr>
                     <td th:text="${gimnasio.pk.id.id}"></td>
                     <td th:text="${gimnasio.pk.id.nombre}"></td>
+                    <td th:text="${gimnasio.pk.id.capacidad}"></td>
                     <td th:text="${gimnasio.costo}"></td>
                     <td>
+                        <a th:href="@{/servicios-basicos/gimnasios/{id}/edit(id=${gimnasio.pk.id.id})}">Editar</a>
                         <a th:href="@{/servicios-basicos/gimnasios/} + ${gimnasio.pk.id.id} + '/delete'"
                         onclick="return confirm('¿Estás seguro de querer eliminar este gimnasio?')">
                         Eliminar
@@ -33,6 +36,7 @@
             </th:block>
         </table>
         <div class="container mx-auto w-25">
+            <a th:href="@{/servicios-basicos/gimnasios/new}" class="btn btn-primary">Crear un nuevo Gimnasio</a>
             <a th:href="@{/servicios-basicos}" class="btn btn-primary">Volver a la lista de Servicios Basicos</a>
         </div>
     </div>

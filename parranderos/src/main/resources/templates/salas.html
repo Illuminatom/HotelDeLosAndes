@@ -14,6 +14,7 @@
                 <tr>
                     <th>ID</th>
                     <th>Nombre</th>
+                    <th>Capacidad</th>
                     <th>Tipo</th>
                     <th>Costo</th>
                     <th>Opciones</th>
@@ -22,9 +23,11 @@
             <tr th:each="sala : ${salas}">
                 <td th:text="${sala.pk.id.id}"></td>
                 <td th:text="${sala.pk.id.nombre}"></td>
+                <td th:text="${sala.pk.id.capacidad}"></td>
                 <td th:text="${sala.tipo}"></td>
                 <td th:text="${sala.costo}"></td>
                 <td>
+                    <a th:href="@{/servicios-basicos/salas/{id}/edit(id=${sala.pk.id.id})}">Editar</a>
                     <a th:href="@{/salas/} + ${sala.pk.id.id} + '/delete'" 
                        onclick="return confirm('¿Estás seguro de querer eliminar esta sala?')">Eliminar
                     </a>
@@ -32,6 +35,7 @@
             </tr>
         </table>
         <div class="container mx-auto w-25">
+            <a th:href="@{/servicios-basicos/salas/new}" class="btn btn-primary">Crear una nueva Sala</a>
             <a th:href="@{/servicios-basicos}" class="btn btn-primary">Volver a la lista de Servicios Basicos</a>
         </div>
     </div>
