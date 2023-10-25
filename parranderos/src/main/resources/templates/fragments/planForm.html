@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plan Form</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}"/>
+</head>
+<body>
+    <div th:fragment="planForm(titulo)" class="container border border-2 2-25">
+        <h1 class="text-center" th:text="${titulo}"></h1>
+        <form>
+
+            <label class="col-form-label">ID</label>
+            <input type="number" class="form-control" id="id" name="id" required th:value="${plan.id}"/>
+            
+            <label class="col-form-label">Nombre</label>
+            <input type="text" class="form-control" id="nombre" name="nombre" required th:value="${plan.nombre}"/>
+            
+            <label class="col-form-label">Descuento Habitacion</label>
+            <input type="number" class="form-control" id="descuentoHabitacion" name="descuentoHabitacion" required th:value="${plan.descuentoHabitacion}"/>
+
+            <div class="text-center">
+                <input type="submit" value="Guardar" class="btn btn-primary">
+                <a th:href="@{/planes}" class="btn btn-primary">Cancelar</a>
+            </div>
+        </form>
+    </div>
+</body>
+</html>

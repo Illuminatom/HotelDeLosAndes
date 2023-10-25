@@ -12,15 +12,18 @@ import uniandes.edu.co.parranderos.modelo.ProductoPlan;
 
 public interface ProductoPlanRepository extends JpaRepository<ProductoPlan, Integer> {
     @Query(value = "SELECT * FROM producto_plan", nativeQuery = true)
-    Collection<ProductoPlan> darProductosPlan();
+    Collection<ProductoPlan> darProductosPlanes();
 
     @Query(value = "SELECT * FROM producto_plan WHERE Producto_id=:Producto_id AND Plan_id=:Plan_id", nativeQuery = true)
     ProductoPlan darProductoPlan(@Param("Producto_id") int Producto_id, @Param("Plan_id") int Plan_id);
 
+    @Query(value = "SELECT * FROM producto_plan WHERE Plan_id=:Plan_id", nativeQuery = true)
+    Collection<ProductoPlan> darProductosPlan(@Param("Plan_id") int Plan_id);
+
     @Modifying
     @Transactional
     @Query(value = "INSERT INTO producto_plan (Producto_id, Plan_id, cantidad, descripcion) VALUES (:Producto_id, :Plan_id, :cantidad, :descripcion)", nativeQuery = true)
-    void insertarProductoPlan(@Param("Producto_id") int Producto_id, @Param("Plan_id") int Plan_id);
+    void insertarProductoPlan(@Param("Producto_id") int Producto_id, @Param("Plan_id") int Plan_id, @Param("cantidad") int cantidad, @Param("descripcion") String descripcion);
 
     @Modifying
     @Transactional

@@ -17,6 +17,9 @@ public interface ServicioPlanRepository extends JpaRepository<ServicioPlan, Inte
     @Query(value = "SELECT * FROM servicio_plan WHERE Plan_id=:Plan_id AND Servicio_Basico_id=:Servicio_Basico_id", nativeQuery = true)
     ServicioPlan darServicioPlan(@Param("Plan_id") int Plan_id, @Param("Servicio_Basico_id") int Servicio_Basico_id);
 
+    @Query(value = "SELECT * FROM servicio_plan WHERE Plan_id=:Plan_id", nativeQuery = true)
+    Collection<ServicioPlan> darServiciosPlan(@Param("Plan_id") int Plan_id);
+
     @Modifying
     @Transactional
     @Query(value = "INSERT INTO servicio_plan (Plan_id, Servicio_Basico_id, descuento) VALUES (:Plan_id, :Servicio_Basico_id, :descuento)", nativeQuery = true)
@@ -24,11 +27,11 @@ public interface ServicioPlanRepository extends JpaRepository<ServicioPlan, Inte
 
     @Modifying
     @Transactional
-    @Query(value = "UPDATE servicioplan SET Plan_id=:Plan_id_actualizado, Servicio_Basico_id=:Servicio_Basico_id_actualizado, descuento=:descuento WHERE Plan_id=:Plan_id AND Servicio_Basico_id=:Servicio_Basico_id", nativeQuery = true)
+    @Query(value = "UPDATE servicio_plan SET Plan_id=:Plan_id_actualizado, Servicio_Basico_id=:Servicio_Basico_id_actualizado, descuento=:descuento WHERE Plan_id=:Plan_id AND Servicio_Basico_id=:Servicio_Basico_id", nativeQuery = true)
     void actualizarServicioPlan(@Param("Plan_id") int Plan_id, @Param("Servicio_Basico_id") int Servicio_Basico_id, @Param("Plan_id_actualizado") int Plan_id_actualizado, @Param("Servicio_Basico_id_actualizado") int Servicio_Basico_id_actualizado, @Param("descuento") int descuento);
 
     @Modifying
     @Transactional
-    @Query(value = "DELETE FROM servicioplan WHERE Plan_id=:Plan_id AND Servicio_Basico_id=:Servicio_Basico_id", nativeQuery = true)
+    @Query(value = "DELETE FROM servicio_plan WHERE Plan_id=:Plan_id AND Servicio_Basico_id=:Servicio_Basico_id", nativeQuery = true)
     void eliminarServicioPlan(@Param("Plan_id") int Plan_id, @Param("Servicio_Basico_id") int Servicio_Basico_id);
 }

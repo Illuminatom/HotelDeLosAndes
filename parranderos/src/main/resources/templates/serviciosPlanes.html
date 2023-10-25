@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}"/>
+    <title>Servicios en el Plan</title>
+</head>
+<div>
+    <body>
+        <div>
+            <h1>Servicios del Plan <span th:text="${plan.nombre}"></span></h1>
+            <table class="table table-hover table-bordered">
+                <thead class="thead-dark">
+                    <tr>
+                        <th>Servicio ID</th>
+                        <th>Nombre Servicio</th>
+                        <th>Descuento</th>
+                    </tr>
+                </thead>
+                <th:block th:each="servicioPlan: ${serviciosEnPlan}">
+                    <tr>
+                        <td th:text="${servicioPlan.pk.servicioBasico_id.id}"></td>
+                        <td th:text="${servicioPlan.pk.servicioBasico_id.nombre}"></td>
+                        <td th:text="${servicioPlan.descuento}"></td>
+                        <td>
+                            <a th:href="@{/planes/{planId}/servicios/{servicioBasico_id}/edit(planId=${planId}, servicioBasico_id=${servicioPlan.pk.servicioBasico_id.id})}">Editar</a>
+                            <br>
+                            <a th:href="@{/planes/{planId}/servicios/{servicioBasico_id}/delete(planId=${planId}, servicioBasico_id=${servicioPlan.pk.servicioBasico_id.id})}" 
+                            onclick="return confirm('¿Estás seguro de querer eliminar este producto del plan?')">
+                                Eliminar
+                            </a>
+                        </td>
+                    </tr>
+                </th:block>
+            </table>
+            <a th:href="@{/planes}" class="btn btn-primary">Volver a la lista de Planes</a>
+            <a th:href="@{/planes/{planId}/servicios/new(planId=${planId})}" class="btn btn-primary">Agregar Servicio</a>
+        </div>
+    </body>
+</div>
+</html>

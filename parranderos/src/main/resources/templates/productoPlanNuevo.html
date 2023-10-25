@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nuevo producto Plan</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}"/>
+</head>
+<body>
+    <form action="#" th:action="@{/planes/{planId}/productos/new/save(planId=${planId})}" th:object="${productoPlan}" method="post">
+        <div th:replace="~{fragments/productoPlanForm ::productoPlanForm(titulo='Nuevo producto', crear=true)}"></div>      
+    </form>
+</body>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Productos en el Plan</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}"/>
+</head>
+<body>
+    <div>
+        <h1>Productos del Plan <span th:text="${plan.nombre}"></span></h1>
+        <table class="table table-hover table-bordered">
+            <thead class="thead-dark">
+                <tr>
+                    <th>Producto ID</th>
+                    <th>Nombre Producto</th>
+                    <th>Cantidad</th>
+                    <th>Descripción</th>
+                </tr>
+            </thead>
+            <th:block th:each="productoPlan: ${productosEnPlan}">
+                <tr>
+                    <td th:text="${productoPlan.pk.producto_id.id}"></td>
+                    <td th:text="${productoPlan.pk.producto_id.nombre}"></td>
+                    <td th:text="${productoPlan.cantidad}"></td>
+                    <td th:text="${productoPlan.descripcion}"></td>
+                    <td>
+                        <a th:href="@{/planes/{planId}/productos/{productoId}/edit(planId=${planId}, productoId=${productoPlan.pk.producto_id.id})}">Editar</a>
+                        <br>
+                        <a th:href="@{/planes/{planId}/productos/{productoId}/delete(planId=${planId}, productoId=${productoPlan.pk.producto_id.id})}" 
+                        onclick="return confirm('¿Estás seguro de querer eliminar este producto del plan?')">
+                            Eliminar
+                        </a>
+                    </td>
+                </tr>
+            </th:block>
+        </table>
+        <a th:href="@{/planes}" class="btn btn-primary">Volver a la lista de Planes</a>
+        <a th:href="@{/planes/{planId}/productos/new(planId=${planId})}" class="btn btn-primary">Agregar Producto</a>
+    </div>
+</body>
+</html>

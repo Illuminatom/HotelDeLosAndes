@@ -22,6 +22,9 @@ public class Plan {
         this.descuentoHabitacion = descuentoHabitacion;
     }
 
+    public Plan() {
+    }
+
     public int getId() {
         return id;
     }
