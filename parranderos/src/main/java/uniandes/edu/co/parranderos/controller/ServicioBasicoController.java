@@ -31,7 +31,7 @@ public class ServicioBasicoController {
 
     @PostMapping("/servicios-basicos/new/save")
     public String servicioBasicoGuardar(@ModelAttribute ServicioBasico servicioBasico) {
-        servicioBasicoRepository.insertarServicioBasico(servicioBasico.getId(), servicioBasico.getNombre(), servicioBasico.getCapacidad());
+        servicioBasicoRepository.insertarServicioBasico(servicioBasico.getId(), servicioBasico.getNombre(), servicioBasico.getCapacidad(), servicioBasico.getCosto(), servicioBasico.getHora_apertura(), servicioBasico.getHora_cierre());
         return "redirect:/servicios-basicos";
     }
 
@@ -48,7 +48,7 @@ public class ServicioBasicoController {
 
     @PostMapping("/servicios-basicos/{id}/edit/save")
     public String servicioBasicoEditarGuardar(@PathVariable("id") int id, @ModelAttribute ServicioBasico servicioBasico) {
-        servicioBasicoRepository.actualizarServicioBasico(id, servicioBasico.getNombre(), servicioBasico.getCapacidad());
+        servicioBasicoRepository.actualizarServicioBasico(id, servicioBasico.getNombre(), servicioBasico.getCapacidad(), servicioBasico.getCosto(), servicioBasico.getHora_apertura(), servicioBasico.getHora_cierre());
         return "redirect:/servicios-basicos";
     }
 

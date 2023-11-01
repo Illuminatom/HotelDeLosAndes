@@ -11,15 +11,13 @@ public class Sala {
     private SalaPK pk;
 
     private String tipo;
-    private int costo;
 
     public Sala()
     {;}
 
-    public Sala(ServicioBasico id, String tipo, int costo) {
+    public Sala(ServicioBasico id, String tipo) {
         this.pk = new SalaPK(id);
         this.tipo = tipo;
-        this.costo = costo;
     }
     
     public String getTipo() {
@@ -28,14 +26,6 @@ public class Sala {
 
     public void setTipo(String tipo) {
         this.tipo = tipo;
-    }
-
-    public int getCosto() {
-        return costo;
-    }
-
-    public void setCosto(int costo) {
-        this.costo = costo;
     }
 
     public SalaPK getPk() {

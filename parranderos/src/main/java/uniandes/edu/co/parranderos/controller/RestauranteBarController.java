@@ -36,7 +36,7 @@ public class RestauranteBarController {
 
     @PostMapping("/servicios-basicos/restaurantes-bares/new/save")
     public String restauranteBarGuardar(@ModelAttribute RestauranteBar restauranteBar, @ModelAttribute ServicioBasico servicioBasico) {
-        servicioBasicoRepository.insertarServicioBasico(servicioBasico.getId(), servicioBasico.getNombre(), servicioBasico.getCapacidad());
+        servicioBasicoRepository.insertarServicioBasico(servicioBasico.getId(), servicioBasico.getNombre(), servicioBasico.getCapacidad(), servicioBasico.getCosto(), servicioBasico.getHora_apertura(), servicioBasico.getHora_cierre());
         restauranteBarRepository.insertarRestauranteBar(servicioBasico.getId(), restauranteBar.getEstilo());
         return "redirect:/servicios-basicos/restaurantes-bares";
     }
@@ -56,7 +56,7 @@ public class RestauranteBarController {
 
     @PostMapping("/servicios-basicos/restaurantes-bares/{id}/edit/save")
     public String restauranteBarEditarGuardar(@PathVariable("id") int id, @ModelAttribute ServicioBasico servicioBasico, @ModelAttribute RestauranteBar restauranteBar) {
-        servicioBasicoRepository.actualizarServicioBasico(id, servicioBasico.getNombre(), servicioBasico.getCapacidad());
+        servicioBasicoRepository.actualizarServicioBasico(id, servicioBasico.getNombre(), servicioBasico.getCapacidad(), servicioBasico.getCosto(), servicioBasico.getHora_apertura(), servicioBasico.getHora_cierre());
         restauranteBarRepository.actualizarRestauranteBar(id, servicioBasico.getId(), restauranteBar.getEstilo());
         return "redirect:/servicios-basicos/restaurantes-bares";
     }

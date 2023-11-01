@@ -19,13 +19,13 @@ public interface GimnasioRepository extends JpaRepository<Gimnasio, Integer>{
 
     @Modifying
     @Transactional
-    @Query(value = "INSERT INTO gimnasio (id, costo) VALUES (:id, :costo)", nativeQuery = true)
-    void insertarGimnasio(@Param("id") int id, @Param("costo") int costo);
+    @Query(value = "INSERT INTO gimnasio (id) VALUES (:id)", nativeQuery = true)
+    void insertarGimnasio(@Param("id") int id);
 
     @Modifying
     @Transactional
-    @Query(value = "UPDATE gimnasio SET costo=:costo WHERE id=:id", nativeQuery = true)
-    void actualizarGimnasio(@Param("id") int id, @Param("costo") int costo);
+    @Query(value = "UPDATE gimnasio SET id=:id_actualizado WHERE id=:id", nativeQuery = true)
+    void actualizarGimnasio(@Param("id") int id, @Param("id_actualizado") int id_actualizado);
 
     @Modifying
     @Transactional

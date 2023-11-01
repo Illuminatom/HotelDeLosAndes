@@ -10,8 +10,8 @@ import jakarta.persistence.ManyToOne;
 @Embeddable
 public class ConsumoServicioClientePK implements Serializable{
     @ManyToOne
-    @JoinColumn(name = "Cliente_documento", referencedColumnName = "documento")
-    private Cliente Cliente_documento;
+    @JoinColumn(name = "ReservaHotel_id", referencedColumnName = "id")
+    private ReservaHotel ReservaHotel_id;
 
     @ManyToOne
     @JoinColumn(name = "ServicioBasico_id", referencedColumnName = "id")
@@ -19,23 +19,15 @@ public class ConsumoServicioClientePK implements Serializable{
 
     private Date fecha;
 
-    public ConsumoServicioClientePK(Cliente cliente_documento, ServicioBasico servicioBasico_id, Date fecha) {
+    public ConsumoServicioClientePK(ReservaHotel reservaHotel_id, ServicioBasico servicioBasico_id, Date fecha) {
         super();
-        Cliente_documento = cliente_documento;
+        ReservaHotel_id = reservaHotel_id;
         ServicioBasico_id = servicioBasico_id;
         this.fecha = fecha;
     }
 
     public ConsumoServicioClientePK()
     {super();}
-
-    public Cliente getCliente_documento() {
-        return Cliente_documento;
-    }
-
-    public void setCliente_documento(Cliente cliente_documento) {
-        Cliente_documento = cliente_documento;
-    }
 
     public ServicioBasico getServicioBasico_id() {
         return ServicioBasico_id;
@@ -52,6 +44,12 @@ public class ConsumoServicioClientePK implements Serializable{
     public void setFecha(Date fecha) {
         this.fecha = fecha;
     }
-    
-    
+
+    public ReservaHotel getReservaHotel_id() {
+        return ReservaHotel_id;
+    }
+
+    public void setReservaHotel_id(ReservaHotel reservaHotel_id) {
+        ReservaHotel_id = reservaHotel_id;
+    }
 }

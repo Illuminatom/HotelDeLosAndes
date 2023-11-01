@@ -19,13 +19,13 @@ public interface SalaRepository extends JpaRepository<Sala, Integer>{
 
     @Modifying
     @Transactional
-    @Query(value = "INSERT INTO sala (id, tipo, costo) VALUES (:id, :tipo, :costo)", nativeQuery = true)
-    void insertar(@Param("id") int id, @Param("tipo") String tipo, @Param("costo") int costo);
+    @Query(value = "INSERT INTO sala (id, tipo) VALUES (:id, :tipo)", nativeQuery = true)
+    void insertar(@Param("id") int id, @Param("tipo") String tipo);
 
     @Modifying
     @Transactional
-    @Query(value = "UPDATE sala SET id=:id_actualizada, tipo=:tipo, costo=:costo WHERE id=:id", nativeQuery = true)
-    void actualizarSala(@Param("id") int id, @Param("id_actualizada") int id_actualizada, @Param("tipo") String tipo, @Param("costo") int costo);
+    @Query(value = "UPDATE sala SET id=:id_actualizada, tipo=:tipo WHERE id=:id", nativeQuery = true)
+    void actualizarSala(@Param("id") int id, @Param("id_actualizada") int id_actualizada, @Param("tipo") String tipo);
 
     @Modifying
     @Transactional

@@ -16,6 +16,12 @@
             <input type="text" class="form-control" id="nombre" name="nombre" required th:value="${servicioBasico.nombre}"/>
             <label class="col-form-label">Capacidad</label>
             <input type="number" class="form-control" id="capacidad" name="capacidad" required th:value="${servicioBasico.capacidad}"/> 
+            <label class="col-form-label">Costo</label>
+            <input type="number" class="form-control" id="costo" name="costo" required th:value="${servicioBasico.costo}"/> 
+            <label class="col-form-label">Hora Apertura</label>
+            <input type="time" class="form-control" id="hora_apertura" name="hora_apertura" required th:value="${servicioBasico.hora_apertura}"/>     
+            <label class="col-form-label">Hora Cierre</label>
+            <input type="time" class="form-control" id="hora_apertura" name="hora_apertura" required th:value="${servicioBasico.hora_apertura}"/>   
             <div class="text-center">
                 <input type="submit" value="Guardar" class="btn btn-primary">
                 <a th:href="@{/servicios-basicos/spas}" class="btn btn-primary">Cancelar</a>

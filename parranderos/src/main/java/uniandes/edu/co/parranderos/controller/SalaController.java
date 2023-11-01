@@ -36,8 +36,8 @@ public class SalaController {
 
     @PostMapping("/servicios-basicos/salas/new/save")
     public String salaGuardar(@ModelAttribute Sala sala, @ModelAttribute ServicioBasico servicioBasico) {
-        servicioBasicoRepository.insertarServicioBasico(servicioBasico.getId(), servicioBasico.getNombre(), servicioBasico.getCapacidad());
-        salaRepository.insertar(servicioBasico.getId(), sala.getTipo(), sala.getCosto());
+        servicioBasicoRepository.insertarServicioBasico(servicioBasico.getId(), servicioBasico.getNombre(), servicioBasico.getCapacidad(), servicioBasico.getCosto(), servicioBasico.getHora_apertura(), servicioBasico.getHora_cierre());
+        salaRepository.insertar(servicioBasico.getId(), sala.getTipo());
         return "redirect:/servicios-basicos/salas";
     }
 
@@ -56,8 +56,8 @@ public class SalaController {
 
     @PostMapping("/servicios-basicos/salas/{id}/edit/save")
     public String salaEditarGuardar(@PathVariable("id") int id, @ModelAttribute ServicioBasico servicioBasico, @ModelAttribute Sala sala) {
-        servicioBasicoRepository.actualizarServicioBasico(id, servicioBasico.getNombre(), servicioBasico.getCapacidad());
-        salaRepository.actualizarSala(id, servicioBasico.getId(), sala.getTipo(), sala.getCosto());
+        servicioBasicoRepository.actualizarServicioBasico(id, servicioBasico.getNombre(), servicioBasico.getCapacidad(), servicioBasico.getCosto(), servicioBasico.getHora_apertura(), servicioBasico.getHora_cierre());
+        salaRepository.actualizarSala(id, servicioBasico.getId(), sala.getTipo());
         return "redirect:/servicios-basicos/salas";
     }
 

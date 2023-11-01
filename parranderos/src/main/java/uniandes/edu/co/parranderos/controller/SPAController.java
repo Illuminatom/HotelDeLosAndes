@@ -36,7 +36,7 @@ public class SPAController {
 
     @PostMapping("/servicios-basicos/spas/new/save")
     public String spaGuardar(@ModelAttribute SPA spa, @ModelAttribute ServicioBasico servicioBasico) {
-        servicioBasicoRepository.insertarServicioBasico(servicioBasico.getId(), servicioBasico.getNombre(), servicioBasico.getCapacidad());
+        servicioBasicoRepository.insertarServicioBasico(servicioBasico.getId(), servicioBasico.getNombre(), servicioBasico.getCapacidad(), servicioBasico.getCosto(), servicioBasico.getHora_apertura(), servicioBasico.getHora_cierre());
         spaRepository.insertarSPA(servicioBasico.getId());
         return "redirect:/servicios-basicos/spas";
     }
@@ -56,7 +56,7 @@ public class SPAController {
 
     @PostMapping("/servicios-basicos/spas/{id}/edit/save")
     public String spaEditarGuardar(@PathVariable("id") int id, @ModelAttribute SPA spa, @ModelAttribute ServicioBasico servicioBasico) {
-        servicioBasicoRepository.actualizarServicioBasico(id, servicioBasico.getNombre(), servicioBasico.getCapacidad());
+        servicioBasicoRepository.actualizarServicioBasico(id, servicioBasico.getNombre(), servicioBasico.getCapacidad(), servicioBasico.getCosto(), servicioBasico.getHora_apertura(), servicioBasico.getHora_cierre());
         spaRepository.actualizarSPA(id, servicioBasico.getId());
         return "redirect:/servicios-basicos/spas";
     }

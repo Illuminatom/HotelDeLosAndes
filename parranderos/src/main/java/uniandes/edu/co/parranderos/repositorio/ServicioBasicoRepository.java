@@ -1,5 +1,6 @@
 package uniandes.edu.co.parranderos.repositorio;
 
+import java.sql.Timestamp;
 import java.util.Collection;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -19,13 +20,13 @@ public interface ServicioBasicoRepository extends JpaRepository<ServicioBasico, 
 
     @Modifying
     @Transactional
-    @Query(value = "INSERT INTO servicio_basico (id, nombre, capacidad) VALUES (:id, :nombre, :capacidad)", nativeQuery = true)
-    void insertarServicioBasico(@Param("id") int id, @Param("nombre") String nombre, @Param("capacidad") int capacidad);
+    @Query(value = "INSERT INTO servicio_basico (id, nombre, capacidad, costo, hora_apertura, hora_cierre) VALUES (:id, :nombre, :capacidad, :costo, :hora_apertura, :hora_cierre)", nativeQuery = true)
+    void insertarServicioBasico(@Param("id") int id, @Param("nombre") String nombre, @Param("capacidad") int capacidad, @Param("costo") int costo, @Param("hora_apertura") Timestamp hora_apertura, @Param("hora_cierre") Timestamp hora_cierre);
 
     @Modifying
     @Transactional
-    @Query(value = "UPDATE servicio_basico SET nombre=:nombre, capacidad=:capacidad WHERE id=:id", nativeQuery = true)
-    void actualizarServicioBasico(@Param("id") int id, @Param("nombre") String nombre, @Param("capacidad") int capacidad);
+    @Query(value = "UPDATE servicio_basico SET nombre=:nombre, capacidad=:capacidad, costo=:costo, hora_apertura=:hora_apertura, hora_cierre=:hora_cierre WHERE id=:id", nativeQuery = true)
+    void actualizarServicioBasico(@Param("id") int id, @Param("nombre") String nombre, @Param("capacidad") int capacidad, @Param("costo") int costo, @Param("hora_apertura") Timestamp hora_apertura, @Param("hora_cierre") Timestamp hora_cierre);
 
     @Modifying
     @Transactional

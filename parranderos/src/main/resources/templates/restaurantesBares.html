@@ -28,6 +28,8 @@
                     <th>Nombre</th>
                     <th>Capacidad</th>
                     <th>Estilo</th>
+                    <th>Hora Apertura</th>
+                    <th>Hora Cierre</th>
                     <th>Menu</th>
                     <th>Opciones</th>
                 </tr>
@@ -38,6 +40,8 @@
                     <td th:text="${restauranteBar.pk.id.nombre}"></td>
                     <td th:text="${restauranteBar.pk.id.capacidad}"></td>
                     <td th:text="${restauranteBar.estilo}"></td>
+                    <td th:text="${restauranteBar.pk.id.hora_apertura}"></td>
+                    <td th:text="${restauranteBar.pk.id.hora_cierre}"></td>
                     <td>
                         <a th:href="@{/servicios-basicos/restaurantes-bares/{id}/menu(id=${restauranteBar.pk.id.id})}">Menu</a>
                     </td> 

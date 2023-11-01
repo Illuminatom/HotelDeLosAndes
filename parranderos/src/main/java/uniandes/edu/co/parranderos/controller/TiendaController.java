@@ -37,7 +37,7 @@ public class TiendaController {
 
     @PostMapping("/servicios-basicos/tiendas/new/save")
     public String tiendaGuardar(@ModelAttribute Tienda tienda, @ModelAttribute ServicioBasico servicioBasico) {
-        servicioBasicoRepository.insertarServicioBasico(servicioBasico.getId(), servicioBasico.getNombre(), servicioBasico.getCapacidad());
+        servicioBasicoRepository.insertarServicioBasico(servicioBasico.getId(), servicioBasico.getNombre(), servicioBasico.getCapacidad(), servicioBasico.getCosto(), servicioBasico.getHora_apertura(), servicioBasico.getHora_cierre());
         tiendaRepository.insertarTienda(servicioBasico.getId(), tienda.getTipo());
         return "redirect:/servicios-basicos/tiendas";
     }
@@ -57,7 +57,7 @@ public class TiendaController {
 
     @PostMapping("/servicios-basicos/tiendas/{id}/edit/save")
     public String tiendaEditarGuardar(@PathVariable("id") int id, @ModelAttribute Tienda tienda, @ModelAttribute ServicioBasico servicioBasico) {
-        servicioBasicoRepository.actualizarServicioBasico(id, servicioBasico.getNombre(), servicioBasico.getCapacidad());
+        servicioBasicoRepository.actualizarServicioBasico(id, servicioBasico.getNombre(), servicioBasico.getCapacidad(), servicioBasico.getCosto(), servicioBasico.getHora_apertura(), servicioBasico.getHora_cierre());
         tiendaRepository.actualizarTienda(id, servicioBasico.getId(), tienda.getTipo());
         return "redirect:/servicios-basicos/tiendas";
     }

@@ -1,31 +1,34 @@
 CREATE TABLE cliente (
     documento  NUMBER NOT NULL,
-    metodo_pago VARCHAR2(500) NOT NULL,
-    cobro_total NUMBER NOT NULL
+    metodo_pago VARCHAR2(30) NOT NULL
 );
 
 ALTER TABLE cliente ADD CONSTRAINT cliente_pk PRIMARY KEY ( documento );
 
 CREATE TABLE cliente_consume_producto (
-    cliente_documento NUMBER NOT NULL,
-    producto_id       NUMBER NOT NULL,
-    cantidad          NUMBER
+    reserva_hotel_id NUMBER NOT NULL,
+    producto_id     NUMBER NOT NULL,
+    cantidad        NUMBER NOT NULL,
+    fecha           DATE NOT NULL,
+    costo           NUMBER NOT NULL,
+    descripcion     VARCHAR2(500)
 );
 
-ALTER TABLE cliente_consume_producto ADD CONSTRAINT cliente_consume_pk PRIMARY KEY ( cliente_documento,
-                                                                                  producto_id );
+ALTER TABLE cliente_consume_producto ADD CONSTRAINT clienteconsume_pk PRIMARY KEY ( producto_id,
+                                                                                  reserva_hotel_id );
 
 CREATE TABLE consumo_servicio_cliente (
-    cliente_documento NUMBER NOT NULL,
+    reserva_hotel_id   NUMBER NOT NULL,
     servicio_basico_id NUMBER NOT NULL,
     fecha             DATE NOT NULL,
-    descripcion       VARCHAR2(500) NOT NULL
+    descripcion       VARCHAR2(500) NOT NULL,
+    costo             NUMBER NOT NULL
 );
 
 ALTER TABLE consumo_servicio_cliente
-    ADD CONSTRAINT consumo_servicio_cliente_pk PRIMARY KEY ( cliente_documento,
-                                                           servicio_basico_id,
-                                                           fecha );
+    ADD CONSTRAINT consumo_servicio_cliente_pk PRIMARY KEY ( servicio_basico_id,
+                                                           fecha,
+                                                           reserva_hotel_id );
 
 CREATE TABLE dotacion (
     tipo_habitacion_id NUMBER NOT NULL,
@@ -44,18 +47,17 @@ ALTER TABLE equipos_sala ADD CONSTRAINT equipos_sala_pk PRIMARY KEY ( sala_id,
                                                                     producto_id );
 
 CREATE TABLE gimnasio (
-    id    NUMBER NOT NULL,
-    costo NUMBER NOT NULL
+    id NUMBER NOT NULL
 );
 
 ALTER TABLE gimnasio ADD CONSTRAINT gimnasio_pk PRIMARY KEY ( id );
 
 CREATE TABLE habitacion (
     id                NUMBER NOT NULL,
-    disponible        VARCHAR2(10) CHECK(LOWER(disponible) IN ('si','no')),
+    disponible        VARCHAR2(3) NOT NULL CHECK (UPPER(disponible) IN ('SI', 'NO')),
     hotel_id          NUMBER NOT NULL,
     tipo_habitacion_id NUMBER NOT NULL
-);
+    );
 
 ALTER TABLE habitacion ADD CONSTRAINT habitacion_pk PRIMARY KEY ( id );
 
@@ -101,8 +103,7 @@ ALTER TABLE maquinas_gimnasio ADD CONSTRAINT maquinas_gimnasio_pk PRIMARY KEY ( 
 
 CREATE TABLE piscina (
     id          NUMBER NOT NULL,
-    profundidad VARCHAR2(500) NOT NULL,
-    costo       NUMBER NOT NULL
+    profundidad NUMBER NOT NULL
 );
 
 ALTER TABLE piscina ADD CONSTRAINT piscina_pk PRIMARY KEY ( id );
@@ -172,30 +173,33 @@ CREATE TABLE reserva_hotel (
     num_personas   NUMBER NOT NULL,
     habitacion_id NUMBER NOT NULL,
     cliente_id    NUMBER NOT NULL,
-    plan_id       NUMBER
+    plan_id       NUMBER,
+    cobro_total    NUMBER NOT NULL
 );
 
 ALTER TABLE reserva_hotel ADD CONSTRAINT reserva_hotel_pk PRIMARY KEY ( id );
 
 CREATE TABLE restaurante_bar (
     id     NUMBER NOT NULL,
-    estilo VARCHAR2(500) NOT NULL
+    estilo VARCHAR2(300) NOT NULL
 );
 
 ALTER TABLE restaurante_bar ADD CONSTRAINT restaurante_bar_pk PRIMARY KEY ( id );
 
 CREATE TABLE sala (
-    id    NUMBER NOT NULL,
-    tipo  VARCHAR2(500) NOT NULL,
-    costo NUMBER NOT NULL
+    id   NUMBER NOT NULL,
+    tipo VARCHAR2(500) NOT NULL
 );
 
 ALTER TABLE sala ADD CONSTRAINT sala_pk PRIMARY KEY ( id );
 
 CREATE TABLE servicio_basico (
-    id        NUMBER NOT NULL,
-    nombre    VARCHAR2(500) NOT NULL,
-    capacidad NUMBER NOT NULL
+    id           NUMBER NOT NULL,
+    nombre       VARCHAR2(500) NOT NULL,
+    capacidad    NUMBER NOT NULL,
+    costo        NUMBER NOT NULL,
+    hora_apertura TIMESTAMP(0) NOT NULL,
+    hora_cierre   TIMESTAMP(0) NOT NULL
 );
 
 ALTER TABLE servicio_basico ADD CONSTRAINT servicio_basico_pk PRIMARY KEY ( id );
@@ -211,7 +215,7 @@ ALTER TABLE servicio_plan ADD CONSTRAINT servicio_plan_pk PRIMARY KEY ( plan_id,
 
 CREATE TABLE servicio_spa (
     id       NUMBER NOT NULL,
-    duracion VARCHAR2(500) NOT NULL
+    duracion VARCHAR2(200) NOT NULL
 );
 
 ALTER TABLE servicio_spa ADD CONSTRAINT servicio_spa_pk PRIMARY KEY ( id );
@@ -232,7 +236,7 @@ ALTER TABLE spa ADD CONSTRAINT spa_pk PRIMARY KEY ( id );
 
 CREATE TABLE tienda (
     id   NUMBER NOT NULL,
-    tipo VARCHAR2(500) NOT NULL
+    tipo VARCHAR2(200) NOT NULL
 );
 
 ALTER TABLE tienda ADD CONSTRAINT tienda_pk PRIMARY KEY ( id );
@@ -258,7 +262,7 @@ CREATE TABLE usuario (
     documento         NUMBER NOT NULL,
     tipo_documento     VARCHAR2(500) NOT NULL,
     nombre            VARCHAR2(500) NOT NULL,
-    correo_electronico VARCHAR2(500) NOT NULL,
+    correo_electronico VARCHAR2(300) NOT NULL,
     hotel_id          NUMBER NOT NULL,
     tipo_usuario_id    NUMBER NOT NULL
 );
@@ -270,16 +274,16 @@ ALTER TABLE cliente
         REFERENCES usuario ( documento );
 
 ALTER TABLE cliente_consume_producto
-    ADD CONSTRAINT cliente_consume_cliente_fk FOREIGN KEY ( cliente_documento )
-        REFERENCES cliente ( documento );
-
-ALTER TABLE cliente_consume_producto
-    ADD CONSTRAINT cliente_consume_producto_fk FOREIGN KEY ( producto_id )
+    ADD CONSTRAINT clienteconsume_producto_fk FOREIGN KEY ( producto_id )
         REFERENCES producto ( id );
 
+ALTER TABLE cliente_consume_producto
+    ADD CONSTRAINT cliente_consume_producto_reserva_hotel_fk FOREIGN KEY ( reserva_hotel_id )
+        REFERENCES reserva_hotel ( id );
+
 ALTER TABLE consumo_servicio_cliente
-    ADD CONSTRAINT consumo_servicio_cliente_cliente_fk FOREIGN KEY ( cliente_documento )
-        REFERENCES cliente ( documento );
+    ADD CONSTRAINT consumo_servicio_cliente_reserva_hotel_fk FOREIGN KEY ( reserva_hotel_id )
+        REFERENCES reserva_hotel ( id );
 
 ALTER TABLE consumo_servicio_cliente
     ADD CONSTRAINT consumo_servicio_cliente_servicio_basico_fk FOREIGN KEY ( servicio_basico_id )

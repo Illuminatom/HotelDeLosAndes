@@ -36,7 +36,7 @@ public class LavanderiaController {
 
     @PostMapping("/servicios-basicos/lavanderias/new/save")
     public String lavanderiaGuardar(@ModelAttribute Lavanderia lavanderia, @ModelAttribute ServicioBasico servicioBasico) {
-        servicioBasicoRepository.insertarServicioBasico(servicioBasico.getId(), servicioBasico.getNombre(), servicioBasico.getCapacidad());
+        servicioBasicoRepository.insertarServicioBasico(servicioBasico.getId(), servicioBasico.getNombre(), servicioBasico.getCapacidad(), servicioBasico.getCosto(), servicioBasico.getHora_apertura(), servicioBasico.getHora_cierre());
         lavanderiaRepository.insertarLavanderia(servicioBasico.getId(),lavanderia.getCostoPorPrenda(), lavanderia.getCostoPorParZapatos());
         return "redirect:/servicios-basicos/lavanderias";
     }
@@ -56,7 +56,7 @@ public class LavanderiaController {
 
     @PostMapping("/servicios-basicos/lavanderias/{id}/edit/save")
     public String lavanderiaEditarGuardar(@PathVariable("id") int id, @ModelAttribute Lavanderia lavanderia, @ModelAttribute ServicioBasico servicioBasico) {
-        servicioBasicoRepository.actualizarServicioBasico(id, servicioBasico.getNombre(), servicioBasico.getCapacidad());
+        servicioBasicoRepository.actualizarServicioBasico(id, servicioBasico.getNombre(), servicioBasico.getCapacidad(), servicioBasico.getCosto(), servicioBasico.getHora_apertura(), servicioBasico.getHora_cierre());
         lavanderiaRepository.actualizarLavanderia(id, servicioBasico.getId(), lavanderia.getCostoPorPrenda(), lavanderia.getCostoPorParZapatos());
         return "redirect:/servicios-basicos/lavanderias";
     }

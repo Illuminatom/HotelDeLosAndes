@@ -14,10 +14,12 @@ public class ConsumoServicioCliente {
     private ConsumoServicioClientePK pk;
 
     private String descripcion;
+    private int costo;
 
-    public ConsumoServicioCliente(Cliente Cliente_documento, ServicioBasico ServicioBasico_id, Date fecha, String descripcion ) {
-        this.pk = new ConsumoServicioClientePK(Cliente_documento, ServicioBasico_id, fecha);
+    public ConsumoServicioCliente(ReservaHotel ReservaHotel_id, ServicioBasico ServicioBasico_id, Date fecha, String descripcion, int costo) {
+        this.pk = new ConsumoServicioClientePK(ReservaHotel_id, ServicioBasico_id, fecha);
         this.descripcion = descripcion;
+        this.costo = costo;
     }
 
     public ConsumoServicioClientePK getPk() {
@@ -34,5 +36,13 @@ public class ConsumoServicioCliente {
 
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
+    }
+
+    public int getCosto() {
+        return costo;
+    }
+
+    public void setCosto(int costo) {
+        this.costo = costo;
     }    
 }

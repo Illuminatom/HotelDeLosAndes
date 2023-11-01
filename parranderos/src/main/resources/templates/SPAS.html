@@ -27,6 +27,8 @@
                     <th>ID</th>
                     <th>Nombre</th>
                     <th>Capacidad</th>
+                    <th>Hora Apertura</th>
+                    <th>Hora Cierre</th>
                     <th>Opciones</th>
                 </tr>
             </thead>
@@ -34,6 +36,8 @@
                 <td th:text="${spa.pk.id.id}"></td>
                 <td th:text="${spa.pk.id.nombre}"></td>
                 <td th:text="${spa.pk.id.capacidad}"></td>
+                <td th:text="${spa.pk.id.hora_apertura}"></td>
+                <td th:text="${spa.pk.id.hora_cierre}"></td>
                 <td>
                     <a th:href="@{/servicios-basicos/spas/{id}/edit(id=${spa.pk.id.id})}">Editar</a>
                     <a th:href="@{/servicios-basicos/spas/} + ${spa.pk.id.id} + '/delete'" 

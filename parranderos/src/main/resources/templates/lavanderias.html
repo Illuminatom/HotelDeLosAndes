@@ -28,6 +28,8 @@
                     <th>Nombre</th>
                     <th>Costo por Prenda</th>
                     <th>Costo por Par de Zapatos</th>
+                    <th>Hora Apertura</th>
+                    <th>Hora Cierre</th>
                     <th>Opciones</th>
                 </tr>
             </thead>
@@ -36,6 +38,8 @@
                 <td th:text="${lavanderia.pk.id.nombre}"></td>
                 <td th:text="${lavanderia.costoPorPrenda}"></td>
                 <td th:text="${lavanderia.costoPorParZapatos}"></td>
+                <td th:text="${lavanderia.pk.id.hora_apertura}"></td>
+                <td th:text="${lavanderia.pk.id.hora_cierre}"></td>
                 <td>
                     <a th:href="@{/servicios-basicos/lavanderias/{id}/edit(id=${lavanderia.pk.id.id})}">Editar</a>
                     <a th:href="@{/servicios-basicos/lavanderias/} + ${lavanderia.pk.id.id} + '/delete'" 

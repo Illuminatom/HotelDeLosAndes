@@ -36,8 +36,8 @@ public class PiscinaController {
 
     @PostMapping("/servicios-basicos/piscinas/new/save")
     public String piscinaGuardar(@ModelAttribute Piscina piscina, @ModelAttribute ServicioBasico servicioBasico) {
-        servicioBasicoRepository.insertarServicioBasico(servicioBasico.getId(), servicioBasico.getNombre(), servicioBasico.getCapacidad());
-        piscinaRepository.insertarPiscina(servicioBasico.getId(), piscina.getProfundidad(), piscina.getCosto());
+        servicioBasicoRepository.insertarServicioBasico(servicioBasico.getId(), servicioBasico.getNombre(), servicioBasico.getCapacidad(), servicioBasico.getCosto(), servicioBasico.getHora_apertura(), servicioBasico.getHora_cierre());
+        piscinaRepository.insertarPiscina(servicioBasico.getId(), piscina.getProfundidad());
         return "redirect:/servicios-basicos/piscinas";
     }
 
@@ -56,8 +56,8 @@ public class PiscinaController {
 
     @PostMapping("/servicios-basicos/piscinas/{id}/edit/save")
     public String piscinaEditarGuardar(@PathVariable("id") int id, @ModelAttribute Piscina piscina, @ModelAttribute ServicioBasico servicioBasico) {
-        servicioBasicoRepository.actualizarServicioBasico(id, servicioBasico.getNombre(), servicioBasico.getCapacidad());
-        piscinaRepository.actualizarPiscina(id, servicioBasico.getId(), piscina.getProfundidad(), piscina.getCosto());
+        servicioBasicoRepository.actualizarServicioBasico(id, servicioBasico.getNombre(), servicioBasico.getCapacidad(), servicioBasico.getCosto(), servicioBasico.getHora_apertura(), servicioBasico.getHora_cierre());
+        piscinaRepository.actualizarPiscina(id, servicioBasico.getId(), piscina.getProfundidad());
         return "redirect:/servicios-basicos/piscinas";
     }
 

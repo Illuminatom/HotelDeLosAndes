@@ -36,8 +36,8 @@ public class GimnasioController {
 
     @PostMapping("/servicios-basicos/gimnasios/new/save")
     public String gimnasioGuardar(@ModelAttribute Gimnasio gimnasio, @ModelAttribute ServicioBasico servicioBasico) {
-        servicioBasicoRepository.insertarServicioBasico(servicioBasico.getId(), servicioBasico.getNombre(), servicioBasico.getCapacidad());
-        gimnasioRepository.insertarGimnasio(servicioBasico.getId(), gimnasio.getCosto());
+        servicioBasicoRepository.insertarServicioBasico(servicioBasico.getId(), servicioBasico.getNombre(), servicioBasico.getCapacidad(), servicioBasico.getCosto(), servicioBasico.getHora_apertura(), servicioBasico.getHora_cierre());
+        gimnasioRepository.insertarGimnasio(servicioBasico.getId());
         return "redirect:/servicios-basicos/gimnasios";
     }
 
@@ -56,8 +56,7 @@ public class GimnasioController {
 
     @PostMapping("/servicios-basicos/gimnasios/{id}/edit/save")
     public String gimnasioEditarGuardar(@PathVariable("id") int id, @ModelAttribute Gimnasio gimnasio, @ModelAttribute ServicioBasico servicioBasico) {
-        servicioBasicoRepository.actualizarServicioBasico(servicioBasico.getId(), servicioBasico.getNombre(), servicioBasico.getCapacidad());
-        gimnasioRepository.actualizarGimnasio(id, gimnasio.getCosto());
+        servicioBasicoRepository.actualizarServicioBasico(servicioBasico.getId(), servicioBasico.getNombre(), servicioBasico.getCapacidad(), servicioBasico.getCosto(), servicioBasico.getHora_apertura(), servicioBasico.getHora_cierre());
         return "redirect:/servicios-basicos/gimnasios";
     }
 

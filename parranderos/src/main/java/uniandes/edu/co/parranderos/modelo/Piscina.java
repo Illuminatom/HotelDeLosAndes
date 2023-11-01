@@ -12,12 +12,10 @@ public class Piscina {
     private PiscinaPK pk;
 
     private int profundidad;
-    private int costo;
     
-    public Piscina(ServicioBasico id, int profundidad, int costo) {
+    public Piscina(ServicioBasico id, int profundidad) {
         this.pk = new PiscinaPK(id);
         this.profundidad = profundidad;
-        this.costo = costo;
     }
 
     public Piscina()
@@ -29,14 +27,6 @@ public class Piscina {
 
     public void setProfundidad(int profundidad) {
         this.profundidad = profundidad;
-    }
-
-    public int getCosto() {
-        return costo;
-    }
-
-    public void setCosto(int costo) {
-        this.costo = costo;
     }
 
     public PiscinaPK getPk() {

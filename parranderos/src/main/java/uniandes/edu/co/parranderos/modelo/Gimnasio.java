@@ -11,22 +11,11 @@ public class Gimnasio {
     @EmbeddedId
     private GimnasioPK pk;
 
-    private int costo;
-
     public Gimnasio()
     {;}
 
-    public Gimnasio(ServicioBasico id, int costo) {
+    public Gimnasio(ServicioBasico id) {
         this.pk = new GimnasioPK(id);
-        this.costo = costo;
-    }
-
-    public int getCosto() {
-        return costo;
-    }
-
-    public void setCosto(int costo) {
-        this.costo = costo;
     }
 
     public GimnasioPK getPk() {

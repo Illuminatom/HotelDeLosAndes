@@ -31,6 +31,9 @@
                     <th>ID</th>
                     <th>Nombre</th>
                     <th>Capacidad</th>
+                    <th>Costo</th>
+                    <th>Hora Apertura</th>
+                    <th>Hora Cierre</th>
                 </tr>
             </thead>
             <th:block th:each="servicioBasico : ${serviciosBasicos}">
@@ -38,6 +41,9 @@
                     <td th:text="${servicioBasico.id}"></td>
                     <td th:text="${servicioBasico.nombre}"></td>
                     <td th:text="${servicioBasico.capacidad}"></td>
+                    <td th:text="${servicioBasico.costo}"></td>
+                    <td th:text="${servicioBasico.hora_apertura}"></td>
+                    <td th:text="${servicioBasico.hora_cierre}"></td>
                     <td>
                         <a th:href="@{/servicios-basicos/{id}/edit(id=${servicioBasico.id})}">Editar</a>
                         <br>
