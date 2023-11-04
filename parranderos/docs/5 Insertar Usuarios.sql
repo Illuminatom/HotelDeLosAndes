@@ -25,3 +25,19 @@ VALUES (45678, 'Cedula', 'Ana Rodriguez', 'ana@example.com', 4, 1);
 
 INSERT INTO usuario (documento, tipo_documento, nombre, correo_electronico, Hotel_id, Tipo_Usuario_id)
 VALUES (56789, 'Cedula', 'Maria Lopez', 'maria@example.com', 5, 1);
+
+-- Insercion de clientes en la tabla clientes
+INSERT INTO cliente (documento, metodo_pago)
+VALUES (12345, 'TARJETA');
+
+INSERT INTO cliente (documento, metodo_pago)
+VALUES (23456, 'TARJETA');
+
+INSERT INTO cliente (documento, metodo_pago)
+VALUES (34567, 'TARJETA');
+
+INSERT INTO cliente (documento, metodo_pago)
+VALUES (45678, 'TARJETA');
+
+INSERT INTO cliente (documento, metodo_pago)
+VALUES (56789, 'TARJETA');

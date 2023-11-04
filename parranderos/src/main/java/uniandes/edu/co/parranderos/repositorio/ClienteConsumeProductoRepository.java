@@ -15,8 +15,8 @@ public interface ClienteConsumeProductoRepository extends JpaRepository<ClienteC
     @Query(value = "SELECT * FROM cliente_consume_producto", nativeQuery = true)
     Collection<ClienteConsumeProducto> darClientesConsumenProductos();
 
-    @Query(value = "SELECT * FROM cliente_consume_producto WHERE ReservaHotel_id=:ReservaHotel_id AND Producto_id=:Producto_id", nativeQuery = true)
-    ClienteConsumeProducto darClienteConsumeProducto(@Param("ReservaHotel_id") int ReservaHotel_id, @Param("Producto_id") int Producto_id);
+    @Query(value = "SELECT * FROM cliente_consume_producto WHERE ReservaHotel_id=:ReservaHotel_id AND Producto_id=:Producto_id AND fecha=:fecha", nativeQuery = true)
+    ClienteConsumeProducto darClienteConsumeProducto(@Param("ReservaHotel_id") int ReservaHotel_id, @Param("Producto_id") int Producto_id, @Param("fecha") Date fecha);
 
     @Modifying
     @Transactional
@@ -25,12 +25,12 @@ public interface ClienteConsumeProductoRepository extends JpaRepository<ClienteC
 
     @Modifying
     @Transactional
-    @Query(value = "UPDATE cliente_consume_producto SET ReservaHotel_id=:ReservaHotel_id_actualizado, Producto_id=:Producto_id_actualizado, cantidad=:cantidad, fecha=:fecha, costo=:costo, descripcion=:descripcion WHERE ReservaHotel_id=:ReservaHotel_id AND Producto_id=:Producto_id", nativeQuery = true)
-    void actualizarClienteConsumeProducto(@Param("ReservaHotel_id") int ReservaHotel_id, @Param("Producto_id") int Producto_id,@Param("cantidad") int cantidad, @Param("ReservaHotel_id_actualizado") int ReservaHotel_id_actualizado, @Param("Producto_id_actualizado") int Producto_id_actualizado, @Param("fecha") Date fecha, @Param("costo") int costo, @Param("descripcion") String descripcion);
+    @Query(value = "UPDATE cliente_consume_producto SET ReservaHotel_id=:ReservaHotel_id_actualizado, Producto_id=:Producto_id_actualizado, cantidad=:cantidad, fecha=:fecha_actualizada, costo=:costo, descripcion=:descripcion WHERE ReservaHotel_id=:ReservaHotel_id AND Producto_id=:Producto_id, fecha=:fecha", nativeQuery = true)
+    void actualizarClienteConsumeProducto(@Param("ReservaHotel_id") int ReservaHotel_id, @Param("Producto_id") int Producto_id,@Param("cantidad") int cantidad, @Param("ReservaHotel_id_actualizado") int ReservaHotel_id_actualizado, @Param("Producto_id_actualizado") int Producto_id_actualizado, @Param("fecha_actualizada") Date fecha_actualizada, @Param("fecha") Date fecha, @Param("costo") int costo, @Param("descripcion") String descripcion);
 
     @Modifying
     @Transactional
-    @Query(value = "DELETE FROM cliente_consume_producto WHERE ReservaHotel_id=:ReservaHotel_id AND Producto_id=:Producto_id", nativeQuery = true)
-    void eliminarClienteConsumeProducto(@Param("ReservaHotel_id") int ReservaHotel_id, @Param("Producto_id") int Producto_id);
+    @Query(value = "DELETE FROM cliente_consume_producto WHERE ReservaHotel_id=:ReservaHotel_id AND Producto_id=:Producto_id AND fecha=:fecha", nativeQuery = true)
+    void eliminarClienteConsumeProducto(@Param("ReservaHotel_id") int ReservaHotel_id, @Param("Producto_id") int Producto_id, @Param("fecha") Date fecha);
 
 }

@@ -31,4 +31,10 @@ public interface HabitacionRepository extends JpaRepository<Habitacion, Integer>
     @Transactional
     @Query(value = "DELETE FROM habitacion WHERE id=:id", nativeQuery = true)
     void eliminarHabitacion(@Param("id") int id);
+
+    @Query(value = "SELECT SUM (cliente_consume_producto.costo) as total FROM habitacion INNER JOIN reserva_hotel ON habitacion.id = reserva_hotel.habitacion_id INNER JOIN cliente_consume_producto ON reserva_hotel.id = cliente_consume_producto.Reserva_Hotel_id WHERE habitacion.id=:id_habitacion AND cliente_consume_producto.fecha >= SYSDATE - INTERVAL '1' YEAR GROUP BY habitacion.id", nativeQuery = true)
+    Integer darCostoTotalProductosPorHabitacion(@Param("id_habitacion") int idHabitacion);
+
+    @Query(value = "SELECT SUM (consumo_servicio_cliente.costo) as total FROM habitacion INNER JOIN reserva_hotel ON habitacion.id = reserva_hotel.habitacion_id INNER JOIN consumo_servicio_cliente ON reserva_hotel.id = consumo_servicio_cliente.Reserva_Hotel_id WHERE habitacion.id=:id_habitacion AND consumo_servicio_cliente.fecha >= SYSDATE - INTERVAL '1' YEAR GROUP BY habitacion.id", nativeQuery = true)
+    Integer darCostoTotalServiciosPorHabitacion(@Param("id_habitacion") int idHabitacion);
 }

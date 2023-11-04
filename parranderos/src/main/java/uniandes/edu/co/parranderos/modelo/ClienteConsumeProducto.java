@@ -13,14 +13,12 @@ public class ClienteConsumeProducto {
     private ClienteConsumeProductoPK pk;
 
     private int cantidad;
-    private Date fecha;
     private int costo;
     private String descripcion;
 
     public ClienteConsumeProducto(ReservaHotel ReservaHotel_id, Producto Producto_id, int cantidad, Date fecha, int costo, String descripcion) {
-        this.pk = new ClienteConsumeProductoPK(ReservaHotel_id, Producto_id);
+        this.pk = new ClienteConsumeProductoPK(ReservaHotel_id, Producto_id, fecha);
         this.cantidad = cantidad;
-        this.fecha = fecha;
         this.costo = costo;
         this.descripcion = descripcion;
     }
@@ -42,14 +40,6 @@ public class ClienteConsumeProducto {
 
     public void setCantidad(int cantidad) {
         this.cantidad = cantidad;
-    }
-
-    public Date getFecha() {
-        return fecha;
-    }
-
-    public void setFecha(Date fecha) {
-        this.fecha = fecha;
     }
 
     public int getCosto() {

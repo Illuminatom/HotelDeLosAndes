@@ -1,7 +1,7 @@
 package uniandes.edu.co.parranderos.modelo;
 
 import java.io.Serializable;
-
+import java.sql.Date;
 
 import jakarta.persistence.Embeddable;
 import jakarta.persistence.JoinColumn;
@@ -17,10 +17,13 @@ public class ClienteConsumeProductoPK implements Serializable {
     @JoinColumn(name = "Producto_id", referencedColumnName = "id")
     private Producto Producto_id;
 
-    public ClienteConsumeProductoPK(ReservaHotel reservaHotel_id, Producto producto_id) {
+    private Date fecha;
+
+    public ClienteConsumeProductoPK(ReservaHotel reservaHotel_id, Producto producto_id, Date fecha) {
         super();
         ReservaHotel_id = reservaHotel_id;
         Producto_id = producto_id;
+        this.fecha = fecha;
     }
 
     public ClienteConsumeProductoPK()
@@ -40,5 +43,13 @@ public class ClienteConsumeProductoPK implements Serializable {
 
     public void setReservaHotel_id(ReservaHotel reservaHotel_id) {
         ReservaHotel_id = reservaHotel_id;
+    }
+
+    public Date getFecha() {
+        return fecha;
+    }
+
+    public void setFecha(Date fecha) {
+        this.fecha = fecha;
     }   
 }

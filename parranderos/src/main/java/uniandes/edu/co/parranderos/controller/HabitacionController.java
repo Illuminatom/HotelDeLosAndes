@@ -15,6 +15,8 @@ import uniandes.edu.co.parranderos.repositorio.HotelRepository;
 import uniandes.edu.co.parranderos.repositorio.TipoHabitacionRepository;
 
 import java.util.Collection;
+import java.util.HashMap;
+import java.util.Map;
 
 @Controller
 public class HabitacionController {
@@ -32,6 +34,28 @@ public class HabitacionController {
     public String habitaciones(Model model) {
         Collection<Habitacion> habitaciones = habitacionRepository.darHabitaciones();
         model.addAttribute("habitaciones", habitaciones);
+
+        Map<Integer, Integer> costosProductos = new HashMap<>();
+        Map<Integer, Integer> costosServicios = new HashMap<>();
+
+        for (Habitacion habitacion : habitaciones) {
+            int idHabitacion = habitacion.getId();
+            Integer costoProductos = habitacionRepository.darCostoTotalProductosPorHabitacion(idHabitacion);
+            Integer costoServicios = habitacionRepository.darCostoTotalServiciosPorHabitacion(idHabitacion);
+            
+            if(costoProductos == null) {
+                costoProductos = 0;
+            }
+            if(costoServicios == null) {
+                costoServicios = 0;
+            }
+            costosProductos.put(idHabitacion, costoProductos);
+            costosServicios.put(idHabitacion, costoServicios);
+        }
+
+        model.addAttribute("costosProductos", costosProductos);
+        model.addAttribute("costosServicios", costosServicios);
+
         return "habitaciones";
     }
 

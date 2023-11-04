@@ -15,7 +15,7 @@ CREATE TABLE cliente_consume_producto (
 );
 
 ALTER TABLE cliente_consume_producto ADD CONSTRAINT clienteconsume_pk PRIMARY KEY ( producto_id,
-                                                                                  reserva_hotel_id );
+                                                                                  reserva_hotel_id, fecha );
 
 CREATE TABLE consumo_servicio_cliente (
     reserva_hotel_id   NUMBER NOT NULL,
