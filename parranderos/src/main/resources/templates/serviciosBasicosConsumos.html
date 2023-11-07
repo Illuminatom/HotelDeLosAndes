@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Servicios Populares</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}"/>
+</head>
+<body>
+    <h1>Lista de Servicios Populares <br> Entre el <span th:text="${fecha_menor}"></span> y el <span th:text="${fecha_mayor}"></span> </h1>
+    <table class="table table-hover table-bordered">
+        <thead class="thead-dark">
+            <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Capacidad</th>
+                <th>Costo</th>
+                <th>Hora Apertura</th>
+                <th>Hora Cierre</th>
+            </tr>
+        </thead>
+        <th:block th:each="servicioBasico : ${serviciosPopulares}">
+            <tr>
+                <td th:text="${servicioBasico.id}"></td>
+                <td th:text="${servicioBasico.nombre}"></td>
+                <td th:text="${servicioBasico.capacidad}"></td>
+                <td th:text="${servicioBasico.costo}"></td>
+                <td th:text="${servicioBasico.hora_apertura}"></td>
+                <td th:text="${servicioBasico.hora_cierre}"></td>
+            </tr>
+        </th:block>
+    </table>
+</body>
+</html>

@@ -15,7 +15,7 @@ CREATE TABLE cliente_consume_producto (
 );
 
 ALTER TABLE cliente_consume_producto ADD CONSTRAINT clienteconsume_pk PRIMARY KEY ( producto_id,
-                                                                                  reserva_hotel_id, fecha );
+                                                                                  reserva_hotel_id);
 
 CREATE TABLE consumo_servicio_cliente (
     reserva_hotel_id   NUMBER NOT NULL,
@@ -27,8 +27,7 @@ CREATE TABLE consumo_servicio_cliente (
 
 ALTER TABLE consumo_servicio_cliente
     ADD CONSTRAINT consumo_servicio_cliente_pk PRIMARY KEY ( servicio_basico_id,
-                                                           fecha,
-                                                           reserva_hotel_id );
+                                                           reserva_hotel_id, fecha, descripcion, costo );
 
 CREATE TABLE dotacion (
     tipo_habitacion_id NUMBER NOT NULL,
@@ -173,8 +172,7 @@ CREATE TABLE reserva_hotel (
     num_personas   NUMBER NOT NULL,
     habitacion_id NUMBER NOT NULL,
     cliente_id    NUMBER NOT NULL,
-    plan_id       NUMBER,
-    cobro_total    NUMBER NOT NULL
+    plan_id       NUMBER
 );
 
 ALTER TABLE reserva_hotel ADD CONSTRAINT reserva_hotel_pk PRIMARY KEY ( id );
@@ -198,8 +196,8 @@ CREATE TABLE servicio_basico (
     nombre       VARCHAR2(500) NOT NULL,
     capacidad    NUMBER NOT NULL,
     costo        NUMBER NOT NULL,
-    hora_apertura TIMESTAMP(0) NOT NULL,
-    hora_cierre   TIMESTAMP(0) NOT NULL
+    hora_apertura VARCHAR2(5) NOT NULL,
+    hora_cierre   VARCHAR2(5) NOT NULL
 );
 
 ALTER TABLE servicio_basico ADD CONSTRAINT servicio_basico_pk PRIMARY KEY ( id );

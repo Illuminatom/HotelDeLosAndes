@@ -30,6 +30,8 @@
                     <th>Tipo de Habitacion</th>
                     <th>Consumo De Productos en el Ultimo Año</th>
                     <th>Consumo De Servicios en el Ultimo Año</th>
+                    <th>Porcentaje de Ocupacion en el Ultimo Año</th>
+                    <th>Acciones</th>
                 </tr>
             </thead>
             <th:block th:each="habitacion:${habitaciones}">
@@ -40,6 +42,7 @@
                     <td th:text="${habitacion.TipoHabitacion_id.nombre}"></td>
                     <td th:text="${costosProductos[habitacion.id]}"></td>
                     <td th:text="${costosServicios[habitacion.id]}"></td>
+                    <td th:text="${porcentajesOcupacion[habitacion.id]}"></td>
                     <td>
                         <a th:href="@{habitaciones/{id}/edit(id=${habitacion.id})}">Editar</a>
                         <br>

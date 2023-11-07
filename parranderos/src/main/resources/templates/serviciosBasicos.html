@@ -20,10 +20,33 @@
             flex: 6;
             padding: 10px; 
         }            
+        .centered-div {
+            width: 300px; 
+            margin-left: auto; 
+            margin-right: auto; 
+            border: 1px solid #ccc; 
+            padding: 20px; 
+        }
    </style>
 </head>
 <body>
     <div>
+        <div class="centered-div">
+            <h1>Consultar servicios Populares</h1>
+            <form method="GET" th:action="@{/servicios-basicos/consumos}">
+                <label class="col-form-label" for="fecha_menor"> <h6>Fecha Menor (YYYY-MM-DD): </h6></label>
+                <input placeholder="Fecha Inicial" id="fecha_menor" name="fecha_menor" pattern="\d{4}-\d{2}-\d{2}" title="Formato válido: YYYY-MM-DD" required>
+                <br>
+                <br>
+                <label class="col-form-label" for="fecha_mayor"> <h6>Fecha Mayor (YYYY-MM-DD): </h6></label>
+                <input placeholder="Fecha Final" type="text" id="fecha_mayor" name="fecha_mayor" pattern="\d{4}-\d{2}-\d{2}" title="Formato válido: YYYY-MM-DD" required>
+                
+                <br>
+                <br>
+                <button class="btn btn-primary" type="submit">Buscar</button>
+            </form>
+        </div>
+
         <h1>Lista de Servicios Básicos</h1>
         <table class="table table-hover table-bordered">
             <thead class="thead-dark">

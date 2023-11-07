@@ -14,6 +14,9 @@ public interface HabitacionRepository extends JpaRepository<Habitacion, Integer>
     @Query(value = "SELECT * FROM habitacion", nativeQuery = true)
     Collection<Habitacion> darHabitaciones();
 
+    @Query(value = "SELECT * FROM habitacion WHERE id >= :piso AND id <= :techo", nativeQuery = true)
+    Collection<Habitacion> darHabitacionesEnIntervalo(@Param("piso") int piso, @Param("techo") int techo);
+
     @Query(value = "SELECT * FROM habitacion WHERE id=:id", nativeQuery = true)
     Habitacion darHabitacion(@Param("id") int id);
 
@@ -37,4 +40,7 @@ public interface HabitacionRepository extends JpaRepository<Habitacion, Integer>
 
     @Query(value = "SELECT SUM (consumo_servicio_cliente.costo) as total FROM habitacion INNER JOIN reserva_hotel ON habitacion.id = reserva_hotel.habitacion_id INNER JOIN consumo_servicio_cliente ON reserva_hotel.id = consumo_servicio_cliente.Reserva_Hotel_id WHERE habitacion.id=:id_habitacion AND consumo_servicio_cliente.fecha >= SYSDATE - INTERVAL '1' YEAR GROUP BY habitacion.id", nativeQuery = true)
     Integer darCostoTotalServiciosPorHabitacion(@Param("id_habitacion") int idHabitacion);
+
+    @Query(value = "SELECT SUM(TO_DATE(FECHA_SALIDA, 'DD-MON-RR') - TO_DATE(FECHA_ENTRADA, 'DD-MON-RR')) AS dias_ocupada FROM reserva_hotel WHERE FECHA_ENTRADA >= TRUNC(SYSDATE - 365) AND habitacion_id = :habitacion_id GROUP BY habitacion_id", nativeQuery = true)
+    Double darDuracionReservaPorHabitacionEnElUltimoAnio(@Param("habitacion_id") int idHabitacion);
 }

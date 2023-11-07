@@ -7,7 +7,10 @@ import org.springframework.web.bind.annotation.*;
 import uniandes.edu.co.parranderos.modelo.ServicioBasico;
 import uniandes.edu.co.parranderos.repositorio.ServicioBasicoRepository;
 
+import java.sql.Date;
+import java.text.SimpleDateFormat;
 import java.util.Collection;
+import java.util.Locale;
 
 @Controller
 public class ServicioBasicoController {
@@ -16,8 +19,17 @@ public class ServicioBasicoController {
     ServicioBasicoRepository servicioBasicoRepository;
 
     @GetMapping("/servicios-basicos")
-    public String serviciosBasicos(Model model) {
-        Collection<ServicioBasico> serviciosBasicos = servicioBasicoRepository.darServiciosBasicos();
+    public String serviciosBasicos(Model model, @RequestParam(name = "piso", required = false) Integer piso, @RequestParam(name = "techo", required = false) Integer techo) {
+        
+        if (piso == null) {
+            piso = 0;
+        }
+
+        if (techo == null) {
+            techo = 50;
+        }
+
+        Collection<ServicioBasico> serviciosBasicos = servicioBasicoRepository.darServiciosBasicosEnIntervalo(piso, techo);
         model.addAttribute("serviciosBasicos", serviciosBasicos);
         return "serviciosBasicos";
     }
@@ -56,5 +68,19 @@ public class ServicioBasicoController {
     public String servicioBasicoBorrar(@PathVariable("id") int id) {
         servicioBasicoRepository.eliminarServicioBasico(id);
         return "redirect:/servicios-basicos";
+    }
+
+    @GetMapping("/servicios-basicos/consumos")
+    public String servicioBasicoConsumos(@RequestParam("fecha_menor") Date fecha_menor, @RequestParam("fecha_mayor") Date fecha_mayor, Model model) {
+        Collection<ServicioBasico> serviciosPopulares = servicioBasicoRepository.darServiciosMasPopularesEnUnIntervalo(fecha_menor, fecha_mayor);
+
+        SimpleDateFormat sdf = new SimpleDateFormat("dd 'de' MMMM 'del' yyyy", new Locale("es", "ES"));
+        String fechaMenorFormateada = sdf.format(fecha_menor);
+        String fechaMayorFormateada = sdf.format(fecha_mayor);
+
+        model.addAttribute("fecha_menor", fechaMenorFormateada);
+        model.addAttribute("fecha_mayor", fechaMayorFormateada);
+        model.addAttribute("serviciosPopulares", serviciosPopulares);
+        return "serviciosBasicosConsumos";
     }
 }

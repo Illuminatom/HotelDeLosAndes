@@ -1,7 +1,5 @@
 package uniandes.edu.co.parranderos.modelo;
 
-import java.sql.Timestamp;
-
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -19,10 +17,10 @@ public class ServicioBasico {
     private String nombre;
     private int capacidad;
     private int costo;
-    private Timestamp hora_apertura;
-    private Timestamp hora_cierre;
+    private String hora_apertura;
+    private String hora_cierre;
     
-    public ServicioBasico(String nombre, int capacidad, Timestamp hora_apertura, Timestamp hora_cierre, int costo) { 
+    public ServicioBasico(String nombre, int capacidad, String hora_apertura, String hora_cierre, int costo) { 
         this.nombre = nombre;
         this.capacidad = capacidad;
         this.costo = costo;
@@ -56,19 +54,19 @@ public class ServicioBasico {
         this.capacidad = capacidad;
     }
 
-    public Timestamp getHora_apertura() {
+    public String getHora_apertura() {
         return hora_apertura;
     }
 
-    public void setHora_apertura(Timestamp hora_apertura) {
+    public void setHora_apertura(String hora_apertura) {
         this.hora_apertura = hora_apertura;
     }
 
-    public Timestamp getHora_cierre() {
+    public String getHora_cierre() {
         return hora_cierre;
     }
 
-    public void setHora_cierre(Timestamp hora_cierre) {
+    public void setHora_cierre(String hora_cierre) {
         this.hora_cierre = hora_cierre;
     }
 

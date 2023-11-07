@@ -11,6 +11,21 @@
             padding: 0;
             margin: 0;
         }
+        .mitad-mitad {
+            width: 50%;
+            padding: 0;
+            margin: 0;
+        }
+        .center-text {
+            text-align: center;  
+        }
+        .centered-div {
+            width: 300px; 
+            margin-left: auto; 
+            margin-right: auto; 
+            padding: 20px; 
+        }
+    </style>
     </style>
 </head>
 <body>
@@ -19,6 +34,9 @@
             <h1>Hotel De Los Andes</h1>
             <img class="w-25" th:src="@{/images/logo.png}" alt="Logo" width="250"/>
         </div>
+        <br>
+        <h2 class="center-text">Debido al volumen de datos, no se podran traer todas las filas dado que son decenas de miles de registros, por lo que traerlos todos es muy demorado</h2>
+        <br>
         <div>
             <a th:href="@{/tiposUsuarios}" class="boton-ancho btn btn-primary">Tipos de Usuarios</a>
             <br>
@@ -26,10 +44,26 @@
             <br>
             <a th:href="@{/usuarios}" class="boton-ancho btn btn-primary">Usuarios</a>
             <br>
-            <a th:href="@{/habitaciones}" class="boton-ancho btn btn-primary">Habitaciones</a>
-            <br>
-            <a th:href="@{/servicios-basicos}" class="boton-ancho btn btn-primary">Servicios</a>
-            <br>
+            <div>
+                <form th:action="@{/habitaciones}" method="get">
+                    <button type="submit" class="boton-ancho btn btn-primary" name="buscar">Habitaciones</button>
+                    <div class="centered-div container text-center">
+                        <input type="number" id="piso" name="piso" placeholder="Id menor desde el cual ver" min="1"/>
+                        <input type="number" id="techo" name="techo" placeholder="Id mayor hasta el cual ver" min="1"/>
+                    </div>
+                </form>        
+                <br>
+            </div>
+            <div>
+                <form th:action="@{/servicios-basicos}" method="get">
+                    <button type="submit" class="boton-ancho btn btn-primary" name="buscar">Servicios Basicos</button>
+                    <div class="centered-div container text-center">
+                        <input type="number" id="piso" name="piso" placeholder="Id menor desde el cual ver" min="1"/>
+                        <input type="number" id="techo" name="techo" placeholder="Id mayor hasta el cual ver" min="1"/>
+                    </div>
+                </form>            
+                <br>
+            </div>
             <a th:href="@{/planes}" class="boton-ancho btn btn-primary">Planes</a>
         </div>
     </div>

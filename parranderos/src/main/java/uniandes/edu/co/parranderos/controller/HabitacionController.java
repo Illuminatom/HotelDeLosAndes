@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
 import uniandes.edu.co.parranderos.modelo.Habitacion;
 import uniandes.edu.co.parranderos.modelo.Hotel;
 import uniandes.edu.co.parranderos.modelo.TipoHabitacion;
@@ -14,6 +16,7 @@ import uniandes.edu.co.parranderos.repositorio.HabitacionRepository;
 import uniandes.edu.co.parranderos.repositorio.HotelRepository;
 import uniandes.edu.co.parranderos.repositorio.TipoHabitacionRepository;
 
+import java.text.DecimalFormat;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
@@ -31,8 +34,18 @@ public class HabitacionController {
     private HotelRepository hotelRepository;
 
     @GetMapping("/habitaciones")
-    public String habitaciones(Model model) {
-        Collection<Habitacion> habitaciones = habitacionRepository.darHabitaciones();
+    public String habitaciones(Model model, @RequestParam(name = "piso", required = false) Integer piso, @RequestParam(name = "techo", required = false) Integer techo) {
+        
+        if (piso == null) {
+            piso = 0;
+        }
+
+        if (techo == null) {
+            techo = 50;
+        }
+        
+        Collection<Habitacion> habitaciones = habitacionRepository.darHabitacionesEnIntervalo(piso, techo);
+        
         model.addAttribute("habitaciones", habitaciones);
 
         Map<Integer, Integer> costosProductos = new HashMap<>();
@@ -53,6 +66,19 @@ public class HabitacionController {
             costosServicios.put(idHabitacion, costoServicios);
         }
 
+        DecimalFormat df = new DecimalFormat("#.##");
+        Map<Integer, Double> porcentajesOcupacion = new HashMap<>();
+        for (Habitacion habitacion : habitaciones){
+            int idHabitacion = habitacion.getId();
+            Double duracionReserva = habitacionRepository.darDuracionReservaPorHabitacionEnElUltimoAnio(idHabitacion);
+            if(duracionReserva == null) {
+                duracionReserva = 0.0;
+            }
+            double porcentajeRedondeado = Double.parseDouble(df.format((duracionReserva / 365) * 100));
+            porcentajesOcupacion.put(idHabitacion, porcentajeRedondeado);
+        }
+
+        model.addAttribute("porcentajesOcupacion", porcentajesOcupacion);
         model.addAttribute("costosProductos", costosProductos);
         model.addAttribute("costosServicios", costosServicios);
 
