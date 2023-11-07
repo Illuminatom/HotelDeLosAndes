@@ -20,8 +20,8 @@
             flex: 6;
             padding: 10px; 
         }            
-        .centered-div {
-            width: 300px; 
+        .uniform-div{
+            width: auto;
             margin-left: auto; 
             margin-right: auto; 
             border: 1px solid #ccc; 
@@ -31,11 +31,11 @@
 </head>
 <body>
     <div>
-        <div class="centered-div">
-            <h1>Consultar servicios Populares</h1>
+        <div class="uniform-div">
+            <h1>Consultar servicios Populares en el ultimo año</h1>
             <form method="GET" th:action="@{/servicios-basicos/consumos}">
                 <label class="col-form-label" for="fecha_menor"> <h6>Fecha Menor (YYYY-MM-DD): </h6></label>
-                <input placeholder="Fecha Inicial" id="fecha_menor" name="fecha_menor" pattern="\d{4}-\d{2}-\d{2}" title="Formato válido: YYYY-MM-DD" required>
+                <input placeholder="Fecha Inicial" type="text" id="fecha_menor" name="fecha_menor" pattern="\d{4}-\d{2}-\d{2}" title="Formato válido: YYYY-MM-DD" required>
                 <br>
                 <br>
                 <label class="col-form-label" for="fecha_mayor"> <h6>Fecha Mayor (YYYY-MM-DD): </h6></label>
@@ -44,6 +44,51 @@
                 <br>
                 <br>
                 <button class="btn btn-primary" type="submit">Buscar</button>
+            </form>
+        </div>
+
+        <div class="uniform-div">
+            <h1>Filtrar Servicios</h1>
+            <form method="GET" th:action="@{/servicios-basicos/filtros}">
+                <label class="col-form-label" for="nombre"> <h6>Nombre</h6></label>
+                <input placeholder="Nombre" type="text" id="nombre" name="nombre" title="Nombre" >
+
+                <br>
+                <label class="col-form-label" for="precioPiso"> <h6>Precio Minimo </h6></label>
+                <input placeholder="Precio Menor" type="number" id="precioPiso" name="precioPiso" title="Numero entero" >
+                 
+                <label class="col-form-label" for="precioTecho"> <h6>Precio Maximo </h6></label>
+                <input placeholder="Precio Mayor" type="number" id="precioTecho" name="precioTecho" title="Numero Entero" >
+
+                <br>
+                <label class="col-form-label" for="horaApertura"> <h6>Hora Apertura </h6></label>
+                <input placeholder="HH:MM" type="text" id="fecha_menor" name="fecha_menor" pattern="\h{2}-\m{2}" title="Formato válido: HH:MM" >
+
+                <label class="col-form-label" for="horaCierre"> <h6>Hora Cierre </h6></label>
+                <input placeholder="Fecha Final" type="text" id="fecha_mayor" name="fecha_mayor" pattern="\h{2}-\m{2}" title="Formato válido: HH:MM" >
+
+                <br>
+                <label class="col-form-label" for="id"> <h6>ID</h6></label>
+                <input placeholder="Numero entre 1 y 50000" type="number" id="id" name="id" title="Numero entero" > 
+                <label>(Consulta por intervalo tiene prioridad)</label>
+                 
+                <br>
+                <label class="col-form-label" for="idMenor"> <h6>ID menor</h6></label>
+                <input placeholder="Numero entre 1 y 50000" type="number" id="idMenor" name="idMenor" title="Numero entero" >
+
+                <label class="col-form-label" for="idMayor"> <h6>ID mayor</h6></label>
+                <input placeholder="Numero entre 1 y 50000" type="number" id="idMayor" name="idMayor" title="Numero entero"  >
+
+                <br>
+                <label class="col-form-label" for="capacidadPiso"> <h6>Capacidad Minima</h6></label>
+                <input placeholder="Capacidad Menor" type="number" id="capacidadPiso" name="capacidadPiso" title="Numero entero" >
+
+                <label class="col-form-label" for="capacidadTecho"> <h6>Capacidad Maxima</h6></label>
+                <input placeholder="Capacidad Mayor" type="number" id="capacidadTecho" name="capacidadTecho" title="Numero entero" >
+                
+                <br>
+                <br>
+                <button class="btn btn-primary" type="submit">Filtrar</button>
             </form>
         </div>
 

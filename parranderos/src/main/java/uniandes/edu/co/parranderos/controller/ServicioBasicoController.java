@@ -29,7 +29,69 @@ public class ServicioBasicoController {
             techo = 50;
         }
 
+
         Collection<ServicioBasico> serviciosBasicos = servicioBasicoRepository.darServiciosBasicosEnIntervalo(piso, techo);
+        model.addAttribute("serviciosBasicos", serviciosBasicos);
+        return "serviciosBasicos";
+    }
+
+    @GetMapping("/servicios-basicos/filtros")
+    public String serviciosBasicosFiltro(Model model, @RequestParam(name = "precioPiso", required = false) Integer precioPiso,
+      @RequestParam(name = "precioTecho", required = false) Integer precioTecho, @RequestParam(name = "capacidadPiso", required = false) Integer capacidadPiso,
+       @RequestParam(name = "capacidadTecho", required = false) Integer capacidadTecho, @RequestParam(name = "horaApertura", required = false) String horaApertura,
+        @RequestParam(name = "horaCierre", required = false) String horaCierre, @RequestParam(name = "nombre", required = false) String nombre,
+        @RequestParam(name = "id", required = false) Integer id, @RequestParam(name = "idMenor", required = false) Integer idMenor, @RequestParam(name = "idMayor", required = false) Integer idMayor) {
+
+        if (precioPiso == null) {
+            precioPiso = 0;
+        }
+
+        if (precioTecho == null) {
+            precioTecho = 1000000;
+        }
+
+        if (capacidadPiso == null) {
+            capacidadPiso = 0;
+        }
+
+        if (capacidadTecho == null) {
+            capacidadTecho = 1000000;
+        }
+
+        if (horaApertura == null) {
+            horaApertura = ("00:00");
+        }
+
+        if (horaCierre == null) {
+            horaCierre = ("23:59");
+        }
+
+        if (nombre == null) {
+            nombre = ("");
+        }
+
+        if (id != null && idMenor == null && idMayor == null)
+        {
+            idMenor = id;
+            idMayor = id;
+        }
+
+        if (id == null) {
+            id = 0;
+        }
+
+        if (idMenor == null) {
+            idMenor = 0;
+        }
+
+        if (idMayor == null) {
+            idMayor = 100;
+        }
+
+
+        
+
+        Collection<ServicioBasico> serviciosBasicos = servicioBasicoRepository.darServiciosConFiltros(idMenor, idMayor, capacidadPiso, capacidadTecho, nombre, precioPiso, precioTecho, horaApertura, horaCierre);
         model.addAttribute("serviciosBasicos", serviciosBasicos);
         return "serviciosBasicos";
     }

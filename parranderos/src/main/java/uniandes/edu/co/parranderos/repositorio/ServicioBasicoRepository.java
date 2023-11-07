@@ -38,4 +38,7 @@ public interface ServicioBasicoRepository extends JpaRepository<ServicioBasico, 
 
     @Query(value = "SELECT DISTINCT sb.* FROM (SELECT servicio_basico.* FROM consumo_servicio_cliente INNER JOIN servicio_basico ON servicio_basico.id = consumo_servicio_cliente.servicio_basico_id WHERE fecha >= :fecha_menor AND fecha <= :fecha_mayor ORDER BY fecha) sb WHERE ROWNUM <=20", nativeQuery = true)
     Collection<ServicioBasico> darServiciosMasPopularesEnUnIntervalo(@Param("fecha_menor") Date fecha_menor, @Param("fecha_mayor") Date fecha_mayor);
+
+    @Query(value = "SELECT * FROM servicio_basico WHERE id >= :idMenor AND id <= :idMayor AND capacidad >= :capacidadPiso AND capacidad <= :capacidadTecho AND nombre LIKE '%' || :nombre || '%' AND costo >= :precioPiso AND costo <= :precioTecho AND TO_DATE(hora_apertura, 'HH24:MI') >= TO_DATE(:horaApertura, 'HH24:MI') AND TO_DATE(hora_apertura, 'HH24:MI') <= TO_DATE(:horaCierre, 'HH24:MI') ", nativeQuery = true)
+    Collection<ServicioBasico> darServiciosConFiltros(@Param("idMenor") int idMenor, @Param("idMayor") int idMayor, @Param("capacidadPiso") int capacidadPiso, @Param("capacidadTecho") int capacidadTecho, @Param("nombre") String nombre, @Param("precioPiso") int precioPiso, @Param("precioTecho") int precioTecho, @Param("horaApertura") String horaApertura, @Param("horaCierre") String horaCierre);
 }
