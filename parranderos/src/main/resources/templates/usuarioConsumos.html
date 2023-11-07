@@ -26,25 +26,6 @@
         </style>
 </head>
 <body>
-    <div class="uniform-div">
-        <h1>Consultar Consumo Cliente en un intervalo</h1>
-        <form method="GET" th:action="@{/usuarios/clientes/consumos}">
-
-            <label class="col-form-label" for="id"> <h6>Documento</h6></label>
-            <input placeholder="Numero entre 12500 y 25000" type="number" id="documento" name="documento" title="Numero entero" required> 
-
-            <br>
-            <label class="col-form-label" for="fecha_menor"> <h6>Fecha Menor (YYYY-MM-DD): </h6></label>
-            <input placeholder="Fecha Inicial" type="text" id="fecha_menor" name="fecha_menor" pattern="\d{4}-\d{2}-\d{2}" title="Formato válido: YYYY-MM-DD" required>
-            
-            <label class="col-form-label" for="fecha_mayor"> <h6>Fecha Mayor (YYYY-MM-DD): </h6></label>
-            <input placeholder="Fecha Final" type="text" id="fecha_mayor" name="fecha_mayor" pattern="\d{4}-\d{2}-\d{2}" title="Formato válido: YYYY-MM-DD" required>
-            
-            <br>
-            <br>
-            <button class="btn btn-primary" type="submit">Buscar</button>
-        </form>
-    </div>
     <div>
         <h1>Lista de Usuarios</h1>
         <table class="table table-hover table-bordered">
@@ -56,9 +37,10 @@
                     <th>Correo Electronico</th>
                     <th>Hotel</th>
                     <th>Tipo De Usuario</th>
+                    <th>Consumo Productos</th>
+                    <th>Consumo Servicios</th>
                 </tr>
             </thead>
-            <th:block th:each="usuario:${usuarios}">
                 <tr>
                     <td th:text="${usuario.documento}"></td>
                     <td th:text="${usuario.tipoDocumento}"></td>
@@ -66,6 +48,8 @@
                     <td th:text="${usuario.correoElectronico}"></td>
                     <td th:text="${usuario.Hotel_id.nombre}"></td>
                     <td th:text="${usuario.TipoUsuario_id.nombre}"></td>
+                    <td th:text="${productos}"></td>
+                    <td th:text="${consumos}"></td>
                     <td>
                         <a th:href="@{usuarios/{id}/edit(id=${usuario.documento})}">Editar</a>
                         <br>
@@ -75,10 +59,9 @@
                         </a>                  
                     </td>
                 </tr>
-            </th:block>
         </table>
         <div class="boton-container">
-            <a th:href="@{/}" class="btn btn-primary">Volver atras</a>
+            <a th:href="@{/usuarios}" class="btn btn-primary">Volver atras</a>
             <a th:href="@{usuarios/new}" class="btn btn-primary">Añadir Usuario</a>
         </div>
     </div>

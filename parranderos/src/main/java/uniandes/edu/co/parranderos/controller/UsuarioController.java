@@ -1,5 +1,7 @@
 package uniandes.edu.co.parranderos.controller;
 
+import java.sql.Date;
+import java.text.SimpleDateFormat;
 import java.util.Collection;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,9 +32,40 @@ public class UsuarioController {
     HotelRepository hotelRepository;
 
     @GetMapping("/usuarios")
-    public String usuarios(Model model){
-        model.addAttribute("usuarios", usuarioRepository.darUsuarios());
+    public String usuarios(Model model, @RequestParam(name = "piso", required = false) Integer piso, @RequestParam(name = "techo", required = false) Integer techo) {
+        
+        if (piso == null) {
+            piso = 12500;
+        }
+
+        if (techo == null) {
+            techo = 12550;
+        }
+
+
+        model.addAttribute("usuarios", usuarioRepository.darUsuariosEnIntervalo(piso, techo));
         return "usuarios";
+    }
+
+    @GetMapping("/usuarios/clientes/consumos")
+    public String usuarioConsumos(Model model, @RequestParam(name = "documento") int documento, @RequestParam(name = "fechaMenor", required = false) String fechaMenor, @RequestParam(name = "fechaMayor", required = false) String fechaMayor) {
+        if (fechaMenor == null) {
+            fechaMenor = "01-JAN-18";
+        }
+
+        if (fechaMayor == null) {
+            fechaMayor = "01-JAN-23";
+        }
+        try {
+            SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MMM-yy");
+            Date fechaMenorDate = new Date(dateFormat.parse(fechaMenor).getTime());
+            Date fechaMayorDate = new Date(dateFormat.parse(fechaMayor).getTime());
+
+            model.addAttribute("usuario", usuarioRepository.darUsuario(documento));
+            model.addAttribute("consumos", usuarioRepository.darCostoTotalServiciosPorUsuarioEnIntervalo(documento, fechaMenorDate, fechaMayorDate));
+            model.addAttribute("productos", usuarioRepository.darCostoTotalProductosPorUsuarioEnIntervalo(documento, fechaMenorDate, fechaMayorDate));
+        } catch (Exception e) {}
+        return "usuarioConsumos";
     }
 
     @GetMapping("/usuarios/new")

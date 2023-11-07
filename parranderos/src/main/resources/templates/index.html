@@ -42,7 +42,16 @@
             <br>
             <a th:href="@{/tiposHabitaciones}" class="boton-ancho btn btn-primary">Tipos de Habitaciones</a>
             <br>
-            <a th:href="@{/usuarios}" class="boton-ancho btn btn-primary">Usuarios</a>
+            <div>
+                <form th:action="@{/usuarios}" method="get">
+                    <button type="submit" class="boton-ancho btn btn-primary" name="buscar">Usuarios</button>
+                    <div class="centered-div container text-center">
+                        <input type="number" id="piso" name="piso" placeholder="Id menor desde el cual ver" min="1"/>
+                        <input type="number" id="techo" name="techo" placeholder="Id mayor hasta el cual ver" min="1"/>
+                    </div>
+                </form>        
+                <br>
+            </div>
             <br>
             <div>
                 <form th:action="@{/habitaciones}" method="get">
