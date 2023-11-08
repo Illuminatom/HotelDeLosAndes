@@ -11,12 +11,10 @@ public class Cliente {
     private ClientePK pk;
 
     private String metodoPago;
-    private int cobroTotal;
 
-    public Cliente(Usuario documento, String metodoPago, int cobroTotal) {
+    public Cliente(Usuario documento, String metodoPago) {
         this.pk = new ClientePK(documento);
         this.metodoPago = metodoPago;
-        this.cobroTotal = cobroTotal;
     }
 
     public Cliente()
@@ -28,14 +26,6 @@ public class Cliente {
 
     public void setMetodoPago(String metodoPago) {
         this.metodoPago = metodoPago;
-    }
-
-    public int getCobroTotal() {
-        return cobroTotal;
-    }
-
-    public void setCobroTotal(int cobroTotal) {
-        this.cobroTotal = cobroTotal;
     }
 
     public ClientePK getPk() {

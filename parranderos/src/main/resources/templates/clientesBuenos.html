@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buenos Clientes</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}"/>
+    <style>
+        .boton-container {
+           display: flex;
+           justify-content: space-between;
+           width: 100%;
+        }
+    
+        button {
+           flex: 1; 
+           padding: 10px; 
+        }
+        .uniform-div{
+            width: auto;
+            margin-left: auto; 
+            margin-right: auto; 
+            border: 1px solid #ccc; 
+            padding: 20px; 
+        }
+        </style>
+</head>
+<body>
+    <h1>Lista de Buenos Clientes</h1>
+    <table class="table table-hover table-bordered">
+        <thead class="thead-dark">
+            <tr>
+                <th>Documento</th>
+                <th>Tipo de Documento</th>
+                <th>Nombre Completo</th>
+                <th>Correo Electronico</th>
+                <th>Hotel</th>
+                <th>Dias Alojado en el Hotel</th>
+                <th>$ Gastado en servicios en el ultimo año</th>
+                <th>$ Gastado en productos en el ultimo año</th>
+            </tr>
+        </thead>
+        <th:block th:each="cliente:${clientesBuenos}">
+            <tr>
+                <td th:text="${cliente.pk.documento.documento}"></td>
+                <td th:text="${cliente.pk.documento.tipoDocumento}"></td>
+                <td th:text="${cliente.pk.documento.nombre}"></td>
+                <td th:text="${cliente.pk.documento.correoElectronico}"></td>
+                <td th:text="${cliente.pk.documento.Hotel_id.nombre}"></td>
+                <td th:text="${diasEstadia[cliente.pk.documento.documento]}"></td>
+                <td th:text="${consumoServicios[cliente.pk.documento.documento]}"></td>
+                <td th:text="${consumoProductos[cliente.pk.documento.documento]}"></td>
+            </tr>
+        </th:block>
+    </table>
+    <div class="boton-container">
+        <a th:href="@{/}" class="btn btn-primary">Volver atras</a>
+    </div>
+</div>    
+</body>
+</html>

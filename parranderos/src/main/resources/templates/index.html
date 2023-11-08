@@ -52,6 +52,15 @@
                 </form>        
                 <br>
             </div>
+            <div>
+                <form th:action="@{/clientes/buenos-clientes}" method="get">
+                    <button type="submit" class="boton-ancho btn btn-primary" name="buscar">Buenos Clientes</button>
+                    <div class="centered-div container text-center">
+                        <input type="number" id="limit" name="limit" placeholder="Cantidad de registros" min="1"/>
+                    </div>
+                </form>        
+                <br>
+            </div>
             <br>
             <div>
                 <form th:action="@{/habitaciones}" method="get">
