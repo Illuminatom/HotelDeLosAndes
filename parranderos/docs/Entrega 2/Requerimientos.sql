@@ -16,7 +16,7 @@ SELECT SUM(Cliente_consume_producto.costo) as total FROM Cliente INNER JOIN rese
 SELECT SUM (consumo_servicio_Cliente.costo) as total FROM Cliente INNER JOIN reserva_hotel ON Cliente.documento = reserva_hotel.Cliente_id INNER JOIN consumo_servicio_Cliente ON reserva_hotel.id = consumo_servicio_Cliente.Reserva_Hotel_id WHERE Cliente.documento=:documento AND consumo_servicio_Cliente.fecha >= :fechaMenor AND consumo_servicio_Cliente.fecha <= :fechaMayor GROUP BY Cliente.documento;
 
 --RF7
-SELECT * FROM (SELECT SUM(TO_DATE(FECHA_SALIDA, 'DD-MON-RR') - TO_DATE(FECHA_ENTRADA, 'DD-MON-RR')) AS diasAlojado FROM reserva_hotel WHERE FECHA_ENTRADA >= TRUNC(SYSDATE - 365) AND reserva_hotel.cliente_id=:clienteId GROUP BY reserva_hotel.cliente_id) WHERE diasAlojado >=14 ORDER BY diasAlojado;
+SELECT * FROM (SELECT SUM(TO_DATE(FECHA_SALIDA, 'DD-MON-RR') - TO_DATE(FECHA_ENTRADA, 'DD-MON-RR')) AS diasAlojado FROM reserva_hotel WHERE FECHA_ENTRADA >= TRUNC(SYSDATE - 365) GROUP BY reserva_hotel.cliente_id) WHERE diasAlojado >=14 ORDER BY diasAlojado;
 SELECT cliente.documento , SUM(cliente_consume_producto.costo) as consumo FROM cliente INNER JOIN reserva_hotel ON reserva_hotel.cliente_id = cliente.documento INNER JOIN cliente_consume_producto ON cliente_consume_producto.reserva_hotel_id = reserva_hotel.id WHERE cliente_consume_producto.fecha >= SYSDATE INTERVAL '1' YEAR AND cliente.documento = :documento GROUP BY cliente.documento
 SELECT cliente.docu me nto, SUM(consumo_servicio_cliente.costo) as consumo FROM cliente
 INNER JOIN reserva_hotel ON reserva_hotel.cliente_id = cliente.documento INNER JOIN

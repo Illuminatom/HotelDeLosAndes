@@ -22,7 +22,7 @@ public class InsertClienteConsumeProducto {
 
             Random random = new Random();
 
-            for (int i = 1; i <= 100000; i++) {
+            for (int i = 1; i <= 25000; i++) {
                 int reservaHotelId = random.nextInt(50000) + 1;
                 int productoId = random.nextInt(100000) + 1;
                 int cantidad = random.nextInt(20) + 1;
@@ -30,7 +30,7 @@ public class InsertClienteConsumeProducto {
                 Date fecha = generarFechaConsumo(reservaHotelId, connection);
 
                 int costo = obtenerCostoProducto(productoId, connection)*cantidad;
-                String descripcion = (random.nextDouble() < 0.5) ? "Descripción opcional" : null;
+                String descripcion = "Descripcion de prueba";
 
                 preparedStatement.setInt(1, reservaHotelId);
                 preparedStatement.setInt(2, productoId);
