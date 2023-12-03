@@ -26,16 +26,12 @@ public String NuevoTipoHabitacion(Model model) {
     return "tipoHabitacionNuevo";
     }  
 
-    @PostMapping("/save")
-public String guardarTipoHabitacion(@ModelAttribute("tipoHabitacion") TipoHabitacion tipoHabitacion) {
+    @PostMapping("/new/save")
+public String guardarTipoHabitacion(@ModelAttribute TipoHabitacion tipoHabitacion) {
     tipohabitacionRepository.save(tipoHabitacion);
     return "redirect:/tiposHabitaciones";
+    }  
 }
     
 
 
-
-
-    
-    
-}

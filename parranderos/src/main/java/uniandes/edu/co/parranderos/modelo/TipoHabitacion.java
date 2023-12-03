@@ -11,9 +11,7 @@ public class TipoHabitacion {
     
     @Id
     private ObjectId _id;
-
     private String id;
-
     private String nombre;
     private int capacidad;
     private double precioNoche;
