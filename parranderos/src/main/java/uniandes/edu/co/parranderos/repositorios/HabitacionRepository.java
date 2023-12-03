@@ -9,4 +9,6 @@ import uniandes.edu.co.parranderos.modelo.Habitacion;
 
 public interface HabitacionRepository extends MongoRepository<Habitacion, ObjectId>{
     List<Habitacion> findAll();
+    void deleteById(String id);
+    Habitacion findById(String id);
 }
