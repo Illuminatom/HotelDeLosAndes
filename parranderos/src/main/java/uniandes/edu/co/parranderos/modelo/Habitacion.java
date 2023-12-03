@@ -15,6 +15,7 @@ public class Habitacion {
     private boolean disponible;
 
     private TipoHabitacion tipoHabitacion;
+
     private Hotel hotel;
 
     public Habitacion(int id, boolean disponible, TipoHabitacion tipoHabitacion, Hotel hotel) {
@@ -22,6 +23,9 @@ public class Habitacion {
         this.disponible = disponible;
         this.tipoHabitacion = tipoHabitacion;
         this.hotel = hotel;
+    }
+
+    public Habitacion() {
     }
 
     public int getId() {

@@ -12,25 +12,27 @@ public class Hotel {
     @Id
     private ObjectId _id;
     
-    private int id;
+    private String id;
 
     private String nombre;
     private int numEstrellas;
 
     private ArrayList<Habitacion> habitaciones;
 
-    public Hotel(int id, String nombre, int numEstrellas) {
+    public Hotel(String id, String nombre, int numEstrellas) {
         this.id = id;
         this.nombre = nombre;
         this.numEstrellas = numEstrellas;
         this.habitaciones = new ArrayList<Habitacion>();
     }
 
-    public int getId() {
+    public Hotel(){}
+
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
