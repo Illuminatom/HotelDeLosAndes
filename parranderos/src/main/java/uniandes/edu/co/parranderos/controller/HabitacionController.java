@@ -5,7 +5,6 @@ import java.util.Collection;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -15,6 +14,8 @@ import uniandes.edu.co.parranderos.repositorios.HabitacionRepository;
 import uniandes.edu.co.parranderos.repositorios.HotelRepository;
 import uniandes.edu.co.parranderos.repositorios.TipoHabitacionRepository;
 import uniandes.edu.co.parranderos.modelo.Habitacion;
+import uniandes.edu.co.parranderos.modelo.Hotel;
+import uniandes.edu.co.parranderos.modelo.TipoHabitacion;
 
 @Controller
 @RequestMapping("/habitaciones")
@@ -46,8 +47,12 @@ public class HabitacionController {
 
     @PostMapping("/new/save")
     public String saveHabitacion(@ModelAttribute Habitacion habitacion) {
-        System.out.println(habitacion.getHotel().toString());
-        System.out.println(habitacion.getTipoHabitacion().toString());
+        Hotel hotel = hotelRepository.findById(habitacion.getHotelId());
+        habitacion.setHotel(hotel);
+
+        TipoHabitacion tipoHabitacion = tipoHabitacionRepository.findById(habitacion.getTipoHabitacionId());
+        habitacion.setTipoHabitacion(tipoHabitacion);
+        
         habitacionRepository.save(habitacion);
         return "redirect:/habitaciones";
     }    

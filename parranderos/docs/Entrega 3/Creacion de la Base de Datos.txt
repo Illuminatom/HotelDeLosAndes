@@ -11,7 +11,7 @@ db.createCollection("Hotel", {validator: {
                     bsonType:"object",
                     required: ["id", "capacidad", "disponible"],
                     properties: {
-                        id: {bsonType: "int"},
+                        id: {bsonType: "string"},
                         capacidad: {bsonType: "int"},
                         disponible: {bsonType: "bool"}
                     }
@@ -21,7 +21,7 @@ db.createCollection("Hotel", {validator: {
                     bsonType:"object",
                     required: ["id","nombre","capacidad", "costo", "horaApertura", "horaCierre"],
                     properties: {
-                        id: {bsonType: "int"},
+                        id: {bsonType: "string"},
                         nombre: {bsonType: "string"},
                         capacidad: {bsonType: "int"},
                         costo: {bsonType: "double"},
@@ -38,7 +38,7 @@ db.createCollection("Habitacion", {validator: {
         bsonType: "object",
         required: ["id", "disponible","tipoHabitacion", "hotel"],
         properties: {
-            id: {bsonType: "int"},
+            id: {bsonType: "string"},
             disponible: {bsonType: "bool"},
             tipoHabitacion: {bsonType: "object",
                 required: ["id", "nombre", "capacidad", "precioNoche"],
@@ -75,7 +75,7 @@ db.createCollection("TipoHabitacion", {validator: {
                     bsonType:"object",
                     required: ["id", "capacidad", "disponible"],
                     properties: {
-                        id: {bsonType: "int"},
+                        id: {bsonType: "string"},
                         capacidad: {bsonType: "int"},
                         disponible: {bsonType: "bool"}
                     }
@@ -85,7 +85,7 @@ db.createCollection("TipoHabitacion", {validator: {
                     bsonType:"object",
                     required: ["id", "nombre", "precio", "tipoProducto"],
                     properties: {
-                        id: {bsonType: "int"},
+                        id: {bsonType: "string"},
                         nombre: {bsonType: "string"},
                         precio: {bsonType: "double"},
                         tipoProducto: {bsonType: "string"},
@@ -101,7 +101,7 @@ db.createCollection("Reserva", {validator: {
         bsonType: "object",
         required: ["id", "fechaEntrada", "fechaSalida", "cobroTotal", "cliente", "habitacion"],
         properties: {
-            id: {bsonType: "int"},
+            id: {bsonType: "string"},
             fechaEntrada: {bsonType: "date"},
             fechaSalida: {bsonType: "date"},
             cobroTotal: {bsonType: "double"},
@@ -117,7 +117,7 @@ db.createCollection("Reserva", {validator: {
             habitacion: {bsonType: "object",
                 required: ["id", "capacidad", "disponible"],
                 properties: {
-                    id: {bsonType: "int"},
+                    id: {bsonType: "string"},
                     capacidad: {bsonType: "int"},
                     disponible: {bsonType: "bool"},
                 }
@@ -127,14 +127,14 @@ db.createCollection("Reserva", {validator: {
                     bsonType: "object",
                     required: ["id", "fecha", "descripcion", "costoServicio", "servicio"],
                     properties: {
-                        id: {bsonType: "int"},
+                        id: {bsonType: "string"},
                         fecha: {bsonType: "date"},
                         descripcion: {bsonType: "string"},
                         costoServicio: {bsonType: "double"},
                         servicio: {bsonType: "object",
                             required: ["id","nombre","capacidad", "costo", "horaApertura", "horaCierre"],
                             properties: {
-                                id: {bsonType: "int"},
+                                id: {bsonType: "string"},
                                 nombre: {bsonType: "string"},
                                 capacidad: {bsonType: "int"},
                                 costo: {bsonType: "double"},
@@ -150,7 +150,7 @@ db.createCollection("Reserva", {validator: {
                     bsonType: "object",
                     required: ["id", "fecha", "descripcion", "cantidad", "producto"],
                     properties: {
-                        id: {bsonType: "int"},
+                        id: {bsonType: "string"},
                         fecha: {bsonType: "date"},
                         descripcion: {bsonType: "string"},
                         cantidad: {bsonType: "int"},
@@ -158,7 +158,7 @@ db.createCollection("Reserva", {validator: {
                         producto: {bsonType: "object",
                             required: ["id", "nombre", "precio", "tipoProducto"],
                             properties: {
-                                id: {bsonType: "int"},
+                                id: {bsonType: "string"},
                                 nombre: {bsonType: "string"},
                                 precio: {bsonType: "double"},
                                 tipoProducto: {bsonType: "string"},
@@ -210,7 +210,7 @@ db.createCollection("ServicioBasico", {validator: {
         bsonType: "object",
         required: ["id","nombre","capacidad", "costo", "horaApertura", "horaCierre", "tipoServicio"],
         properties: {
-            id: {bsonType: "int"},
+            id: {bsonType: "string"},
             nombre: {bsonType: "string"},
             capacidad: {bsonType: "int"},
             costo: {bsonType: "double"},
@@ -240,7 +240,7 @@ db.createCollection("ServicioBasico", {validator: {
                                 producto: {bsonType: "object",
                                     required: ["id", "nombre", "precio", "tipoProducto"],
                                     properties: {
-                                        id: {bsonType: "int"},
+                                        id: {bsonType: "string"},
                                         nombre: {bsonType: "string"},
                                         precio: {bsonType: "double"},
                                         tipoProducto: {bsonType: "string"},
@@ -256,7 +256,7 @@ db.createCollection("ServicioBasico", {validator: {
                             bsonType: "object",
                             required: ["id", "nombre", "precio", "tipoProducto"],
                             properties: {
-                                id: {bsonType: "int"},
+                                id: {bsonType: "string"},
                                 nombre: {bsonType: "string"},
                                 precio: {bsonType: "double"},
                                 tipoProducto: {bsonType: "string"},
@@ -270,7 +270,7 @@ db.createCollection("ServicioBasico", {validator: {
                             bsonType: "object",
                             required: ["id", "nombre", "precio", "tipoProducto"],
                             properties: {
-                                id: {bsonType: "int"},
+                                id: {bsonType: "string"},
                                 nombre: {bsonType: "string"},
                                 precio: {bsonType: "double"},
                                 tipoProducto: {bsonType: "string"},
@@ -284,7 +284,7 @@ db.createCollection("ServicioBasico", {validator: {
                             bsonType: "object",
                             required: ["id", "nombre", "capacidad", "costo", "horaApertura", "horaCierre"],
                             properties: {
-                                id: {bsonType: "int"},
+                                id: {bsonType: "string"},
                                 nombre: {bsonType: "string"},
                                 capacidad: {bsonType: "int"},
                                 costo: {bsonType: "double"},
@@ -296,7 +296,7 @@ db.createCollection("ServicioBasico", {validator: {
                     objeto: {bsonType: "object",
                         required: ["id", "nombre", "precio", "tipoProducto"],
                         properties: {
-                            id: {bsonType: "int"},
+                            id: {bsonType: "string"},
                             nombre: {bsonType: "string"},
                             precio: {bsonType: "double"},
                             tipoProducto: {bsonType: "string"},
@@ -309,7 +309,7 @@ db.createCollection("ServicioBasico", {validator: {
                             bsonType: "object",
                             required: ["id", "nombre", "precio", "tipoProducto"],
                             properties: {
-                                id: {bsonType: "int"},
+                                id: {bsonType: "string"},
                                 nombre: {bsonType: "string"},
                                 precio: {bsonType: "double"},
                                 tipoProducto: {bsonType: "string"},
@@ -327,7 +327,7 @@ db.createCollection("Producto", {validator: {
         bsonType: "object",
         required: ["id", "nombre", "precio", "tipoProducto"],
         properties: {
-            id: {bsonType: "int"},
+            id: {bsonType: "string"},
             nombre: {bsonType: "string"},
             precio: {bsonType: "double"},
             tipoProducto: {bsonType: "string"},
@@ -343,11 +343,11 @@ db.createCollection("ConsumoServicioCliente", {validator: {
         bsonType: "object",
         required: ["id", "reserva", "servicio", "fecha", "descripcion", "costoServicio"],
         properties: {
-            id: {bsonType: "int"},
+            id: {bsonType: "string"},
             reserva: {bsonType: "object",
                 required: ["id", "fechaEntrada", "fechaSalida", "cobroTotal", "numPersonas"],
                 properties: {
-                    id: {bsonType: "int"},
+                    id: {bsonType: "string"},
                     fechaEntrada: {bsonType: "date"},
                     fechaSalida: {bsonType: "date"},
                     cobroTotal: {bsonType: "double"},
@@ -357,7 +357,7 @@ db.createCollection("ConsumoServicioCliente", {validator: {
             servicio: {bsonType: "object",
                 required: ["id","nombre","capacidad", "costo", "horaApertura", "horaCierre"],
                 properties: {
-                    id: {bsonType: "int"},
+                    id: {bsonType: "string"},
                     nombre: {bsonType: "string"},
                     capacidad: {bsonType: "int"},
                     costo: {bsonType: "double"},
@@ -377,11 +377,11 @@ db.createCollection("ClienteConsumeProducto", {validator: {
         bsonType: "object",
         required: ["id", "reserva", "producto", "fecha", "descripcion", "cantidad"],
         properties: {
-            id: {bsonType: "int"},
+            id: {bsonType: "string"},
             reserva: {bsonType: "object",
                 required: ["id", "fechaEntrada", "fechaSalida", "cobroTotal", "numPersonas"],
                 properties: {
-                    id: {bsonType: "int"},
+                    id: {bsonType: "string"},
                     fechaEntrada: {bsonType: "date"},
                     fechaSalida: {bsonType: "date"},
                     cobroTotal: {bsonType: "double"},
@@ -391,7 +391,7 @@ db.createCollection("ClienteConsumeProducto", {validator: {
             producto: {bsonType: "object",
                 required: ["id", "nombre", "precio", "tipoProducto"],
                 properties: {
-                    id: {bsonType: "int"},
+                    id: {bsonType: "string"},
                     nombre: {bsonType: "string"},
                     precio: {bsonType: "double"},
                     tipoProducto: {bsonType: "string"},

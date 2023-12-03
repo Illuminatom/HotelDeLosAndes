@@ -9,5 +9,5 @@ import uniandes.edu.co.parranderos.modelo.Hotel;
 
 public interface HotelRepository extends MongoRepository<Hotel, ObjectId> {
     List<Hotel> findAll();
-    Hotel findById(int id);
+    Hotel findById(String id);
 }
