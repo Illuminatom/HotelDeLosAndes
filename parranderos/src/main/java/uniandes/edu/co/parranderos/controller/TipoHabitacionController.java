@@ -32,12 +32,8 @@ public class TipoHabitacionController {
     public String guardarTipoHabitacion(@ModelAttribute("tipoHabitacion") TipoHabitacion tipoHabitacion) {
     tipohabitacionRepository.save(tipoHabitacion);
     return "redirect:/tiposHabitaciones";
+    }  
 }
     
 
 
-
-
-    
-    
-}
