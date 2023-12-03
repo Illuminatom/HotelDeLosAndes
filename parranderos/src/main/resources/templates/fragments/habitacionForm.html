@@ -12,7 +12,7 @@
         <form>
 
             <label class="col-form-label">ID</label>
-            <input type="number" class="form-control" id="id" name="id" required th:value="${habitacion.id}"/>
+            <input type="text" class="form-control" id="id" name="id" required th:value="${habitacion.id}"/>
             <br>
             <div class="form-check">
                 <input type="checkbox" class="form-check-input" id="disponible" name="disponible" th:checked="${habitacion.disponible}"/>
@@ -20,18 +20,18 @@
             </div>
             
             <label class="col-form-label" for="hotel">Hotel</label>
-            <select class="form-control" id="hotel" name="hotel.id" required>
+            <select class="form-control" id="hotel" name="hotelId" required>
                 <th:block th:each="hotel : ${hoteles}">
-                    <option th:value="${hotel}" th:text="${hotel.nombre}" th:selected="${habitacion != null && habitacion.hotel != null && habitacion.hotel.id == hotel.id}"></option>
+                    <option th:value="${hotel.id}" th:text="${hotel.nombre}" th:selected="${habitacion != null && habitacion.hotel != null && habitacion.hotel.id == hotel.id}"></option>
                 </th:block>
             </select>
             
             <label class="col-form-label" for="tipoHabitacion">Tipo de habitacion</label>
-            <select class="form-control" id="tipoHabitacion" name="tipoHabitacion.id" required>
+            <select class="form-control" id="tipoHabitacion" name="tipoHabitacionId" required>
                 <th:block th:each="tipoHabitacion : ${tiposHabitaciones}">
-                    <option th:value="${tipoHabitacion}" th:text="${tipoHabitacion.nombre}" th:selected="${habitacion != null && habitacion.tipoHabitacion != null && habitacion.tipoHabitacion.id == tipoHabitacion.id}"></option>
+                    <option th:value="${tipoHabitacion.id}" th:text="${tipoHabitacion.nombre}" th:selected="${habitacion != null && habitacion.tipoHabitacion != null && habitacion.tipoHabitacion.id == tipoHabitacion.id}"></option>
                 </th:block>
-            </select>                   
+            </select>            
 
             <div class="text-center">
                 <input type="submit" value="Guardar" class="btn btn-primary">

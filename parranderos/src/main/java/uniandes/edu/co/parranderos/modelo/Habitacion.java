@@ -2,6 +2,7 @@ package uniandes.edu.co.parranderos.modelo;
 
 import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.annotation.Transient;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document(collection = "Habitacion")
@@ -10,15 +11,21 @@ public class Habitacion {
     @Id
     private ObjectId _id;
 
-    private int id;
+    private String id;
 
     private boolean disponible;
 
+    @Transient
+    private String tipoHabitacionId;
+
     private TipoHabitacion tipoHabitacion;
 
+    @Transient
+    private String hotelId;
+    
     private Hotel hotel;
 
-    public Habitacion(int id, boolean disponible, TipoHabitacion tipoHabitacion, Hotel hotel) {
+    public Habitacion(String id, boolean disponible, TipoHabitacion tipoHabitacion, Hotel hotel) {
         this.id = id;
         this.disponible = disponible;
         this.tipoHabitacion = tipoHabitacion;
@@ -28,11 +35,11 @@ public class Habitacion {
     public Habitacion() {
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -58,5 +65,21 @@ public class Habitacion {
 
     public void setHotel(Hotel hotel) {
         this.hotel = hotel;
+    }
+
+    public String getTipoHabitacionId() {
+        return tipoHabitacionId;
+    }
+
+    public void setTipoHabitacionId(String tipoHabitacionId) {
+        this.tipoHabitacionId = tipoHabitacionId;
+    }
+
+    public String getHotelId() {
+        return hotelId;
+    }
+
+    public void setHotelId(String hotelId) {
+        this.hotelId = hotelId;
     }
 }

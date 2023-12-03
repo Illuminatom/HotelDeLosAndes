@@ -9,5 +9,5 @@ import uniandes.edu.co.parranderos.modelo.TipoHabitacion;
 
 public interface TipoHabitacionRepository extends MongoRepository<TipoHabitacion, ObjectId>{
     List<TipoHabitacion> findAll();
-    TipoHabitacion findById(int id);
+    TipoHabitacion findById(String id);
 }
