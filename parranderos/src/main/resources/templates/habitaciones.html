@@ -26,6 +26,7 @@
                 <tr>
                     <th>ID</th>
                     <th>Disponible</th>
+                    <th>Capacidad</th>
                     <th>Hotel</th>
                     <th>Tipo de Habitacion</th>
                     <th>Acciones</th>
@@ -35,6 +36,7 @@
                 <tr>
                     <td th:text="${habitacion.id}"></td>
                     <td th:text="${habitacion.disponible}"></td>
+                    <td th:text="${habitacion.tipoHabitacion.capacidad}"></td>
                     <td th:text="${habitacion.hotel.nombre}"></td>
                     <td th:text="${habitacion.tipoHabitacion.nombre}"></td>
                     <td>

@@ -9,18 +9,16 @@ public class Habitacion {
 
     @Id
     private ObjectId _id;
-    
+
     private int id;
 
-    private int capacidad;
     private boolean disponible;
 
     private TipoHabitacion tipoHabitacion;
     private Hotel hotel;
 
-    public Habitacion(int id, int capacidad, boolean disponible, TipoHabitacion tipoHabitacion, Hotel hotel) {
+    public Habitacion(int id, boolean disponible, TipoHabitacion tipoHabitacion, Hotel hotel) {
         this.id = id;
-        this.capacidad = capacidad;
         this.disponible = disponible;
         this.tipoHabitacion = tipoHabitacion;
         this.hotel = hotel;
@@ -32,14 +30,6 @@ public class Habitacion {
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    public int getCapacidad() {
-        return capacidad;
-    }
-
-    public void setCapacidad(int capacidad) {
-        this.capacidad = capacidad;
     }
 
     public boolean isDisponible() {

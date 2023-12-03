@@ -36,10 +36,9 @@ db.createCollection("Hotel", {validator: {
 db.createCollection("Habitacion", {validator: {
     $jsonSchema: {
         bsonType: "object",
-        required: ["id", "capacidad", "disponible","tipoHabitacion", "hotel"],
+        required: ["id", "disponible","tipoHabitacion", "hotel"],
         properties: {
             id: {bsonType: "int"},
-            capacidad: {bsonType: "int"},
             disponible: {bsonType: "bool"},
             tipoHabitacion: {bsonType: "object",
                 required: ["id", "nombre", "capacidad", "precioNoche"],
