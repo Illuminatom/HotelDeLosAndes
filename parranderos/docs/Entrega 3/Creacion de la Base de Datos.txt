@@ -1,0 +1,409 @@
+db.createCollection("Hotel", {validator: {
+    $jsonSchema:{
+        bsonType: "object",
+        required: ["id", "nombre", "numEstrellas"],
+        properties: {
+            id: {bsonType:"int"},
+            nombre: {bsonType:"string"},
+            numEstrellas: {bsonType:"int"},
+            habitaciones: {bsonType: "array",
+                items:{
+                    bsonType:"object",
+                    required: ["id", "capacidad", "disponible"],
+                    properties: {
+                        id: {bsonType: "int"},
+                        capacidad: {bsonType: "int"},
+                        disponible: {bsonType: "bool"}
+                    }
+                }},
+            servicios: {bsonType: "array",
+                items:{
+                    bsonType:"object",
+                    required: ["id","nombre","capacidad", "costo", "horaApertura", "horaCierre"],
+                    properties: {
+                        id: {bsonType: "int"},
+                        nombre: {bsonType: "string"},
+                        capacidad: {bsonType: "int"},
+                        costo: {bsonType: "double"},
+                        horaApertura: {bsonType: "string"},
+                        horaCierre: {bsonType: "string"}
+                    }
+                }}
+        }
+    }
+}})
+
+db.createCollection("Habitacion", {validator: {
+    $jsonSchema: {
+        bsonType: "object",
+        required: ["id", "capacidad", "disponible","tipoHabitacion", "hotel"],
+        properties: {
+            id: {bsonType: "int"},
+            capacidad: {bsonType: "int"},
+            disponible: {bsonType: "bool"},
+            tipoHabitacion: {bsonType: "object",
+                required: ["id", "nombre", "capacidad", "precioNoche"],
+                properties: {
+                    id: {bsonType: "int"},
+                    nombre: {bsonType: "string"},
+                    capacidad: {bsonType: "int"},
+                    precioNoche: {bsonType: "double"}
+                }
+            },
+            hotel: {bsonType: "object",
+                required: ["id", "nombre", "numEstrellas"],
+                properties: {
+                    id: {bsonType:"int"},
+                    nombre: {bsonType:"string"},
+                    numEstrellas: {bsonType:"int"}
+                }
+            }
+        }
+    }
+}})
+
+db.createCollection("TipoHabitacion", {validator: {
+    $jsonSchema: {
+        bsonType: "object",
+        required: ["id", "nombre", "capacidad", "precioNoche"],
+        properties: {
+            id: {bsonType: "int"},
+            nombre: {bsonType: "string"},
+            capacidad: {bsonType: "int"},
+            precioNoche: {bsonType: "double"},
+            habitaciones: {bsonType: "array",
+                items:{
+                    bsonType:"object",
+                    required: ["id", "capacidad", "disponible"],
+                    properties: {
+                        id: {bsonType: "int"},
+                        capacidad: {bsonType: "int"},
+                        disponible: {bsonType: "bool"}
+                    }
+                }},
+            dotacion: {bsonType: "array",
+                items:{
+                    bsonType:"object",
+                    required: ["id", "nombre", "precio", "tipoProducto"],
+                    properties: {
+                        id: {bsonType: "int"},
+                        nombre: {bsonType: "string"},
+                        precio: {bsonType: "double"},
+                        tipoProducto: {bsonType: "string"},
+                        cantidadDisponible: {bsonType: "int"}
+                    }
+                }}
+        }
+    }
+}})
+
+db.createCollection("Reserva", {validator: {
+    $jsonSchema: {
+        bsonType: "object",
+        required: ["id", "fechaEntrada", "fechaSalida", "cobroTotal", "cliente", "habitacion"],
+        properties: {
+            id: {bsonType: "int"},
+            fechaEntrada: {bsonType: "date"},
+            fechaSalida: {bsonType: "date"},
+            cobroTotal: {bsonType: "double"},
+            cliente: {bsonType: "object",
+                required: ["nombre", "documento", "tipoDocumento", "metodoPago"],
+                properties: {
+                    nombre: {bsonType: "string"},
+                    documento: {bsonType: "int"},
+                    tipoDocumento: {bsonType: "string"},
+                    metodoPago: {bsonType: "string"}
+                }
+            },
+            habitacion: {bsonType: "object",
+                required: ["id", "capacidad", "disponible"],
+                properties: {
+                    id: {bsonType: "int"},
+                    capacidad: {bsonType: "int"},
+                    disponible: {bsonType: "bool"},
+                }
+            },
+            consumoServicios: { bsonType: "array",
+                items: {
+                    bsonType: "object",
+                    required: ["id", "fecha", "descripcion", "costoServicio", "servicio"],
+                    properties: {
+                        id: {bsonType: "int"},
+                        fecha: {bsonType: "date"},
+                        descripcion: {bsonType: "string"},
+                        costoServicio: {bsonType: "double"},
+                        servicio: {bsonType: "object",
+                            required: ["id","nombre","capacidad", "costo", "horaApertura", "horaCierre"],
+                            properties: {
+                                id: {bsonType: "int"},
+                                nombre: {bsonType: "string"},
+                                capacidad: {bsonType: "int"},
+                                costo: {bsonType: "double"},
+                                horaApertura: {bsonType: "string"},
+                                horaCierre: {bsonType: "string"}
+                            }
+                        }
+                    } 
+                }
+            },
+            consumoProductos: {bsonType: "array",
+                items: {
+                    bsonType: "object",
+                    required: ["id", "fecha", "descripcion", "cantidad", "producto"],
+                    properties: {
+                        id: {bsonType: "int"},
+                        fecha: {bsonType: "date"},
+                        descripcion: {bsonType: "string"},
+                        cantidad: {bsonType: "int"},
+                        costoProducto: {bsonType: "double"},
+                        producto: {bsonType: "object",
+                            required: ["id", "nombre", "precio", "tipoProducto"],
+                            properties: {
+                                id: {bsonType: "int"},
+                                nombre: {bsonType: "string"},
+                                precio: {bsonType: "double"},
+                                tipoProducto: {bsonType: "string"},
+                                cantidadDisponible: {bsonType: "int"}
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}})
+
+db.createCollection("Cliente", {validator: {
+    $jsonSchema: {
+        bsonType: "object",
+        required: ["nombre", "documento", "tipoDocumento", "metodoPago"],
+        properties: {
+            nombre: {bsonType: "string"},
+            documento: {bsonType: "int"},
+            tipoDocumento: {bsonType: "string"},
+            metodoPago: {bsonType: "string"},
+            reservas: {bsonType: "array",
+                items: {
+                    bsonType:"object",
+                    required: ["id", "fechaEntrada", "fechaSalida", "cobroTotal", "numPersonas"],
+                    properties: {
+                        id: {bsonType:"int"},
+                        fechaEntrada: {bsonType:"date"},
+                        fechaSalida: {bsonType:"date"},
+                        cobroTotal: {bsonType:"double"},
+                        numPersonas: {bsonType:"int"},
+                        habitacion: {bsonType: "object", 
+                            required: ["id", "capacidad", "disponible"], 
+                            properties: {
+                                id: {bsonType:"int"},
+                                capacidad: {bsonType: "int"},
+                                disponible: {bsonType: "bool"} 
+                            }
+                        }
+                    }
+                }}
+        }
+    }
+}})
+
+db.createCollection("ServicioBasico", {validator: {
+    $jsonSchema: {
+        bsonType: "object",
+        required: ["id","nombre","capacidad", "costo", "horaApertura", "horaCierre", "tipoServicio"],
+        properties: {
+            id: {bsonType: "int"},
+            nombre: {bsonType: "string"},
+            capacidad: {bsonType: "int"},
+            costo: {bsonType: "double"},
+            horaApertura: {bsonType: "string"},
+            horaCierre: {bsonType: "string"},
+            tipoServicio: {bsonType: "string"},
+            consumos: {
+                bsonType: "array",
+                items: {
+                    bsonType: "int"
+                }
+            },
+            detallesEspecificos: {bsonType: "object",
+                properties: {
+                    profundidad: {bsonType: "double"},
+                    costoPorPrenda: {bsonType: "double"},
+                    costoPorParZapatos: {bsonType: "double"},
+                    tipo: {bsonType: "string"},
+                    estilo: {bsonType: "string"},
+                    platos: {
+                        bsonType: "array",
+                        items: {
+                            bsonType: "object",
+                            required: ["descripcion", "producto"],
+                            properties: {
+                                descripcion: {bsonType: "string"},
+                                producto: {bsonType: "object",
+                                    required: ["id", "nombre", "precio", "tipoProducto"],
+                                    properties: {
+                                        id: {bsonType: "int"},
+                                        nombre: {bsonType: "string"},
+                                        precio: {bsonType: "double"},
+                                        tipoProducto: {bsonType: "string"},
+                                        cantidadDisponible: {bsonType: "int"}
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    maquinas: {
+                        bsonType: "array",
+                        items: {
+                            bsonType: "object",
+                            required: ["id", "nombre", "precio", "tipoProducto"],
+                            properties: {
+                                id: {bsonType: "int"},
+                                nombre: {bsonType: "string"},
+                                precio: {bsonType: "double"},
+                                tipoProducto: {bsonType: "string"},
+                                cantidadDisponible: {bsonType: "int"}
+                            }
+                        }
+                    },
+                    productos: {
+                        bsonType: "array",
+                        items: {
+                            bsonType: "object",
+                            required: ["id", "nombre", "precio", "tipoProducto"],
+                            properties: {
+                                id: {bsonType: "int"},
+                                nombre: {bsonType: "string"},
+                                precio: {bsonType: "double"},
+                                tipoProducto: {bsonType: "string"},
+                                cantidadDisponible: {bsonType: "int"}
+                            }
+                        }
+                    },
+                    serviciosSPA: {
+                        bsonType: "array",
+                        items: {
+                            bsonType: "object",
+                            required: ["id", "nombre", "capacidad", "costo", "horaApertura", "horaCierre"],
+                            properties: {
+                                id: {bsonType: "int"},
+                                nombre: {bsonType: "string"},
+                                capacidad: {bsonType: "int"},
+                                costo: {bsonType: "double"},
+                                horaApertura: {bsonType: "string"},
+                                horaCierre: {bsonType: "string"}
+                            }
+                        }
+                    },
+                    objeto: {bsonType: "object",
+                        required: ["id", "nombre", "precio", "tipoProducto"],
+                        properties: {
+                            id: {bsonType: "int"},
+                            nombre: {bsonType: "string"},
+                            precio: {bsonType: "double"},
+                            tipoProducto: {bsonType: "string"},
+                            cantidadDisponible: {bsonType: "int"}
+                        }
+                    },
+                    equipos: {
+                        bsonType: "array",
+                        items: {
+                            bsonType: "object",
+                            required: ["id", "nombre", "precio", "tipoProducto"],
+                            properties: {
+                                id: {bsonType: "int"},
+                                nombre: {bsonType: "string"},
+                                precio: {bsonType: "double"},
+                                tipoProducto: {bsonType: "string"},
+                                cantidadDisponible: {bsonType: "int"}
+                            }
+                        }
+                    }
+                }
+            }
+    }}
+}})
+
+db.createCollection("Producto", {validator: {
+    $jsonSchema: {
+        bsonType: "object",
+        required: ["id", "nombre", "precio", "tipoProducto"],
+        properties: {
+            id: {bsonType: "int"},
+            nombre: {bsonType: "string"},
+            precio: {bsonType: "double"},
+            tipoProducto: {bsonType: "string"},
+            cantidadDisponible: {bsonType: "int"},
+            descripcion: {bsonType: "string"},
+            duracion: {bsonType: "string"}
+        }
+    }
+}})
+
+db.createCollection("ConsumoServicioCliente", {validator: {
+    $jsonSchema: {
+        bsonType: "object",
+        required: ["id", "reserva", "servicio", "fecha", "descripcion", "costoServicio"],
+        properties: {
+            id: {bsonType: "int"},
+            reserva: {bsonType: "object",
+                required: ["id", "fechaEntrada", "fechaSalida", "cobroTotal", "numPersonas"],
+                properties: {
+                    id: {bsonType: "int"},
+                    fechaEntrada: {bsonType: "date"},
+                    fechaSalida: {bsonType: "date"},
+                    cobroTotal: {bsonType: "double"},
+                    numPersonas: {bsonType: "int"}
+                }
+            },
+            servicio: {bsonType: "object",
+                required: ["id","nombre","capacidad", "costo", "horaApertura", "horaCierre"],
+                properties: {
+                    id: {bsonType: "int"},
+                    nombre: {bsonType: "string"},
+                    capacidad: {bsonType: "int"},
+                    costo: {bsonType: "double"},
+                    horaApertura: {bsonType: "string"},
+                    horaCierre: {bsonType: "string"}
+                }
+            },
+            fecha: {bsonType: "date"},
+            descripcion: {bsonType: "string"},
+            costoServicio: {bsonType: "double"}
+        }
+    }
+}})
+
+db.createCollection("ClienteConsumeProducto", {validator: {
+    $jsonSchema: {
+        bsonType: "object",
+        required: ["id", "reserva", "producto", "fecha", "descripcion", "cantidad"],
+        properties: {
+            id: {bsonType: "int"},
+            reserva: {bsonType: "object",
+                required: ["id", "fechaEntrada", "fechaSalida", "cobroTotal", "numPersonas"],
+                properties: {
+                    id: {bsonType: "int"},
+                    fechaEntrada: {bsonType: "date"},
+                    fechaSalida: {bsonType: "date"},
+                    cobroTotal: {bsonType: "double"},
+                    numPersonas: {bsonType: "int"}
+                }
+            },
+            producto: {bsonType: "object",
+                required: ["id", "nombre", "precio", "tipoProducto"],
+                properties: {
+                    id: {bsonType: "int"},
+                    nombre: {bsonType: "string"},
+                    precio: {bsonType: "double"},
+                    tipoProducto: {bsonType: "string"},
+                    cantidadDisponible: {bsonType: "int"}
+                }
+            },
+            fecha: {bsonType: "date"},
+            descripcion: {bsonType: "string"},
+            cantidad: {bsonType: "int"},
+        }
+    }
+}})
+
+show collections
