@@ -208,7 +208,7 @@ db.createCollection("Cliente", {validator: {
 db.createCollection("ServicioBasico", {validator: {
     $jsonSchema: {
         bsonType: "object",
-        required: ["id","nombre","capacidad", "costo", "horaApertura", "horaCierre", "tipoServicio"],
+        required: ["id","nombre","capacidad", "costo", "horaApertura", "horaCierre"],
         properties: {
             id: {bsonType: "string"},
             nombre: {bsonType: "string"},
@@ -222,7 +222,7 @@ db.createCollection("ServicioBasico", {validator: {
                     bsonType: "int"
                 }
             },
-            servicioEspecifico: {bsonType: "object"}
+            servicioEspecifico: {bsonType: "object"} //Se supone que es un objeto de un tipo de servicio especifico como piscina, gimnasio, etc.
         }
     }
 }})
@@ -230,8 +230,9 @@ db.createCollection("ServicioBasico", {validator: {
 db.createCollection("Piscina", {validator: {
     $jsonSchema: {
         bsonType: "object",
-        required: ["servicio", "profundidad"],
+        required: ["id","servicio", "profundidad"],
         properties: {
+            id: {bsonType: "string"},
             servicio: {bsonType: "object",
                 required: ["id","nombre","capacidad", "costo", "horaApertura", "horaCierre"],
                 properties: {
@@ -251,8 +252,9 @@ db.createCollection("Piscina", {validator: {
 db.createCollection("Lavanderia", {validator: {
     $jsonSchema: {
         bsonType: "object",
-        required: ["servicio", "costoPorPrenda", "costoPorParZapatos"],
+        required: ["id", "servicio", "costoPorPrenda", "costoPorParZapatos"],
         properties: {
+            id: {bsonType: "string"},
             servicio: {bsonType: "object",
                 required: ["id","nombre","capacidad", "costo", "horaApertura", "horaCierre"],
                 properties: {
@@ -273,8 +275,9 @@ db.createCollection("Lavanderia", {validator: {
 db.createCollection("RestauranteBar", {validator: {
     $jsonSchema: {
         bsonType: "object",
-        required: ["servicio", "estilo", "platos"],
+        required: ["id", "servicio", "estilo", "platos"],
         properties: {
+            id: {bsonType: "string"},
             servicio: {bsonType: "object",
                 required: ["id","nombre","capacidad", "costo", "horaApertura", "horaCierre"],
                 properties: {
@@ -309,8 +312,9 @@ db.createCollection("RestauranteBar", {validator: {
 db.createCollection("Tienda", {validator: {
     $jsonSchema: {
         bsonType: "object",
-        required: ["servicio", "tipoTienda", "productos"],
+        required: ["id", "servicio", "tipoTienda", "productos"],
         properties: {
+            id: {bsonType: "string"},
             servicio: {bsonType: "object",
                 required: ["id","nombre","capacidad", "costo", "horaApertura", "horaCierre"],
                 properties: {
@@ -345,8 +349,9 @@ db.createCollection("Tienda", {validator: {
 db.createCollection("Prestamo", {validator: {
     $jsonSchema: {
         bsonType: "object",
-        required: ["producto", "servicio"],
+        required: ["id", "producto", "servicio"],
         properties: {
+            id: {bsonType: "string"},
             producto: {bsonType: "object",
                 required: ["id", "nombre", "precio", "tipoProducto"],
                 properties: {
@@ -375,8 +380,9 @@ db.createCollection("Prestamo", {validator: {
 db.createCollection("Gimnasio", {validator: {
     $jsonSchema: {
         bsonType: "object",
-        required: ["servicio", "maquinas"],
+        required: ["id", "servicio", "maquinas"],
         properties: {
+            id: {bsonType: "string"},
             servicio: {bsonType: "object",
                 required: ["id","nombre","capacidad", "costo", "horaApertura", "horaCierre"],
                 properties: {
@@ -410,8 +416,9 @@ db.createCollection("Gimnasio", {validator: {
 db.createCollection("Sala", {validator: {
     $jsonSchema: {
         bsonType: "object",
-        required: ["servicio", "tipoSala"],
+        required: ["id","servicio", "tipoSala"],
         properties: {
+            id: {bsonType: "string"},
             servicio: {bsonType: "object",
                 required: ["id","nombre","capacidad", "costo", "horaApertura", "horaCierre"],
                 properties: {
@@ -431,8 +438,9 @@ db.createCollection("Sala", {validator: {
 db.createCollection("SPA", {validator: {
     $jsonSchema: {
         bsonType: "object",
-        required: ["servicio", "serviciosSPA"],
+        required: ["id","servicio", "serviciosSPA"],
         properties: {
+            id: {bsonType: "string"},
             servicio: {bsonType: "object",
                 required: ["id","nombre","capacidad", "costo", "horaApertura", "horaCierre"],
                 properties: {
