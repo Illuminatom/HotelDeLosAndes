@@ -3,7 +3,7 @@ db.createCollection("Hotel", {validator: {
         bsonType: "object",
         required: ["id", "nombre", "numEstrellas"],
         properties: {
-            id: {bsonType:"int"},
+            id: {bsonType:"string"},
             nombre: {bsonType:"string"},
             numEstrellas: {bsonType:"int"},
             habitaciones: {bsonType: "array",
@@ -43,7 +43,7 @@ db.createCollection("Habitacion", {validator: {
             tipoHabitacion: {bsonType: "object",
                 required: ["id", "nombre", "capacidad", "precioNoche"],
                 properties: {
-                    id: {bsonType: "int"},
+                    id: {bsonType: "string"},
                     nombre: {bsonType: "string"},
                     capacidad: {bsonType: "int"},
                     precioNoche: {bsonType: "double"}
@@ -52,7 +52,7 @@ db.createCollection("Habitacion", {validator: {
             hotel: {bsonType: "object",
                 required: ["id", "nombre", "numEstrellas"],
                 properties: {
-                    id: {bsonType:"int"},
+                    id: {bsonType:"string"},
                     nombre: {bsonType:"string"},
                     numEstrellas: {bsonType:"int"}
                 }
@@ -66,7 +66,7 @@ db.createCollection("TipoHabitacion", {validator: {
         bsonType: "object",
         required: ["id", "nombre", "capacidad", "precioNoche"],
         properties: {
-            id: {bsonType: "int"},
+            id: {bsonType: "string"},
             nombre: {bsonType: "string"},
             capacidad: {bsonType: "int"},
             precioNoche: {bsonType: "double"},

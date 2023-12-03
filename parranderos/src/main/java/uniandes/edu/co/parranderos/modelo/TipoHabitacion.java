@@ -12,14 +12,14 @@ public class TipoHabitacion {
     @Id
     private ObjectId _id;
 
-    private int id;
+    private String id;
 
     private String nombre;
     private int capacidad;
     private double precioNoche;
     private ArrayList<Habitacion> habitaciones;
 
-    public TipoHabitacion(int id, String nombre, int capacidad, double precioNoche) {
+    public TipoHabitacion(String id, String nombre, int capacidad, double precioNoche) {
         this.id = id;
         this.nombre = nombre;
         this.capacidad = capacidad;
@@ -27,11 +27,13 @@ public class TipoHabitacion {
         this.habitaciones = new ArrayList<Habitacion>();
     }
 
-    public int getId() {
+    public TipoHabitacion(){}
+
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
