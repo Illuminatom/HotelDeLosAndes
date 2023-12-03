@@ -28,21 +28,15 @@
                     <th>Disponible</th>
                     <th>Hotel</th>
                     <th>Tipo de Habitacion</th>
-                    <th>Consumo De Productos en el Ultimo Año</th>
-                    <th>Consumo De Servicios en el Ultimo Año</th>
-                    <th>Porcentaje de Ocupacion en el Ultimo Año</th>
                     <th>Acciones</th>
                 </tr>
             </thead>
             <th:block th:each="habitacion:${habitaciones}">
                 <tr>
                     <td th:text="${habitacion.id}"></td>
-                    <td th:text="${habitacion.Disponible}"></td>
-                    <td th:text="${habitacion.Hotel_id.nombre}"></td>
-                    <td th:text="${habitacion.TipoHabitacion_id.nombre}"></td>
-                    <td th:text="${costosProductos[habitacion.id]}"></td>
-                    <td th:text="${costosServicios[habitacion.id]}"></td>
-                    <td th:text="${porcentajesOcupacion[habitacion.id]}"></td>
+                    <td th:text="${habitacion.disponible}"></td>
+                    <td th:text="${habitacion.hotel.nombre}"></td>
+                    <td th:text="${habitacion.tipoHabitacion.nombre}"></td>
                     <td>
                         <a th:href="@{habitaciones/{id}/edit(id=${habitacion.id})}">Editar</a>
                         <br>
