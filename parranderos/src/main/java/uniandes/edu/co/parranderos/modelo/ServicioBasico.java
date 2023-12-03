@@ -2,7 +2,6 @@ package uniandes.edu.co.parranderos.modelo;
 
 import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
-import org.springframework.data.annotation.Transient;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document(collection = "ServicioBasico")
@@ -19,10 +18,8 @@ public class ServicioBasico {
     private String horaCierre;
     private int[] consumos; 
 
-    @Transient 
-    private int servicioEspecificoId;
 
-    private Object servicioEspecifico;
+    private String servicioEspecifico;
 
     public ServicioBasico(){}
 
@@ -91,19 +88,11 @@ public class ServicioBasico {
         this.consumos = consumos;
     }
 
-    public int getServicioEspecificoId() {
-        return servicioEspecificoId;
-    }
-
-    public void setServicioEspecificoId(int servicioEspecificoId) {
-        this.servicioEspecificoId = servicioEspecificoId;
-    }
-
-    public Object getServicioEspecifico() {
+    public String getServicioEspecifico() {
         return servicioEspecifico;
     }
 
-    public void setServicioEspecifico(Object servicioEspecifico) {
+    public void setServicioEspecifico(String servicioEspecifico) {
         this.servicioEspecifico = servicioEspecifico;
     }
 }

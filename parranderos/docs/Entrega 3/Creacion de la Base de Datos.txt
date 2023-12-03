@@ -222,7 +222,7 @@ db.createCollection("ServicioBasico", {validator: {
                     bsonType: "int"
                 }
             },
-            servicioEspecifico: {bsonType: "object"} //Se supone que es un objeto de un tipo de servicio especifico como piscina, gimnasio, etc.
+            servicioEspecifico: {bsonType: "string"} //Se supone que es un objeto de un tipo de servicio especifico como piscina, gimnasio, etc.
         }
     }
 }})
@@ -380,7 +380,7 @@ db.createCollection("Prestamo", {validator: {
 db.createCollection("Gimnasio", {validator: {
     $jsonSchema: {
         bsonType: "object",
-        required: ["id", "servicio", "maquinas"],
+        required: ["id", "servicio"],
         properties: {
             id: {bsonType: "string"},
             servicio: {bsonType: "object",

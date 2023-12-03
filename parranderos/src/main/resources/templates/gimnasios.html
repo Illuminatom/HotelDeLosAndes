@@ -35,15 +35,16 @@
             </thead>
             <th:block th:each="gimnasio : ${gimnasios}">
                 <tr>
-                    <td th:text="${gimnasio.pk.id.id}"></td>
-                    <td th:text="${gimnasio.pk.id.nombre}"></td>
-                    <td th:text="${gimnasio.pk.id.capacidad}"></td>
-                    <td th:text="${gimnasio.pk.id.costo}"></td>
-                    <td th:text="${gimnasio.pk.id.horaApertura}"></td>
-                    <td th:text="${gimnasio.pk.id.horaCierre}"></td>
+                    <td th:text="${gimnasio.id}"></td>
+                    <td th:text="${gimnasio.servicio.nombre}"></td>
+                    <td th:text="${gimnasio.servicio.capacidad}"></td>
+                    <td th:text="${gimnasio.servicio.costo}"></td>
+                    <td th:text="${gimnasio.servicio.horaApertura}"></td>
+                    <td th:text="${gimnasio.servicio.horaCierre}"></td>
                     <td>
-                        <a th:href="@{/servicios-basicos/gimnasios/{id}/edit(id=${gimnasio.pk.id.id})}">Editar</a>
-                        <a th:href="@{/servicios-basicos/gimnasios/} + ${gimnasio.pk.id.id} + '/delete'"
+                        <a th:href="@{/servicios-basicos/gimnasios/{id}/edit(id=${gimnasio.id})}">Editar</a>
+                        <br>
+                        <a th:href="@{/servicios-basicos/gimnasios/{id}/delete(id=${gimnasio.id})}" class="btn btn-danger"
                         onclick="return confirm('¿Estás seguro de querer eliminar este gimnasio?')">
                         Eliminar
                         </a>
