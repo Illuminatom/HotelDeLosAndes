@@ -9,7 +9,6 @@
 <body>
     <form th:action="@{/tiposHabitaciones/save}" th:object="${tipoHabitacion}" method="post">
         <div th:replace="~{fragments/tipoHabitacionForm :: tipoHabitacionForm(titulo='Crear Tipo Habitacion')}"></div>
-        <button type="submit" class="btn btn-primary">Guardar</button>
     </form>
 </body>
 </html>

@@ -13,21 +13,23 @@ public class TipoHabitacionController {
      
     @Autowired
     private TipoHabitacionRepository tipohabitacionRepository;
+
     @GetMapping 
     public String tiposhabitaciones(Model model) {
         Collection<TipoHabitacion> tiposhabitaciones = tipohabitacionRepository.findAll();
-        model.addAttribute("tiposhabitaciones", tiposhabitaciones);
+        model.addAttribute("tiposHabitaciones", tiposhabitaciones);
         return "tiposhabitaciones";
     }
+
     @GetMapping("/new")
-public String NuevoTipoHabitacion(Model model) {
+    public String NuevoTipoHabitacion(Model model) {
     TipoHabitacion tipoHabitacionNuevo = new TipoHabitacion();
     model.addAttribute("tipoHabitacion", tipoHabitacionNuevo);
     return "tipoHabitacionNuevo";
     }  
 
     @PostMapping("/save")
-public String guardarTipoHabitacion(@ModelAttribute("tipoHabitacion") TipoHabitacion tipoHabitacion) {
+    public String guardarTipoHabitacion(@ModelAttribute("tipoHabitacion") TipoHabitacion tipoHabitacion) {
     tipohabitacionRepository.save(tipoHabitacion);
     return "redirect:/tiposHabitaciones";
 }
