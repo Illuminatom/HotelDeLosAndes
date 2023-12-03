@@ -9,9 +9,7 @@
 <body>
     <form th:action="@{'/tiposHabitaciones/'+${id}+'/edit/save'}" th:object="${tipoHabitacion}" method="post">
         <div th:replace="~{fragments/tipoHabitacionForm :: tipoHabitacionForm(titulo='Editar Tipo Habitacion', tipoHabitacion=${tipoHabitacion})}">
-
         </div>      
     </form>
-
 </body>
 </html>

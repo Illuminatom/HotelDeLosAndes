@@ -11,14 +11,16 @@ public class TipoHabitacion {
     
     @Id
     private ObjectId _id;
-
     private int id;
-
     private String nombre;
     private int capacidad;
     private double precioNoche;
     private ArrayList<Habitacion> habitaciones;
 
+
+    public TipoHabitacion() {
+        this.habitaciones = new ArrayList<>();
+    }
     public TipoHabitacion(int id, String nombre, int capacidad, double precioNoche) {
         this.id = id;
         this.nombre = nombre;
@@ -26,6 +28,8 @@ public class TipoHabitacion {
         this.precioNoche = precioNoche;
         this.habitaciones = new ArrayList<Habitacion>();
     }
+
+
 
     public int getId() {
         return id;
