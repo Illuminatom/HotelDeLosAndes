@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crear Nueva Reserva</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}"/>
+</head>
+<body>
+    <form th:action="@{/reservas/save}" th:object="${reserva}" method="post">
+        <div th:replace="~{fragments/reservaForm :: reservaForm(titulo='Crear Nueva Reserva')}"></div>
+
+        <button type="submit" class="btn btn-primary">Guardar Reserva</button>
+    </form>
+</body>
+</html>
+
