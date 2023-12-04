@@ -15,6 +15,7 @@ import uniandes.edu.co.parranderos.repositorios.HabitacionRepository;
 import uniandes.edu.co.parranderos.repositorios.ReservaRepository;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
 
@@ -40,6 +41,13 @@ public class ReservaController {
     @GetMapping 
     public String listarReservas(Model model) {
         Collection<Reserva> reservas = reservaRepository.findAll();
+        for (Reserva reserva : reservas) {
+            if (reserva.getHabitacion().isDisponible() == false){
+                reserva.setEstado("Ocupada");
+            } else {
+                reserva.setEstado("Disponible");
+            }
+        }
         model.addAttribute("reservas", reservas);
         return "reservas";
     }
@@ -93,6 +101,25 @@ public class ReservaController {
     @GetMapping("/{id}/delete")
     public String eliminarReserva(@PathVariable("id") String id) {
         reservaRepository.deleteById(id);
+        return "redirect:/reservas";
+    }
+
+    @GetMapping("/registrar/entrada")
+    public String registrarEntrada(Model model) {
+        Collection<Reserva> reservas = reservaRepository.findAll();
+        Collection<Reserva> reservasDisponibles = new ArrayList<Reserva>();
+        for (Reserva reserva : reservas) {
+            if (reserva.getHabitacion().isDisponible()){
+                reservasDisponibles.add(reserva);
+            }
+        }
+        model.addAttribute("reservas", reservasDisponibles);
+        return "entradaForm";
+    }
+
+    @PostMapping("/registrar/entrada/done")
+    public String guardarEntrada(@ModelAttribute Reserva reserva) {
+        habitacionRepository.findById(reserva.getIdHabitacion()).setDisponible(false);
         return "redirect:/reservas";
     }
 }

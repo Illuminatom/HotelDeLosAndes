@@ -31,6 +31,9 @@ public class Reserva {
     private Cliente cliente;
 
     @Transient
+    private String estado;
+
+    @Transient
     private String idHabitacion;
 
     private Habitacion habitacion;
@@ -131,6 +134,12 @@ public class Reserva {
     public void setIdHabitacion(String idHabitacion) {
         this.idHabitacion = idHabitacion;
     }
-    
 
+    public void setEstado(String estado) {
+        this.estado = estado;
+    }
+
+    public String getEstado() {
+        return estado;
+    }
 }
