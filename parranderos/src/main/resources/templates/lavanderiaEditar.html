@@ -7,7 +7,7 @@
     <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}"/>
 </head>
 <body>
-    <form action="#" th:action="@{/servicios-basicos/lavanderias/{id}/edit/save(id=${lavanderia.pk.id.id})}" method="post">
+    <form action="#" th:action="@{/servicios-basicos/lavanderias/{id}/edit/save(id=${lavanderia.id})}" method="post">
         <div th:replace="~{fragments/lavanderiaForm :: lavanderiaForm(titulo='Editar lavanderia', crear=false)}"></div>      
     </form>
 </body>

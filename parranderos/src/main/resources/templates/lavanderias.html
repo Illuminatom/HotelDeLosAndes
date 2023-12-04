@@ -34,15 +34,15 @@
                 </tr>
             </thead>
             <tr th:each="lavanderia : ${lavanderias}">
-                <td th:text="${lavanderia.pk.id.id}"></td>
-                <td th:text="${lavanderia.pk.id.nombre}"></td>
+                <td th:text="${lavanderia.id}"></td>
+                <td th:text="${lavanderia.servicio.nombre}"></td>
                 <td th:text="${lavanderia.costoPorPrenda}"></td>
                 <td th:text="${lavanderia.costoPorParZapatos}"></td>
-                <td th:text="${lavanderia.pk.id.hora_apertura}"></td>
-                <td th:text="${lavanderia.pk.id.hora_cierre}"></td>
+                <td th:text="${lavanderia.servicio.horaApertura}"></td>
+                <td th:text="${lavanderia.servicio.horaCierre}"></td>
                 <td>
-                    <a th:href="@{/servicios-basicos/lavanderias/{id}/edit(id=${lavanderia.pk.id.id})}">Editar</a>
-                    <a th:href="@{/servicios-basicos/lavanderias/} + ${lavanderia.pk.id.id} + '/delete'" 
+                    <a th:href="@{/servicios-basicos/lavanderias/{id}/edit(id=${lavanderia.id})}">Editar</a>
+                    <a th:href="@{/servicios-basicos/lavanderias/} + ${lavanderia.id} + '/delete'" 
                        onclick="return confirm('¿Estás seguro de querer eliminar esta lavandería?')">Eliminar
                     </a>
                 </td>
