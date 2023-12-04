@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de prestamos</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}"/>
+    <style>
+        .boton-container {
+           display: flex;
+           justify-content: space-between;
+           width: 100%;
+        }
+    
+        button {
+           flex: 1; 
+           padding: 10px; 
+        }
+    </style>
+
+</head>
+<body>
+    <div>
+        <h1>Lista de Prestamos</h1>
+        <table class="table table-hover table-bordered">
+            <thead class="thead-dark">
+                <tr>
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>Nombre Objeto</th>
+                    <th>Costo</th>
+                    <th>Hora Apertura</th>
+                    <th>Hora Cierre</th>
+                    <th>Cantidad disponible</th>
+                    <th>Opciones</th>
+                </tr>
+            </thead>
+            <tr th:each="prestamo : ${prestamos}">
+                <td th:text="${prestamo.id}"></td>
+                <td th:text="${prestamo.servicio.nombre}"></td>
+                <td th:text="${prestamo.producto.nombre}"></td>
+                <td th:text="${prestamo.servicio.costo}"></td>
+                <td th:text="${prestamo.servicio.horaApertura}"></td>
+                <td th:text="${prestamo.servicio.horaCierre}"></td>
+                <td th:text="${prestamo.producto.cantidaDisponible}"></td>
+                <td>
+                    <a th:href="@{/servicios-basicos/prestamos/{id}/edit(id=${prestamo.id})}">Editar</a>
+                    <a th:href="@{/servicios-basicos/prestamos/} + ${prestamo.id} + '/delete'" 
+                       onclick="return confirm('¿Estás seguro de querer eliminar este prestamo?')">Eliminar
+                    </a>
+                </td>
+            </tr>
+        </table>
+        <div class="boton-container">
+            <a th:href="@{/servicios-basicos}" class="btn btn-primary">Volver a la lista de Servicios Basicos</a>
+            <a th:href="@{/servicios-basicos/prestamos/new}" class="btn btn-primary">Crear nuevo prestamo</a>
+        </div>
+    </div>
+</body>
+</html>

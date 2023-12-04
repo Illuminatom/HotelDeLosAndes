@@ -37,7 +37,7 @@ public class PiscinaController {
     }
 
     @PostMapping("/new/save")
-    public String savePiscina(Piscina piscina) {
+    public String savePiscina(@ModelAttribute Piscina piscina) {
         ServicioBasico servicio = new ServicioBasico(piscina.getId(), piscina.getNombreServicio(),
                 piscina.getCapacidadServicio(), piscina.getCostoServicio(), piscina.getHoraAperturaServicio(),
                 piscina.getHoraCierreServicio());

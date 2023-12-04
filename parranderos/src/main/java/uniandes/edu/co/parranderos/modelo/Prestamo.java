@@ -16,10 +16,34 @@ public class Prestamo {
     @Transient
     private String productoId;
 
+    @Transient
+    private String nombreProducto;
+
+    @Transient
+    private double precioProducto;
+
+    @Transient
+    private String tipoProducto;
+
     private Producto producto;
 
     @Transient
     private String servicioId;
+
+    @Transient
+    private String nombreServicio;
+
+    @Transient
+    private int capacidadServicio;
+
+    @Transient 
+    private double costoServicio;
+
+    @Transient
+    private String horaAperturaServicio;
+
+    @Transient
+    private String horaCierreServicio;
 
     private ServicioBasico servicio;
 
@@ -69,5 +93,69 @@ public class Prestamo {
 
     public void setServicioId(String servicioId) {
         this.servicioId = servicioId;
+    }
+
+    public String getNombreServicio() {
+        return nombreServicio;
+    }
+
+    public void setNombreServicio(String nombreServicio) {
+        this.nombreServicio = nombreServicio;
+    }
+
+    public int getCapacidadServicio() {
+        return capacidadServicio;
+    }
+
+    public void setCapacidadServicio(int capacidadServicio) {
+        this.capacidadServicio = capacidadServicio;
+    }
+
+    public double getCostoServicio() {
+        return costoServicio;
+    }
+
+    public void setCostoServicio(double costoServicio) {
+        this.costoServicio = costoServicio;
+    }
+
+    public String getHoraAperturaServicio() {
+        return horaAperturaServicio;
+    }
+
+    public void setHoraAperturaServicio(String horaAperturaServicio) {
+        this.horaAperturaServicio = horaAperturaServicio;
+    }
+
+    public String getHoraCierreServicio() {
+        return horaCierreServicio;
+    }
+
+    public void setHoraCierreServicio(String horaCierreServicio) {
+        this.horaCierreServicio = horaCierreServicio;
+    }
+    
+    public String getNombreProducto() {
+        return nombreProducto;
+    }
+
+    public void setNombreProducto(String nombreProducto) {
+        this.nombreProducto = nombreProducto;
+    }
+
+    public double getPrecioProducto() {
+        return precioProducto;
+    }
+
+    public void setPrecioProducto(double precioProducto) {
+        this.precioProducto = precioProducto;
+    }
+
+    public String getTipoProducto() {
+        return tipoProducto;
+    }
+
+    public void setTipoProducto(String tipoProducto) {
+        this.tipoProducto = tipoProducto;
     }
 }
