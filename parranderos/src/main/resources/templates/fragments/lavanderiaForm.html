@@ -11,21 +11,21 @@
         <h1 class="text-center" th:text="${titulo}"></h1>
         <form>
             <label class="col-form-label">ID del Servicio</label>
-            <input type="number" class="form-control" id="id" name="id" th:value="${servicioBasico.id}" th:readonly="${!crear}"/>
+            <input type="number" class="form-control" id="id" name="id" th:value="${lavanderia.id}" th:readonly="${!crear}"/>
             <label class="col-form-label">Nombre del Servicio</label>
-            <input type="text" class="form-control" id="nombre" name="nombre" required th:value="${servicioBasico.nombre}"/>
+            <input type="text" class="form-control" id="nombre" name="nombreServicio" required th:value="${lavanderia.nombreServicio}"/>
             <label class="col-form-label">Capacidad</label>
-            <input type="number" class="form-control" id="capacidad" name="capacidad" required th:value="${servicioBasico.capacidad}"/>
+            <input type="number" class="form-control" id="capacidad" name="capacidadServicio" required th:value="${lavanderia.capacidadServicio}"/>
             <label class="col-form-label">Costo Por Prenda</label>
             <input type="number" class="form-control" id="costoPorPrenda" name="costoPorPrenda" required th:value="${lavanderia.costoPorPrenda}"/>  
             <label class="col-form-label">Costo por Zapatos</label>
             <input type="number" class="form-control" id="costoPorParZapatos" name="costoPorParZapatos" required th:value="${lavanderia.costoPorParZapatos}"/>   
             <label class="col-form-label">Costo</label>
-            <input type="number" class="form-control" id="costo" name="costo" required th:value="${servicioBasico.costo}"/> 
-            <label class="col-form-label">Hora Apertura</label>
-            <input type="time" class="form-control" id="hora_apertura" name="hora_apertura" required th:value="${servicioBasico.hora_apertura}"/>     
-            <label class="col-form-label">Hora Cierre</label>
-            <input type="time" class="form-control" id="hora_apertura" name="hora_apertura" required th:value="${servicioBasico.hora_apertura}"/>      
+            <input type="number" class="form-control" id="costo" name="costoServicio" required th:value="${lavanderia.costoServicio}"/> 
+            <label class="col-form-label">Hora Apertura (HH:MM)</label>
+            <input type="text" class="form-control" id="horaApertura" name="horaAperturaServicio" required th:value="${lavanderia.horaAperturaServicio}"/>     
+            <label class="col-form-label">Hora Cierre (HH:MM)</label>
+            <input type="text" class="form-control" id="horaCierre" name="horaCierreServicio" required th:value="${lavanderia.horaCierreServicio}"/>      
             <div class="text-center">
                 <input type="submit" value="Guardar" class="btn btn-primary">
                 <a th:href="@{/servicios-basicos/lavanderias}" class="btn btn-primary">Cancelar</a>

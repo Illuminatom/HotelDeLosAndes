@@ -39,6 +39,20 @@ public class ServicioBasicoController {
         return "redirect:/servicios-basicos";
     }
 
+    @GetMapping("/{id}/edit")
+    public String servicioBasicoForm(@PathVariable("id") String id, Model model) {
+        ServicioBasico servicioBasico = servicioBasicoRepository.findById(id);
+        model.addAttribute("servicioBasico", servicioBasico);
+        return "servicioBasicoEditar";
+    }
+
+    @PostMapping("/{id}/edit/save")
+    public String updateServicioBasico(@PathVariable("id") String id, ServicioBasico servicioBasico) {
+        servicioBasicoRepository.deleteById(id);
+        servicioBasicoRepository.save(servicioBasico);
+        return "redirect:/servicios-basicos";
+    }
+
     @GetMapping("/{id}/delete")
     public String deleteServicioBasico(@PathVariable("id") String id) {
         servicioBasicoRepository.deleteById(id);

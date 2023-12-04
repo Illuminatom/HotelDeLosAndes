@@ -7,7 +7,7 @@
     <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}"/>
 </head>
 <body>
-    <form action="#" th:action="@{/servicios-basicos/gimnasios/{id}/edit/save(id=${gimnasio.pk.id.id})}" method="post">
+    <form action="#" th:action="@{/servicios-basicos/gimnasios/{id}/edit/save(id=${gimnasio.id})}" method="post">
         <div th:replace="~{fragments/gimnasioForm :: gimnasioForm(titulo='Editar Gimnasio', crear=false)}"></div>      
     </form>
 </body>

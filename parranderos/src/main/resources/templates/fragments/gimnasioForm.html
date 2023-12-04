@@ -11,17 +11,17 @@
         <h1 class="text-center" th:text="${titulo}"></h1>
         <form>
             <label class="col-form-label">ID del Servicio</label>
-            <input type="number" class="form-control" id="id" name="id" th:value="${servicioBasico.id}" th:readonly="${!crear}"/>
+            <input type="number" class="form-control" id="id" name="id" th:value="${gimnasio.id}" th:readonly="${!crear}"/>
             <label class="col-form-label">Nombre del Servicio</label>
-            <input type="text" class="form-control" id="nombre" name="nombre" required th:value="${servicioBasico.nombre}"/>
+            <input type="text" class="form-control" id="nombre" name="nombreServicio" required th:value="${gimnasio.nombreServicio}"/>
             <label class="col-form-label">Capacidad</label>
-            <input type="number" class="form-control" id="capacidad" name="capacidad" required th:value="${servicioBasico.capacidad}"/>  
+            <input type="number" class="form-control" id="capacidad" name="capacidadServicio" required th:value="${gimnasio.capacidadServicio}"/>  
             <label class="col-form-label">Costo</label>
-            <input type="number" class="form-control" id="costo" name="costo" required th:value="${servicioBasico.costo}"/>  
+            <input type="number" class="form-control" id="costo" name="costoServicio" required th:value="${gimnasio.costoServicio}"/>  
             <label class="col-form-label">Hora Apertura</label>
-            <input type="time" class="form-control" id="hora_apertura" name="hora_apertura" required th:value="${servicioBasico.hora_apertura}"/>     
+            <input type="text" class="form-control" id="horaApertura" name="horaAperturaServicio" required th:value="${gimnasio.horaAperturaServicio}"/>     
             <label class="col-form-label">Hora Cierre</label>
-            <input type="time" class="form-control" id="hora_apertura" name="hora_apertura" required th:value="${servicioBasico.hora_apertura}"/>      
+            <input type="text" class="form-control" id="horaCierre" name="horaCierreServicio" required th:value="${gimnasio.horaCierreServicio}"/>      
             <div class="text-center">
                 <input type="submit" value="Guardar" class="btn btn-primary">
                 <a th:href="@{/servicios-basicos/gimnasios}" class="btn btn-primary">Cancelar</a>
