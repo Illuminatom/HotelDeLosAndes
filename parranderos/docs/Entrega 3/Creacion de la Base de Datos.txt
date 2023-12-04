@@ -115,10 +115,9 @@ db.createCollection("Reserva", {validator: {
                 }
             },
             habitacion: {bsonType: "object",
-                required: ["id", "capacidad", "disponible"],
+                required: ["id", "disponible"],
                 properties: {
                     id: {bsonType: "string"},
-                    capacidad: {bsonType: "int"},
                     disponible: {bsonType: "bool"},
                 }
             },

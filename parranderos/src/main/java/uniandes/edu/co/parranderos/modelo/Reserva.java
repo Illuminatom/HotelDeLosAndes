@@ -1,12 +1,13 @@
 package uniandes.edu.co.parranderos.modelo;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.annotation.Transient;
 import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.format.annotation.DateTimeFormat;
 
 @Document(collection = "Reserva")
 public class Reserva {
@@ -15,26 +16,35 @@ public class Reserva {
     private ObjectId _id;
 
     private String id;
+
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date fechaEntrada;
+    
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date fechaSalida;
+
     private double cobroTotal;
+
+    @Transient
+    private int idCliente;
+    
     private Cliente cliente;
+
+    @Transient
+    private String idHabitacion;
+
     private Habitacion habitacion;
+    
     private List<ServicioBasico> consumoServicios;
     private List<Producto> consumoProductos;
 
-    public Reserva(String id, Date fechaEntrada, Date fechaSalida,
-    double cobroTotal, Cliente cliente,Habitacion habitacion ) {
+    public Reserva(String id, Date fechaEntrada, Date fechaSalida, double cobroTotal, Cliente cliente,Habitacion habitacion ) {
         this.id = id;
         this.fechaEntrada = fechaEntrada;
         this.fechaSalida = fechaSalida;
         this.cobroTotal = cobroTotal;
         this.cliente = cliente;
         this.habitacion = habitacion;
-        this.consumoServicios = consumoServicios;
-        this.consumoProductos = consumoProductos;
-
-
     }
 
     public Reserva(){}
@@ -104,6 +114,22 @@ public class Reserva {
 
     public void setConsumoProductos(List<Producto> consumoProductos) {
         this.consumoProductos = consumoProductos;
+    }
+
+    public int getIdCliente() {
+        return idCliente;
+    }
+
+    public void setIdCliente(int idCliente) {
+        this.idCliente = idCliente;
+    }
+
+    public String getIdHabitacion() {
+        return idHabitacion;
+    }
+
+    public void setIdHabitacion(String idHabitacion) {
+        this.idHabitacion = idHabitacion;
     }
     
 
