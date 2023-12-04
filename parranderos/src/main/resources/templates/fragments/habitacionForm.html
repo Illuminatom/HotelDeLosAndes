@@ -22,14 +22,14 @@
             <label class="col-form-label" for="hotel">Hotel</label>
             <select class="form-control" id="hotel" name="hotelId" required>
                 <th:block th:each="hotel : ${hoteles}">
-                    <option th:value="${hotel.id}" th:text="${hotel.nombre}" th:selected="${habitacion != null && habitacion.hotel != null && habitacion.hotel.id == hotel.id}"></option>
+                    <option th:value="${hotel.id}" th:text="${hotel.nombre}" th:selected="${habitacion != null && habitacion.hotel != null && habitacion.hotelId == hotel.id}"></option>
                 </th:block>
             </select>
             
             <label class="col-form-label" for="tipoHabitacion">Tipo de habitacion</label>
             <select class="form-control" id="tipoHabitacion" name="tipoHabitacionId" required>
                 <th:block th:each="tipoHabitacion : ${tiposHabitaciones}">
-                    <option th:value="${tipoHabitacion.id}" th:text="${tipoHabitacion.nombre}" th:selected="${habitacion != null && habitacion.tipoHabitacion != null && habitacion.tipoHabitacion.id == tipoHabitacion.id}"></option>
+                    <option th:value="${tipoHabitacion.id}" th:text="${tipoHabitacion.nombre}" th:selected="${habitacion != null && habitacion.tipoHabitacion != null && habitacion.tipoHabitacionId == tipoHabitacion.id}"></option>
                 </th:block>
             </select>            
 

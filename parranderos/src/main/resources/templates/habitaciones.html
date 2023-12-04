@@ -35,7 +35,7 @@
             <th:block th:each="habitacion:${habitaciones}">
                 <tr>
                     <td th:text="${habitacion.id}"></td>
-                    <td th:text="${habitacion.disponible}"></td>
+                    <td th:text="${habitacion.estado}"></td>
                     <td th:text="${habitacion.tipoHabitacion.capacidad}"></td>
                     <td th:text="${habitacion.hotel.nombre}"></td>
                     <td th:text="${habitacion.tipoHabitacion.nombre}"></td>

@@ -34,6 +34,13 @@ public class HabitacionController {
     @GetMapping
     public String habitaciones(Model model) {
         Collection<Habitacion> habitaciones = habitacionRepository.findAll();
+        for (Habitacion habitacion : habitaciones) {
+            if (habitacion.isDisponible() == false){
+                habitacion.setEstado("Ocupada");
+            } else {
+                habitacion.setEstado("Disponible");
+            }
+        }
         model.addAttribute("habitaciones", habitaciones);
         return "habitaciones";
     }
@@ -61,6 +68,8 @@ public class HabitacionController {
     @GetMapping("/{id}/edit")
     public String habitacionEdit(Model model, @PathVariable("id") String id) {
         Habitacion habitacion = habitacionRepository.findById(id);
+        habitacion.setHotelId(habitacion.getHotel().getId());
+        habitacion.setTipoHabitacionId(habitacion.getTipoHabitacion().getId());
         model.addAttribute("habitacion", habitacion);
         model.addAttribute("hoteles", hotelRepository.findAll());
         model.addAttribute("tiposHabitaciones", tipoHabitacionRepository.findAll());

@@ -18,6 +18,9 @@ public class Habitacion {
     @Transient
     private String tipoHabitacionId;
 
+    @Transient
+    private String estado;
+
     private TipoHabitacion tipoHabitacion;
 
     @Transient
@@ -81,5 +84,13 @@ public class Habitacion {
 
     public void setHotelId(String hotelId) {
         this.hotelId = hotelId;
+    }
+
+    public String getEstado() {
+        return estado;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
     }
 }
