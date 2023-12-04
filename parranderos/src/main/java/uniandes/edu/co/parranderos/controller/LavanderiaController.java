@@ -68,7 +68,7 @@ public class LavanderiaController {
                 lavanderia.getHoraCierreServicio());
 
         lavanderia.setServicio(servicio);
-        servicioBasicoRepository.deleteById(id);
+        servicioBasicoRepository.deleteById(lavanderia.getServicio().getId());
         
         servicioBasicoRepository.save(servicio);
         lavanderiaRepository.deleteById(id);

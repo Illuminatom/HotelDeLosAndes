@@ -36,16 +36,16 @@
                 </tr>
             </thead>
             <tr th:each="piscina : ${piscinas}">
-                <td th:text="${piscina.pk.id.id}"></td>
-                <td th:text="${piscina.pk.id.nombre}"></td>
-                <td th:text="${piscina.pk.id.capacidad}"></td>
+                <td th:text="${piscina.id}"></td>
+                <td th:text="${piscina.servicio.nombre}"></td>
+                <td th:text="${piscina.servicio.capacidad}"></td>
                 <td th:text="${piscina.profundidad}"></td>
-                <td th:text="${piscina.pk.id.costo}"></td>
-                <td th:text="${piscina.pk.id.horaApertura}"></td>
-                <td th:text="${piscina.pk.id.horaCierre}"></td>
+                <td th:text="${piscina.servicio.costo}"></td>
+                <td th:text="${piscina.servicio.horaApertura}"></td>
+                <td th:text="${piscina.servicio.horaCierre}"></td>
                 <td>
-                    <a th:href="@{/servicios-basicos/piscinas/{id}/edit(id=${piscina.pk.id.id})}">Editar</a>
-                    <a th:href="@{/servicios-basicos/piscinas/} + ${piscina.pk.id.id} + '/delete'" 
+                    <a th:href="@{/servicios-basicos/piscinas/{id}/edit(id=${piscina.id})}">Editar</a>
+                    <a th:href="@{/servicios-basicos/piscinas/} + ${piscina.id} + '/delete'" 
                        onclick="return confirm('¿Estás seguro de querer eliminar esta piscina?')">Eliminar
                     </a>
                 </td>
